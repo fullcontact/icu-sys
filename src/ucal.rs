@@ -56,6 +56,7 @@ pub const UCAL_DAY_OF_MONTH: UCalendarDateFields =
 #[derive(Copy, Clone)]
 #[repr(u32)]
 #[derive(Debug)]
+#[derive(PartialEq,Eq,PartialOrd,Ord,Hash)]
 pub enum UCalendarDateFields {
     UCAL_ERA = 0,
     UCAL_YEAR = 1,
@@ -85,6 +86,7 @@ pub enum UCalendarDateFields {
 #[derive(Copy, Clone)]
 #[repr(u32)]
 #[derive(Debug)]
+#[derive(PartialEq,Eq,PartialOrd,Ord,Hash)]
 pub enum UCalendarDaysOfWeek {
     UCAL_SUNDAY = 1,
     UCAL_MONDAY = 2,
@@ -97,6 +99,7 @@ pub enum UCalendarDaysOfWeek {
 #[derive(Copy, Clone)]
 #[repr(u32)]
 #[derive(Debug)]
+#[derive(PartialEq,Eq,PartialOrd,Ord,Hash)]
 pub enum UCalendarMonths {
     UCAL_JANUARY = 0,
     UCAL_FEBRUARY = 1,
@@ -119,6 +122,7 @@ pub enum UCalendarAMPMs { UCAL_AM = 0, UCAL_PM = 1, }
 #[derive(Copy, Clone)]
 #[repr(u32)]
 #[derive(Debug)]
+#[derive(PartialEq,Eq,PartialOrd,Ord,Hash)]
 pub enum USystemTimeZoneType {
     UCAL_ZONE_TYPE_ANY = 0,
     UCAL_ZONE_TYPE_CANONICAL = 1,
@@ -127,6 +131,7 @@ pub enum USystemTimeZoneType {
 #[derive(Copy, Clone)]
 #[repr(u32)]
 #[derive(Debug)]
+#[derive(PartialEq,Eq,PartialOrd,Ord,Hash)]
 pub enum UCalendarDisplayNameType {
     UCAL_STANDARD = 0,
     UCAL_SHORT_STANDARD = 1,
@@ -136,6 +141,7 @@ pub enum UCalendarDisplayNameType {
 #[derive(Copy, Clone)]
 #[repr(u32)]
 #[derive(Debug)]
+#[derive(PartialEq,Eq,PartialOrd,Ord,Hash)]
 pub enum UCalendarAttribute {
     UCAL_LENIENT = 0,
     UCAL_FIRST_DAY_OF_WEEK = 1,
@@ -146,6 +152,7 @@ pub enum UCalendarAttribute {
 #[derive(Copy, Clone)]
 #[repr(u32)]
 #[derive(Debug)]
+#[derive(PartialEq,Eq,PartialOrd,Ord,Hash)]
 pub enum UCalendarWallTimeOption {
     UCAL_WALLTIME_LAST = 0,
     UCAL_WALLTIME_FIRST = 1,
@@ -154,6 +161,7 @@ pub enum UCalendarWallTimeOption {
 #[derive(Copy, Clone)]
 #[repr(u32)]
 #[derive(Debug)]
+#[derive(PartialEq,Eq,PartialOrd,Ord,Hash)]
 pub enum UCalendarLimitType {
     UCAL_MINIMUM = 0,
     UCAL_MAXIMUM = 1,
@@ -165,6 +173,7 @@ pub enum UCalendarLimitType {
 #[derive(Copy, Clone)]
 #[repr(u32)]
 #[derive(Debug)]
+#[derive(PartialEq,Eq,PartialOrd,Ord,Hash)]
 pub enum UCalendarWeekdayType {
     UCAL_WEEKDAY = 0,
     UCAL_WEEKEND = 1,
@@ -174,6 +183,7 @@ pub enum UCalendarWeekdayType {
 #[derive(Copy, Clone)]
 #[repr(u32)]
 #[derive(Debug)]
+#[derive(PartialEq,Eq,PartialOrd,Ord,Hash)]
 pub enum UTimeZoneTransitionType {
     UCAL_TZ_TRANSITION_NEXT = 0,
     UCAL_TZ_TRANSITION_NEXT_INCLUSIVE = 1,

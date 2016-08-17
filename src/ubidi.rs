@@ -49,6 +49,7 @@ pub type UBiDiLevel = uint8_t;
 #[derive(Copy, Clone)]
 #[repr(u32)]
 #[derive(Debug)]
+#[derive(PartialEq,Eq,PartialOrd,Ord,Hash)]
 pub enum UBiDiDirection {
     UBIDI_LTR = 0,
     UBIDI_RTL = 1,
@@ -59,6 +60,7 @@ pub enum UBiDi { }
 #[derive(Copy, Clone)]
 #[repr(u32)]
 #[derive(Debug)]
+#[derive(PartialEq,Eq,PartialOrd,Ord,Hash)]
 pub enum UBiDiReorderingMode {
     UBIDI_REORDER_DEFAULT = 0,
     UBIDI_REORDER_NUMBERS_SPECIAL = 1,
@@ -72,6 +74,7 @@ pub enum UBiDiReorderingMode {
 #[derive(Copy, Clone)]
 #[repr(u32)]
 #[derive(Debug)]
+#[derive(PartialEq,Eq,PartialOrd,Ord,Hash)]
 pub enum UBiDiReorderingOption {
     UBIDI_OPTION_DEFAULT = 0,
     UBIDI_OPTION_INSERT_MARKS = 1,

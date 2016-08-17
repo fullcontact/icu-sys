@@ -48,6 +48,7 @@ use ucasemap::*;
 #[derive(Copy, Clone)]
 #[repr(u32)]
 #[derive(Debug)]
+#[derive(PartialEq,Eq,PartialOrd,Ord,Hash)]
 pub enum UCharIteratorOrigin {
     UITER_START = 0,
     UITER_CURRENT = 1,

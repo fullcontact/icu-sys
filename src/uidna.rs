@@ -48,6 +48,7 @@ use ucasemap::*;
 #[derive(Copy, Clone)]
 #[repr(u32)]
 #[derive(Debug)]
+#[derive(PartialEq,Eq,PartialOrd,Ord,Hash)]
 pub enum Enum_uidna1 {
     UIDNA_DEFAULT = 0,
     UIDNA_ALLOW_UNASSIGNED = 1,
@@ -76,6 +77,7 @@ impl ::std::default::Default for UIDNAInfo {
 #[derive(Copy, Clone)]
 #[repr(u32)]
 #[derive(Debug)]
+#[derive(PartialEq,Eq,PartialOrd,Ord,Hash)]
 pub enum Enum_uidna2 {
     UIDNA_ERROR_EMPTY_LABEL = 1,
     UIDNA_ERROR_LABEL_TOO_LONG = 2,

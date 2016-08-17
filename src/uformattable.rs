@@ -48,6 +48,7 @@ use ucasemap::*;
 #[derive(Copy, Clone)]
 #[repr(u32)]
 #[derive(Debug)]
+#[derive(PartialEq,Eq,PartialOrd,Ord,Hash)]
 pub enum UFormattableType {
     UFMT_DATE = 0,
     UFMT_DOUBLE = 1,

@@ -51,6 +51,7 @@ pub const USPOOF_SINGLE_SCRIPT: USpoofChecks =
 #[derive(Copy, Clone)]
 #[repr(u32)]
 #[derive(Debug)]
+#[derive(PartialEq,Eq,PartialOrd,Ord,Hash)]
 pub enum USpoofChecks {
     USPOOF_SINGLE_SCRIPT_CONFUSABLE = 1,
     USPOOF_MIXED_SCRIPT_CONFUSABLE = 2,
@@ -66,6 +67,7 @@ pub enum USpoofChecks {
 #[derive(Copy, Clone)]
 #[repr(u32)]
 #[derive(Debug)]
+#[derive(PartialEq,Eq,PartialOrd,Ord,Hash)]
 pub enum URestrictionLevel {
     USPOOF_ASCII = 268435456,
     USPOOF_SINGLE_SCRIPT_RESTRICTIVE = 536870912,

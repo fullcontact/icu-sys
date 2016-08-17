@@ -57,6 +57,7 @@ pub const RES_INT_VECTOR: UResType = UResType::URES_INT_VECTOR;
 #[derive(Copy, Clone)]
 #[repr(i32)]
 #[derive(Debug)]
+#[derive(PartialEq,Eq,PartialOrd,Ord,Hash)]
 pub enum UResType {
     URES_NONE = -1,
     URES_STRING = 0,

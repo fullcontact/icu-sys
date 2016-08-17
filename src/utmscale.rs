@@ -48,6 +48,7 @@ use ucasemap::*;
 #[derive(Copy, Clone)]
 #[repr(u32)]
 #[derive(Debug)]
+#[derive(PartialEq,Eq,PartialOrd,Ord,Hash)]
 pub enum UDateTimeScale {
     UDTS_JAVA_TIME = 0,
     UDTS_UNIX_TIME = 1,
@@ -64,6 +65,7 @@ pub enum UDateTimeScale {
 #[derive(Copy, Clone)]
 #[repr(u32)]
 #[derive(Debug)]
+#[derive(PartialEq,Eq,PartialOrd,Ord,Hash)]
 pub enum UTimeScaleValue {
     UTSV_UNITS_VALUE = 0,
     UTSV_EPOCH_OFFSET_VALUE = 1,

@@ -51,6 +51,10 @@ for module in $MODULES; do
         echo ""
         # Uniquify _Unnamed stuff
         echo ";s/_Unnamed/_$module/g"
+        # Derive all the traits on C enums rather than just Debug
+        echo ";/pub enum[^}]*$/i \
+#[derive(PartialEq,Eq,PartialOrd,Ord,Hash)]
+"
     ) | sed -i~ -f - src/$module.rs
 
     >>src/lib.rs echo "pub mod $module;"

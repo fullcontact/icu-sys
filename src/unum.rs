@@ -52,6 +52,7 @@ pub const UNUM_IGNORE: UNumberFormatStyle =
 #[derive(Copy, Clone)]
 #[repr(u32)]
 #[derive(Debug)]
+#[derive(PartialEq,Eq,PartialOrd,Ord,Hash)]
 pub enum UNumberFormatStyle {
     UNUM_PATTERN_DECIMAL = 0,
     UNUM_DECIMAL = 1,
@@ -74,6 +75,7 @@ pub const UNUM_FOUND_HALFEVEN: UNumberFormatRoundingMode =
 #[derive(Copy, Clone)]
 #[repr(u32)]
 #[derive(Debug)]
+#[derive(PartialEq,Eq,PartialOrd,Ord,Hash)]
 pub enum UNumberFormatRoundingMode {
     UNUM_ROUND_CEILING = 0,
     UNUM_ROUND_FLOOR = 1,
@@ -87,6 +89,7 @@ pub enum UNumberFormatRoundingMode {
 #[derive(Copy, Clone)]
 #[repr(u32)]
 #[derive(Debug)]
+#[derive(PartialEq,Eq,PartialOrd,Ord,Hash)]
 pub enum UNumberFormatPadPosition {
     UNUM_PAD_BEFORE_PREFIX = 0,
     UNUM_PAD_AFTER_PREFIX = 1,
@@ -100,6 +103,7 @@ pub enum UNumberCompactStyle { UNUM_SHORT = 0, UNUM_LONG = 1, }
 #[derive(Copy, Clone)]
 #[repr(u32)]
 #[derive(Debug)]
+#[derive(PartialEq,Eq,PartialOrd,Ord,Hash)]
 pub enum UCurrencySpacing {
     UNUM_CURRENCY_MATCH = 0,
     UNUM_CURRENCY_SURROUNDING_MATCH = 1,
@@ -109,6 +113,7 @@ pub enum UCurrencySpacing {
 #[derive(Copy, Clone)]
 #[repr(u32)]
 #[derive(Debug)]
+#[derive(PartialEq,Eq,PartialOrd,Ord,Hash)]
 pub enum UNumberFormatFields {
     UNUM_INTEGER_FIELD = 0,
     UNUM_FRACTION_FIELD = 1,
@@ -126,6 +131,7 @@ pub enum UNumberFormatFields {
 #[derive(Copy, Clone)]
 #[repr(u32)]
 #[derive(Debug)]
+#[derive(PartialEq,Eq,PartialOrd,Ord,Hash)]
 pub enum UNumberFormatAttributeValue {
     UNUM_NO = 0,
     UNUM_YES = 1,
@@ -134,6 +140,7 @@ pub enum UNumberFormatAttributeValue {
 #[derive(Copy, Clone)]
 #[repr(u32)]
 #[derive(Debug)]
+#[derive(PartialEq,Eq,PartialOrd,Ord,Hash)]
 pub enum UNumberFormatAttribute {
     UNUM_PARSE_INT_ONLY = 0,
     UNUM_GROUPING_USED = 1,
@@ -168,6 +175,7 @@ pub enum UNumberFormatAttribute {
 #[derive(Copy, Clone)]
 #[repr(u32)]
 #[derive(Debug)]
+#[derive(PartialEq,Eq,PartialOrd,Ord,Hash)]
 pub enum UNumberFormatTextAttribute {
     UNUM_POSITIVE_PREFIX = 0,
     UNUM_POSITIVE_SUFFIX = 1,
@@ -181,6 +189,7 @@ pub enum UNumberFormatTextAttribute {
 #[derive(Copy, Clone)]
 #[repr(u32)]
 #[derive(Debug)]
+#[derive(PartialEq,Eq,PartialOrd,Ord,Hash)]
 pub enum UNumberFormatSymbol {
     UNUM_DECIMAL_SEPARATOR_SYMBOL = 0,
     UNUM_GROUPING_SEPARATOR_SYMBOL = 1,

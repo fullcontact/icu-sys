@@ -49,6 +49,7 @@ pub enum UBreakIterator { }
 #[derive(Copy, Clone)]
 #[repr(u32)]
 #[derive(Debug)]
+#[derive(PartialEq,Eq,PartialOrd,Ord,Hash)]
 pub enum UBreakIteratorType {
     UBRK_CHARACTER = 0,
     UBRK_WORD = 1,
@@ -64,6 +65,7 @@ pub const UBRK_WORD_IDEO: UWordBreak = UWordBreak::UBRK_WORD_KANA_LIMIT;
 #[derive(Copy, Clone)]
 #[repr(u32)]
 #[derive(Debug)]
+#[derive(PartialEq,Eq,PartialOrd,Ord,Hash)]
 pub enum UWordBreak {
     UBRK_WORD_NONE = 0,
     UBRK_WORD_NONE_LIMIT = 100,
@@ -76,6 +78,7 @@ pub const UBRK_LINE_HARD: ULineBreakTag = ULineBreakTag::UBRK_LINE_SOFT_LIMIT;
 #[derive(Copy, Clone)]
 #[repr(u32)]
 #[derive(Debug)]
+#[derive(PartialEq,Eq,PartialOrd,Ord,Hash)]
 pub enum ULineBreakTag {
     UBRK_LINE_SOFT = 0,
     UBRK_LINE_SOFT_LIMIT = 100,
@@ -86,6 +89,7 @@ pub const UBRK_SENTENCE_SEP: USentenceBreakTag =
 #[derive(Copy, Clone)]
 #[repr(u32)]
 #[derive(Debug)]
+#[derive(PartialEq,Eq,PartialOrd,Ord,Hash)]
 pub enum USentenceBreakTag {
     UBRK_SENTENCE_TERM = 0,
     UBRK_SENTENCE_TERM_LIMIT = 100,

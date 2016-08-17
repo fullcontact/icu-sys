@@ -48,6 +48,7 @@ use ucasemap::*;
 #[derive(Copy, Clone)]
 #[repr(u32)]
 #[derive(Debug)]
+#[derive(PartialEq,Eq,PartialOrd,Ord,Hash)]
 pub enum UDisplayContextType {
     UDISPCTX_TYPE_DIALECT_HANDLING = 0,
     UDISPCTX_TYPE_CAPITALIZATION = 1,
@@ -56,6 +57,7 @@ pub enum UDisplayContextType {
 #[derive(Copy, Clone)]
 #[repr(u32)]
 #[derive(Debug)]
+#[derive(PartialEq,Eq,PartialOrd,Ord,Hash)]
 pub enum UDisplayContext {
     UDISPCTX_STANDARD_NAMES = 0,
     UDISPCTX_DIALECT_NAMES = 1,

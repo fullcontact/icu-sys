@@ -48,6 +48,7 @@ use ucasemap::*;
 #[derive(Copy, Clone)]
 #[repr(u32)]
 #[derive(Debug)]
+#[derive(PartialEq,Eq,PartialOrd,Ord,Hash)]
 pub enum Enum_utext1 {
     UTEXT_PROVIDER_LENGTH_IS_EXPENSIVE = 1,
     UTEXT_PROVIDER_STABLE_CHUNKS = 2,

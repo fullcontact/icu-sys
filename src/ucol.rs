@@ -49,6 +49,7 @@ pub enum UCollator { }
 #[derive(Copy, Clone)]
 #[repr(i32)]
 #[derive(Debug)]
+#[derive(PartialEq,Eq,PartialOrd,Ord,Hash)]
 pub enum UCollationResult {
     UCOL_EQUAL = 0,
     UCOL_GREATER = 1,
@@ -63,6 +64,7 @@ pub const UCOL_OFF: UColAttributeValue =
 #[derive(Copy, Clone)]
 #[repr(i32)]
 #[derive(Debug)]
+#[derive(PartialEq,Eq,PartialOrd,Ord,Hash)]
 pub enum UColAttributeValue {
     UCOL_DEFAULT = -1,
     UCOL_PRIMARY = 0,
@@ -85,6 +87,7 @@ pub const UCOL_REORDER_CODE_FIRST: UColReorderCode =
 #[derive(Copy, Clone)]
 #[repr(i32)]
 #[derive(Debug)]
+#[derive(PartialEq,Eq,PartialOrd,Ord,Hash)]
 pub enum UColReorderCode {
     UCOL_REORDER_CODE_DEFAULT = -1,
     UCOL_REORDER_CODE_NONE = 103,
@@ -101,6 +104,7 @@ pub const UCOL_DECOMPOSITION_MODE: UColAttribute =
 #[derive(Copy, Clone)]
 #[repr(u32)]
 #[derive(Debug)]
+#[derive(PartialEq,Eq,PartialOrd,Ord,Hash)]
 pub enum UColAttribute {
     UCOL_FRENCH_COLLATION = 0,
     UCOL_ALTERNATE_HANDLING = 1,
@@ -119,6 +123,7 @@ pub enum UColRuleOption { UCOL_TAILORING_ONLY = 0, UCOL_FULL_RULES = 1, }
 #[derive(Copy, Clone)]
 #[repr(u32)]
 #[derive(Debug)]
+#[derive(PartialEq,Eq,PartialOrd,Ord,Hash)]
 pub enum UColBoundMode {
     UCOL_BOUND_LOWER = 0,
     UCOL_BOUND_UPPER = 1,

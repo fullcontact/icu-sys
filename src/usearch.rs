@@ -49,6 +49,7 @@ pub enum UStringSearch { }
 #[derive(Copy, Clone)]
 #[repr(u32)]
 #[derive(Debug)]
+#[derive(PartialEq,Eq,PartialOrd,Ord,Hash)]
 pub enum USearchAttribute {
     USEARCH_OVERLAP = 0,
     USEARCH_CANONICAL_MATCH = 1,
@@ -58,6 +59,7 @@ pub enum USearchAttribute {
 #[derive(Copy, Clone)]
 #[repr(i32)]
 #[derive(Debug)]
+#[derive(PartialEq,Eq,PartialOrd,Ord,Hash)]
 pub enum USearchAttributeValue {
     USEARCH_DEFAULT = -1,
     USEARCH_OFF = 0,

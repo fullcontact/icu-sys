@@ -56,6 +56,7 @@ pub const UCHAR_OTHER_PROPERTY_START: UProperty =
 #[derive(Copy, Clone)]
 #[repr(i32)]
 #[derive(Debug)]
+#[derive(PartialEq,Eq,PartialOrd,Ord,Hash)]
 pub enum UProperty {
     UCHAR_ALPHABETIC = 0,
     UCHAR_ASCII_HEX_DIGIT = 1,
@@ -165,6 +166,7 @@ pub const U_GENERAL_OTHER_TYPES: UCharCategory = UCharCategory::U_UNASSIGNED;
 #[derive(Copy, Clone)]
 #[repr(u32)]
 #[derive(Debug)]
+#[derive(PartialEq,Eq,PartialOrd,Ord,Hash)]
 pub enum UCharCategory {
     U_UNASSIGNED = 0,
     U_UPPERCASE_LETTER = 1,
@@ -201,6 +203,7 @@ pub enum UCharCategory {
 #[derive(Copy, Clone)]
 #[repr(u32)]
 #[derive(Debug)]
+#[derive(PartialEq,Eq,PartialOrd,Ord,Hash)]
 pub enum UCharDirection {
     U_LEFT_TO_RIGHT = 0,
     U_RIGHT_TO_LEFT = 1,
@@ -230,6 +233,7 @@ pub enum UCharDirection {
 #[derive(Copy, Clone)]
 #[repr(u32)]
 #[derive(Debug)]
+#[derive(PartialEq,Eq,PartialOrd,Ord,Hash)]
 pub enum UBidiPairedBracketType {
     U_BPT_NONE = 0,
     U_BPT_OPEN = 1,
@@ -243,6 +247,7 @@ pub const UBLOCK_CYRILLIC_SUPPLEMENTARY: UBlockCode =
 #[derive(Copy, Clone)]
 #[repr(i32)]
 #[derive(Debug)]
+#[derive(PartialEq,Eq,PartialOrd,Ord,Hash)]
 pub enum UBlockCode {
     UBLOCK_NO_BLOCK = 0,
     UBLOCK_BASIC_LATIN = 1,
@@ -503,6 +508,7 @@ pub enum UBlockCode {
 #[derive(Copy, Clone)]
 #[repr(u32)]
 #[derive(Debug)]
+#[derive(PartialEq,Eq,PartialOrd,Ord,Hash)]
 pub enum UEastAsianWidth {
     U_EA_NEUTRAL = 0,
     U_EA_AMBIGUOUS = 1,
@@ -515,6 +521,7 @@ pub enum UEastAsianWidth {
 #[derive(Copy, Clone)]
 #[repr(u32)]
 #[derive(Debug)]
+#[derive(PartialEq,Eq,PartialOrd,Ord,Hash)]
 pub enum UCharNameChoice {
     U_UNICODE_CHAR_NAME = 0,
     U_UNICODE_10_CHAR_NAME = 1,
@@ -525,6 +532,7 @@ pub enum UCharNameChoice {
 #[derive(Copy, Clone)]
 #[repr(u32)]
 #[derive(Debug)]
+#[derive(PartialEq,Eq,PartialOrd,Ord,Hash)]
 pub enum UPropertyNameChoice {
     U_SHORT_PROPERTY_NAME = 0,
     U_LONG_PROPERTY_NAME = 1,
@@ -533,6 +541,7 @@ pub enum UPropertyNameChoice {
 #[derive(Copy, Clone)]
 #[repr(u32)]
 #[derive(Debug)]
+#[derive(PartialEq,Eq,PartialOrd,Ord,Hash)]
 pub enum UDecompositionType {
     U_DT_NONE = 0,
     U_DT_CANONICAL = 1,
@@ -557,6 +566,7 @@ pub enum UDecompositionType {
 #[derive(Copy, Clone)]
 #[repr(u32)]
 #[derive(Debug)]
+#[derive(PartialEq,Eq,PartialOrd,Ord,Hash)]
 pub enum UJoiningType {
     U_JT_NON_JOINING = 0,
     U_JT_JOIN_CAUSING = 1,
@@ -571,6 +581,7 @@ pub const U_JG_HAMZA_ON_HEH_GOAL: UJoiningGroup =
 #[derive(Copy, Clone)]
 #[repr(u32)]
 #[derive(Debug)]
+#[derive(PartialEq,Eq,PartialOrd,Ord,Hash)]
 pub enum UJoiningGroup {
     U_JG_NO_JOINING_GROUP = 0,
     U_JG_AIN = 1,
@@ -663,6 +674,7 @@ pub enum UJoiningGroup {
 #[derive(Copy, Clone)]
 #[repr(u32)]
 #[derive(Debug)]
+#[derive(PartialEq,Eq,PartialOrd,Ord,Hash)]
 pub enum UGraphemeClusterBreak {
     U_GCB_OTHER = 0,
     U_GCB_CONTROL = 1,
@@ -682,6 +694,7 @@ pub enum UGraphemeClusterBreak {
 #[derive(Copy, Clone)]
 #[repr(u32)]
 #[derive(Debug)]
+#[derive(PartialEq,Eq,PartialOrd,Ord,Hash)]
 pub enum UWordBreakValues {
     U_WB_OTHER = 0,
     U_WB_ALETTER = 1,
@@ -705,6 +718,7 @@ pub enum UWordBreakValues {
 #[derive(Copy, Clone)]
 #[repr(u32)]
 #[derive(Debug)]
+#[derive(PartialEq,Eq,PartialOrd,Ord,Hash)]
 pub enum USentenceBreak {
     U_SB_OTHER = 0,
     U_SB_ATERM = 1,
@@ -727,6 +741,7 @@ pub const U_LB_INSEPERABLE: ULineBreak = ULineBreak::U_LB_INSEPARABLE;
 #[derive(Copy, Clone)]
 #[repr(u32)]
 #[derive(Debug)]
+#[derive(PartialEq,Eq,PartialOrd,Ord,Hash)]
 pub enum ULineBreak {
     U_LB_UNKNOWN = 0,
     U_LB_AMBIGUOUS = 1,
@@ -773,6 +788,7 @@ pub enum ULineBreak {
 #[derive(Copy, Clone)]
 #[repr(u32)]
 #[derive(Debug)]
+#[derive(PartialEq,Eq,PartialOrd,Ord,Hash)]
 pub enum UNumericType {
     U_NT_NONE = 0,
     U_NT_DECIMAL = 1,
@@ -783,6 +799,7 @@ pub enum UNumericType {
 #[derive(Copy, Clone)]
 #[repr(u32)]
 #[derive(Debug)]
+#[derive(PartialEq,Eq,PartialOrd,Ord,Hash)]
 pub enum UHangulSyllableType {
     U_HST_NOT_APPLICABLE = 0,
     U_HST_LEADING_JAMO = 1,

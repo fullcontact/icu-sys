@@ -57,6 +57,7 @@ pub const USCRIPT_SINDHI: UScriptCode = UScriptCode::USCRIPT_KHUDAWADI;
 #[derive(Copy, Clone)]
 #[repr(i32)]
 #[derive(Debug)]
+#[derive(PartialEq,Eq,PartialOrd,Ord,Hash)]
 pub enum UScriptCode {
     USCRIPT_INVALID_CODE = -1,
     USCRIPT_COMMON = 0,
@@ -231,6 +232,7 @@ pub enum UScriptCode {
 #[derive(Copy, Clone)]
 #[repr(u32)]
 #[derive(Debug)]
+#[derive(PartialEq,Eq,PartialOrd,Ord,Hash)]
 pub enum UScriptUsage {
     USCRIPT_USAGE_NOT_ENCODED = 0,
     USCRIPT_USAGE_UNKNOWN = 1,

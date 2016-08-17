@@ -49,6 +49,7 @@ pub const UCNV_LMBCS_LAST: UConverterType = UConverterType::UCNV_LMBCS_19;
 #[derive(Copy, Clone)]
 #[repr(i32)]
 #[derive(Debug)]
+#[derive(PartialEq,Eq,PartialOrd,Ord,Hash)]
 pub enum UConverterType {
     UCNV_UNSUPPORTED_CONVERTER = -1,
     UCNV_SBCS = 0,
@@ -116,6 +117,7 @@ pub type UConverterFromUCallback =
 #[derive(Copy, Clone)]
 #[repr(u32)]
 #[derive(Debug)]
+#[derive(PartialEq,Eq,PartialOrd,Ord,Hash)]
 pub enum UConverterUnicodeSet {
     UCNV_ROUNDTRIP_SET = 0,
     UCNV_ROUNDTRIP_AND_FALLBACK_SET = 1,

@@ -49,6 +49,7 @@ pub enum URegularExpression { }
 #[derive(Copy, Clone)]
 #[repr(u32)]
 #[derive(Debug)]
+#[derive(PartialEq,Eq,PartialOrd,Ord,Hash)]
 pub enum URegexpFlag {
     UREGEX_CANON_EQ = 128,
     UREGEX_CASE_INSENSITIVE = 2,

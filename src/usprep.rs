@@ -49,6 +49,7 @@ pub enum UStringPrepProfile { }
 #[derive(Copy, Clone)]
 #[repr(u32)]
 #[derive(Debug)]
+#[derive(PartialEq,Eq,PartialOrd,Ord,Hash)]
 pub enum UStringPrepProfileType {
     USPREP_RFC3491_NAMEPREP = 0,
     USPREP_RFC3530_NFS4_CS_PREP = 1,

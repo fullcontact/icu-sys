@@ -49,6 +49,7 @@ pub enum USet { }
 #[derive(Copy, Clone)]
 #[repr(u32)]
 #[derive(Debug)]
+#[derive(PartialEq,Eq,PartialOrd,Ord,Hash)]
 pub enum Enum_uset1 {
     USET_IGNORE_SPACE = 1,
     USET_CASE_INSENSITIVE = 2,
@@ -57,6 +58,7 @@ pub enum Enum_uset1 {
 #[derive(Copy, Clone)]
 #[repr(u32)]
 #[derive(Debug)]
+#[derive(PartialEq,Eq,PartialOrd,Ord,Hash)]
 pub enum USetSpanCondition {
     USET_SPAN_NOT_CONTAINED = 0,
     USET_SPAN_CONTAINED = 1,

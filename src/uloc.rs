@@ -48,6 +48,7 @@ use ucasemap::*;
 #[derive(Copy, Clone)]
 #[repr(u32)]
 #[derive(Debug)]
+#[derive(PartialEq,Eq,PartialOrd,Ord,Hash)]
 pub enum ULocDataLocaleType {
     ULOC_ACTUAL_LOCALE = 0,
     ULOC_VALID_LOCALE = 1,
@@ -57,6 +58,7 @@ pub enum ULocDataLocaleType {
 #[derive(Copy, Clone)]
 #[repr(u32)]
 #[derive(Debug)]
+#[derive(PartialEq,Eq,PartialOrd,Ord,Hash)]
 pub enum ULayoutType {
     ULOC_LAYOUT_LTR = 0,
     ULOC_LAYOUT_RTL = 1,
@@ -67,6 +69,7 @@ pub enum ULayoutType {
 #[derive(Copy, Clone)]
 #[repr(u32)]
 #[derive(Debug)]
+#[derive(PartialEq,Eq,PartialOrd,Ord,Hash)]
 pub enum UAcceptResult {
     ULOC_ACCEPT_FAILED = 0,
     ULOC_ACCEPT_VALID = 1,

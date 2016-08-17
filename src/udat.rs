@@ -53,6 +53,7 @@ pub const UDAT_IGNORE: UDateFormatStyle = UDateFormatStyle::UDAT_PATTERN;
 #[derive(Copy, Clone)]
 #[repr(i32)]
 #[derive(Debug)]
+#[derive(PartialEq,Eq,PartialOrd,Ord,Hash)]
 pub enum UDateFormatStyle {
     UDAT_FULL = 0,
     UDAT_LONG = 1,
@@ -68,6 +69,7 @@ pub enum UDateFormatStyle {
 #[derive(Copy, Clone)]
 #[repr(u32)]
 #[derive(Debug)]
+#[derive(PartialEq,Eq,PartialOrd,Ord,Hash)]
 pub enum UDateFormatField {
     UDAT_ERA_FIELD = 0,
     UDAT_YEAR_FIELD = 1,
@@ -110,6 +112,7 @@ pub enum UDateFormatField {
 #[derive(Copy, Clone)]
 #[repr(u32)]
 #[derive(Debug)]
+#[derive(PartialEq,Eq,PartialOrd,Ord,Hash)]
 pub enum UDateFormatBooleanAttribute {
     UDAT_PARSE_ALLOW_WHITESPACE = 0,
     UDAT_PARSE_ALLOW_NUMERIC = 1,
@@ -120,6 +123,7 @@ pub enum UDateFormatBooleanAttribute {
 #[derive(Copy, Clone)]
 #[repr(u32)]
 #[derive(Debug)]
+#[derive(PartialEq,Eq,PartialOrd,Ord,Hash)]
 pub enum UDateFormatSymbolType {
     UDAT_ERAS = 0,
     UDAT_MONTHS = 1,

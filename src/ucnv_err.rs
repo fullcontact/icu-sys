@@ -49,6 +49,7 @@ pub enum UConverter { }
 #[derive(Copy, Clone)]
 #[repr(u32)]
 #[derive(Debug)]
+#[derive(PartialEq,Eq,PartialOrd,Ord,Hash)]
 pub enum UConverterCallbackReason {
     UCNV_UNASSIGNED = 0,
     UCNV_ILLEGAL = 1,

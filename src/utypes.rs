@@ -70,6 +70,7 @@ pub const U_ERROR_LIMIT: UErrorCode = UErrorCode::U_PLUGIN_ERROR_LIMIT;
 #[derive(Copy, Clone)]
 #[repr(i32)]
 #[derive(Debug)]
+#[derive(PartialEq,Eq,PartialOrd,Ord,Hash)]
 pub enum UErrorCode {
     U_USING_FALLBACK_WARNING = -128,
     U_USING_DEFAULT_WARNING = -127,

@@ -48,6 +48,7 @@ use ucasemap::*;
 #[derive(Copy, Clone)]
 #[repr(u32)]
 #[derive(Debug)]
+#[derive(PartialEq,Eq,PartialOrd,Ord,Hash)]
 pub enum UNormalization2Mode {
     UNORM2_COMPOSE = 0,
     UNORM2_DECOMPOSE = 1,
@@ -57,6 +58,7 @@ pub enum UNormalization2Mode {
 #[derive(Copy, Clone)]
 #[repr(u32)]
 #[derive(Debug)]
+#[derive(PartialEq,Eq,PartialOrd,Ord,Hash)]
 pub enum UNormalizationCheckResult {
     UNORM_NO = 0,
     UNORM_YES = 1,
