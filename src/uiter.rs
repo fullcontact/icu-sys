@@ -119,7 +119,8 @@ impl ::std::default::Default for UCharIterator {
 }
 #[link(name = "icuuc", kind = "static")]
 #[link(name = "icudata", kind = "static")] 
-#[link(name = "icui18n", kind = "static")]
+#[link(name = "icui18n", kind = "static")] 
+#[link(name = "stdc++", kind = "dylib")]
 extern "C" {
     pub fn uiter_current32(iter: *mut UCharIterator) -> UChar32;
     pub fn uiter_next32(iter: *mut UCharIterator) -> UChar32;

@@ -807,7 +807,8 @@ pub type UEnumCharNamesFn =
                                                length: int32_t) -> UBool>;
 #[link(name = "icuuc", kind = "static")]
 #[link(name = "icudata", kind = "static")] 
-#[link(name = "icui18n", kind = "static")]
+#[link(name = "icui18n", kind = "static")] 
+#[link(name = "stdc++", kind = "dylib")]
 extern "C" {
     pub fn u_hasBinaryProperty(c: UChar32, which: UProperty) -> UBool;
     pub fn u_isUAlphabetic(c: UChar32) -> UBool;

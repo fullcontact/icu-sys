@@ -79,7 +79,8 @@ pub enum UTimeScaleValue {
 }
 #[link(name = "icuuc", kind = "static")]
 #[link(name = "icudata", kind = "static")] 
-#[link(name = "icui18n", kind = "static")]
+#[link(name = "icui18n", kind = "static")] 
+#[link(name = "stdc++", kind = "dylib")]
 extern "C" {
     pub fn utmscale_getTimeScaleValue(timeScale: UDateTimeScale,
                                       value: UTimeScaleValue,

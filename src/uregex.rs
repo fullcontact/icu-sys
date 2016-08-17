@@ -69,7 +69,8 @@ pub type URegexFindProgressCallback =
                                                matchIndex: int64_t) -> UBool>;
 #[link(name = "icuuc", kind = "static")]
 #[link(name = "icudata", kind = "static")] 
-#[link(name = "icui18n", kind = "static")]
+#[link(name = "icui18n", kind = "static")] 
+#[link(name = "stdc++", kind = "dylib")]
 extern "C" {
     pub fn uregex_open(pattern: *const UChar, patternLength: int32_t,
                        flags: uint32_t, pe: *mut UParseError,

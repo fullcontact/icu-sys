@@ -94,7 +94,8 @@ pub enum Enum_uidna2 {
 }
 #[link(name = "icuuc", kind = "static")]
 #[link(name = "icudata", kind = "static")] 
-#[link(name = "icui18n", kind = "static")]
+#[link(name = "icui18n", kind = "static")] 
+#[link(name = "stdc++", kind = "dylib")]
 extern "C" {
     pub fn uidna_openUTS46(options: uint32_t, pErrorCode: *mut UErrorCode)
      -> *mut UIDNA;

@@ -60,7 +60,8 @@ pub enum UFormattableType {
 pub type UFormattable = *mut ::std::os::raw::c_void;
 #[link(name = "icuuc", kind = "static")]
 #[link(name = "icudata", kind = "static")] 
-#[link(name = "icui18n", kind = "static")]
+#[link(name = "icui18n", kind = "static")] 
+#[link(name = "stdc++", kind = "dylib")]
 extern "C" {
     pub fn ufmt_open(status: *mut UErrorCode) -> *mut UFormattable;
     pub fn ufmt_close(fmt: *mut UFormattable);

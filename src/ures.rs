@@ -70,7 +70,8 @@ pub enum UResType {
 }
 #[link(name = "icuuc", kind = "static")]
 #[link(name = "icudata", kind = "static")] 
-#[link(name = "icui18n", kind = "static")]
+#[link(name = "icui18n", kind = "static")] 
+#[link(name = "stdc++", kind = "dylib")]
 extern "C" {
     pub fn ures_open(packageName: *const ::std::os::raw::c_char,
                      locale: *const ::std::os::raw::c_char,

@@ -63,7 +63,8 @@ impl ::std::default::Default for UTransPosition {
 }
 #[link(name = "icuuc", kind = "static")]
 #[link(name = "icudata", kind = "static")] 
-#[link(name = "icui18n", kind = "static")]
+#[link(name = "icui18n", kind = "static")] 
+#[link(name = "stdc++", kind = "dylib")]
 extern "C" {
     pub fn utrans_openU(id: *const UChar, idLength: int32_t,
                         dir: UTransDirection, rules: *const UChar,

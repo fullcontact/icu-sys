@@ -32,9 +32,12 @@ for module in $MODULES; do
     (
         # bindgen doesn't allow passing --link more than once, but we need to
         # link against all three libraries.
+        # We also need to bring the C++ runtime in since that dependency gets
+        # lost in the process of statically linking.
         echo '/#\\[link/a \\
 #[link(name = "icudata", kind = "static")] \
-#[link(name = "icui18n", kind = "static")]
+#[link(name = "icui18n", kind = "static")] \
+#[link(name = "stdc++", kind = "dylib")]
 ;'
         echo "8i \\"
         # Erase the rust namespacing

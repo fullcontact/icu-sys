@@ -158,7 +158,8 @@ impl ::std::default::Default for UText {
 pub enum Enum_utext2 { UTEXT_MAGIC = 878368812, }
 #[link(name = "icuuc", kind = "static")]
 #[link(name = "icudata", kind = "static")] 
-#[link(name = "icui18n", kind = "static")]
+#[link(name = "icui18n", kind = "static")] 
+#[link(name = "stdc++", kind = "dylib")]
 extern "C" {
     pub fn utext_close(ut: *mut UText) -> *mut UText;
     pub fn utext_openUTF8(ut: *mut UText, s: *const ::std::os::raw::c_char,

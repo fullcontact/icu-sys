@@ -80,7 +80,8 @@ impl ::std::default::Default for USerializedSet {
 }
 #[link(name = "icuuc", kind = "static")]
 #[link(name = "icudata", kind = "static")] 
-#[link(name = "icui18n", kind = "static")]
+#[link(name = "icui18n", kind = "static")] 
+#[link(name = "stdc++", kind = "dylib")]
 extern "C" {
     pub fn uset_openEmpty() -> *mut USet;
     pub fn uset_open(start: UChar32, end: UChar32) -> *mut USet;

@@ -240,7 +240,8 @@ pub enum UScriptUsage {
 }
 #[link(name = "icuuc", kind = "static")]
 #[link(name = "icudata", kind = "static")] 
-#[link(name = "icui18n", kind = "static")]
+#[link(name = "icui18n", kind = "static")] 
+#[link(name = "stdc++", kind = "dylib")]
 extern "C" {
     pub fn uscript_getCode(nameOrAbbrOrLocale: *const ::std::os::raw::c_char,
                            fillIn: *mut UScriptCode, capacity: int32_t,

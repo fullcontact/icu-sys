@@ -76,7 +76,8 @@ pub enum URestrictionLevel {
 }
 #[link(name = "icuuc", kind = "static")]
 #[link(name = "icudata", kind = "static")] 
-#[link(name = "icui18n", kind = "static")]
+#[link(name = "icui18n", kind = "static")] 
+#[link(name = "stdc++", kind = "dylib")]
 extern "C" {
     pub fn uspoof_open(status: *mut UErrorCode) -> *mut USpoofChecker;
     pub fn uspoof_openFromSerialized(data: *const ::std::os::raw::c_void,

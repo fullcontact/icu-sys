@@ -46,7 +46,8 @@ use ucnv_err::*;
 
 #[link(name = "icuuc", kind = "static")]
 #[link(name = "icudata", kind = "static")] 
-#[link(name = "icui18n", kind = "static")]
+#[link(name = "icui18n", kind = "static")] 
+#[link(name = "stdc++", kind = "dylib")]
 extern "C" {
     pub fn u_shapeArabic(source: *const UChar, sourceLength: int32_t,
                          dest: *mut UChar, destSize: int32_t,

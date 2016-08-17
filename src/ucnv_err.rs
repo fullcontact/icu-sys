@@ -90,7 +90,8 @@ impl ::std::default::Default for UConverterToUnicodeArgs {
 }
 #[link(name = "icuuc", kind = "static")]
 #[link(name = "icudata", kind = "static")] 
-#[link(name = "icui18n", kind = "static")]
+#[link(name = "icui18n", kind = "static")] 
+#[link(name = "stdc++", kind = "dylib")]
 extern "C" {
     pub fn UCNV_FROM_U_CALLBACK_STOP(context: *const ::std::os::raw::c_void,
                                      fromUArgs:

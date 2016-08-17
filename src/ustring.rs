@@ -51,7 +51,8 @@ pub type UNESCAPE_CHAR_AT =
                               -> UChar>;
 #[link(name = "icuuc", kind = "static")]
 #[link(name = "icudata", kind = "static")] 
-#[link(name = "icui18n", kind = "static")]
+#[link(name = "icui18n", kind = "static")] 
+#[link(name = "stdc++", kind = "dylib")]
 extern "C" {
     pub fn u_strlen(s: *const UChar) -> int32_t;
     pub fn u_countChar32(s: *const UChar, length: int32_t) -> int32_t;
