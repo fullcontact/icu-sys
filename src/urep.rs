@@ -43,6 +43,7 @@ use uformattable::*;
 use umisc::*;
 use ufieldpositer::*;
 use ucnv_err::*;
+use ucasemap::*;
 
 pub type UReplaceable = *mut ::std::os::raw::c_void;
 #[repr(C)]

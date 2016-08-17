@@ -43,6 +43,7 @@ use uformattable::*;
 use umisc::*;
 use ufieldpositer::*;
 use ucnv_err::*;
+use ucasemap::*;
 
 pub type UBiDiLevel = uint8_t;
 #[derive(Copy, Clone)]

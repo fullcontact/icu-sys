@@ -43,6 +43,7 @@ use uformattable::*;
 use umisc::*;
 use ufieldpositer::*;
 use ucnv_err::*;
+use ucasemap::*;
 
 #[link(name = "icuuc", kind = "static")]
 #[link(name = "icudata", kind = "static")] 

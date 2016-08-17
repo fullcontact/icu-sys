@@ -43,6 +43,7 @@ use uformattable::*;
 use umisc::*;
 use ufieldpositer::*;
 use ucnv_err::*;
+use ucasemap::*;
 
 pub type UDateFormat = *mut ::std::os::raw::c_void;
 pub const UDAT_DEFAULT: UDateFormatStyle = UDateFormatStyle::UDAT_MEDIUM;

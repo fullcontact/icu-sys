@@ -43,6 +43,7 @@ use uformattable::*;
 use umisc::*;
 use ufieldpositer::*;
 use ucnv_err::*;
+use ucasemap::*;
 
 pub type UCalendar = *mut ::std::os::raw::c_void;
 pub const UCAL_DEFAULT: UCalendarType = UCalendarType::UCAL_TRADITIONAL;

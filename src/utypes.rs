@@ -43,6 +43,7 @@ use uformattable::*;
 use umisc::*;
 use ufieldpositer::*;
 use ucnv_err::*;
+use ucasemap::*;
 
 pub type UDate = f64;
 pub const U_ERROR_WARNING_START: UErrorCode =

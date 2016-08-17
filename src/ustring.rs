@@ -43,6 +43,7 @@ use uformattable::*;
 use umisc::*;
 use ufieldpositer::*;
 use ucnv_err::*;
+use ucasemap::*;
 
 pub type UNESCAPE_CHAR_AT =
     ::std::option::Option<unsafe extern "C" fn(offset: int32_t,

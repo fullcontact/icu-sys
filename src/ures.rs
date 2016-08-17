@@ -43,6 +43,7 @@ use uformattable::*;
 use umisc::*;
 use ufieldpositer::*;
 use ucnv_err::*;
+use ucasemap::*;
 
 pub enum UResourceBundle { }
 pub const RES_NONE: UResType = UResType::URES_NONE;

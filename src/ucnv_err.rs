@@ -43,6 +43,7 @@ use udisplaycontext::*;
 use uformattable::*;
 use umisc::*;
 use ufieldpositer::*;
+use ucasemap::*;
 
 pub enum UConverter { }
 #[derive(Copy, Clone)]

@@ -43,6 +43,7 @@ use udisplaycontext::*;
 use umisc::*;
 use ufieldpositer::*;
 use ucnv_err::*;
+use ucasemap::*;
 
 #[derive(Copy, Clone)]
 #[repr(u32)]

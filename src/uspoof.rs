@@ -43,6 +43,7 @@ use uformattable::*;
 use umisc::*;
 use ufieldpositer::*;
 use ucnv_err::*;
+use ucasemap::*;
 
 pub enum USpoofChecker { }
 pub const USPOOF_SINGLE_SCRIPT: USpoofChecks =

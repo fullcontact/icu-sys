@@ -43,6 +43,7 @@ use udisplaycontext::*;
 use uformattable::*;
 use ufieldpositer::*;
 use ucnv_err::*;
+use ucasemap::*;
 
 #[repr(C)]
 #[derive(Copy, Clone)]

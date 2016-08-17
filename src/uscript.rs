@@ -43,6 +43,7 @@ use uformattable::*;
 use umisc::*;
 use ufieldpositer::*;
 use ucnv_err::*;
+use ucasemap::*;
 
 pub const USCRIPT_UCAS: UScriptCode =
     UScriptCode::USCRIPT_CANADIAN_ABORIGINAL;
