@@ -92,75 +92,69 @@ pub enum Enum_uidna2 {
     UIDNA_ERROR_CONTEXTO_PUNCTUATION = 8192,
     UIDNA_ERROR_CONTEXTO_DIGITS = 16384,
 }
-#[link(name = "icuuc", kind = "dylib")]
-#[link(name = "icudata", kind = "dylib")]
+#[link(name = "icuuc", kind = "static")]
+#[link(name = "icudata", kind = "static")]
 extern "C" {
-    pub fn uidna_openUTS46_57(options: uint32_t, pErrorCode: *mut UErrorCode)
+    pub fn uidna_openUTS46(options: uint32_t, pErrorCode: *mut UErrorCode)
      -> *mut UIDNA;
-    pub fn uidna_close_57(idna: *mut UIDNA);
-    pub fn uidna_labelToASCII_57(idna: *const UIDNA, label: *const UChar,
-                                 length: int32_t, dest: *mut UChar,
-                                 capacity: int32_t, pInfo: *mut UIDNAInfo,
-                                 pErrorCode: *mut UErrorCode) -> int32_t;
-    pub fn uidna_labelToUnicode_57(idna: *const UIDNA, label: *const UChar,
-                                   length: int32_t, dest: *mut UChar,
-                                   capacity: int32_t, pInfo: *mut UIDNAInfo,
-                                   pErrorCode: *mut UErrorCode) -> int32_t;
-    pub fn uidna_nameToASCII_57(idna: *const UIDNA, name: *const UChar,
+    pub fn uidna_close(idna: *mut UIDNA);
+    pub fn uidna_labelToASCII(idna: *const UIDNA, label: *const UChar,
+                              length: int32_t, dest: *mut UChar,
+                              capacity: int32_t, pInfo: *mut UIDNAInfo,
+                              pErrorCode: *mut UErrorCode) -> int32_t;
+    pub fn uidna_labelToUnicode(idna: *const UIDNA, label: *const UChar,
                                 length: int32_t, dest: *mut UChar,
                                 capacity: int32_t, pInfo: *mut UIDNAInfo,
                                 pErrorCode: *mut UErrorCode) -> int32_t;
-    pub fn uidna_nameToUnicode_57(idna: *const UIDNA, name: *const UChar,
-                                  length: int32_t, dest: *mut UChar,
+    pub fn uidna_nameToASCII(idna: *const UIDNA, name: *const UChar,
+                             length: int32_t, dest: *mut UChar,
+                             capacity: int32_t, pInfo: *mut UIDNAInfo,
+                             pErrorCode: *mut UErrorCode) -> int32_t;
+    pub fn uidna_nameToUnicode(idna: *const UIDNA, name: *const UChar,
+                               length: int32_t, dest: *mut UChar,
+                               capacity: int32_t, pInfo: *mut UIDNAInfo,
+                               pErrorCode: *mut UErrorCode) -> int32_t;
+    pub fn uidna_labelToASCII_UTF8(idna: *const UIDNA,
+                                   label: *const ::std::os::raw::c_char,
+                                   length: int32_t,
+                                   dest: *mut ::std::os::raw::c_char,
+                                   capacity: int32_t, pInfo: *mut UIDNAInfo,
+                                   pErrorCode: *mut UErrorCode) -> int32_t;
+    pub fn uidna_labelToUnicodeUTF8(idna: *const UIDNA,
+                                    label: *const ::std::os::raw::c_char,
+                                    length: int32_t,
+                                    dest: *mut ::std::os::raw::c_char,
+                                    capacity: int32_t, pInfo: *mut UIDNAInfo,
+                                    pErrorCode: *mut UErrorCode) -> int32_t;
+    pub fn uidna_nameToASCII_UTF8(idna: *const UIDNA,
+                                  name: *const ::std::os::raw::c_char,
+                                  length: int32_t,
+                                  dest: *mut ::std::os::raw::c_char,
                                   capacity: int32_t, pInfo: *mut UIDNAInfo,
                                   pErrorCode: *mut UErrorCode) -> int32_t;
-    pub fn uidna_labelToASCII_UTF8_57(idna: *const UIDNA,
-                                      label: *const ::std::os::raw::c_char,
-                                      length: int32_t,
-                                      dest: *mut ::std::os::raw::c_char,
-                                      capacity: int32_t,
-                                      pInfo: *mut UIDNAInfo,
-                                      pErrorCode: *mut UErrorCode) -> int32_t;
-    pub fn uidna_labelToUnicodeUTF8_57(idna: *const UIDNA,
-                                       label: *const ::std::os::raw::c_char,
-                                       length: int32_t,
-                                       dest: *mut ::std::os::raw::c_char,
-                                       capacity: int32_t,
-                                       pInfo: *mut UIDNAInfo,
-                                       pErrorCode: *mut UErrorCode)
-     -> int32_t;
-    pub fn uidna_nameToASCII_UTF8_57(idna: *const UIDNA,
-                                     name: *const ::std::os::raw::c_char,
-                                     length: int32_t,
-                                     dest: *mut ::std::os::raw::c_char,
-                                     capacity: int32_t, pInfo: *mut UIDNAInfo,
-                                     pErrorCode: *mut UErrorCode) -> int32_t;
-    pub fn uidna_nameToUnicodeUTF8_57(idna: *const UIDNA,
-                                      name: *const ::std::os::raw::c_char,
-                                      length: int32_t,
-                                      dest: *mut ::std::os::raw::c_char,
-                                      capacity: int32_t,
-                                      pInfo: *mut UIDNAInfo,
-                                      pErrorCode: *mut UErrorCode) -> int32_t;
-    pub fn uidna_toASCII_57(src: *const UChar, srcLength: int32_t,
+    pub fn uidna_nameToUnicodeUTF8(idna: *const UIDNA,
+                                   name: *const ::std::os::raw::c_char,
+                                   length: int32_t,
+                                   dest: *mut ::std::os::raw::c_char,
+                                   capacity: int32_t, pInfo: *mut UIDNAInfo,
+                                   pErrorCode: *mut UErrorCode) -> int32_t;
+    pub fn uidna_toASCII(src: *const UChar, srcLength: int32_t,
+                         dest: *mut UChar, destCapacity: int32_t,
+                         options: int32_t, parseError: *mut UParseError,
+                         status: *mut UErrorCode) -> int32_t;
+    pub fn uidna_toUnicode(src: *const UChar, srcLength: int32_t,
+                           dest: *mut UChar, destCapacity: int32_t,
+                           options: int32_t, parseError: *mut UParseError,
+                           status: *mut UErrorCode) -> int32_t;
+    pub fn uidna_IDNToASCII(src: *const UChar, srcLength: int32_t,
                             dest: *mut UChar, destCapacity: int32_t,
                             options: int32_t, parseError: *mut UParseError,
                             status: *mut UErrorCode) -> int32_t;
-    pub fn uidna_toUnicode_57(src: *const UChar, srcLength: int32_t,
+    pub fn uidna_IDNToUnicode(src: *const UChar, srcLength: int32_t,
                               dest: *mut UChar, destCapacity: int32_t,
                               options: int32_t, parseError: *mut UParseError,
                               status: *mut UErrorCode) -> int32_t;
-    pub fn uidna_IDNToASCII_57(src: *const UChar, srcLength: int32_t,
-                               dest: *mut UChar, destCapacity: int32_t,
-                               options: int32_t, parseError: *mut UParseError,
-                               status: *mut UErrorCode) -> int32_t;
-    pub fn uidna_IDNToUnicode_57(src: *const UChar, srcLength: int32_t,
-                                 dest: *mut UChar, destCapacity: int32_t,
-                                 options: int32_t,
-                                 parseError: *mut UParseError,
-                                 status: *mut UErrorCode) -> int32_t;
-    pub fn uidna_compare_57(s1: *const UChar, length1: int32_t,
-                            s2: *const UChar, length2: int32_t,
-                            options: int32_t, status: *mut UErrorCode)
-     -> int32_t;
+    pub fn uidna_compare(s1: *const UChar, length1: int32_t, s2: *const UChar,
+                         length2: int32_t, options: int32_t,
+                         status: *mut UErrorCode) -> int32_t;
 }

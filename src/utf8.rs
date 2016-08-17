@@ -44,23 +44,23 @@ use umisc::*;
 use ufieldpositer::*;
 use ucnv_err::*;
 
-#[link(name = "icuuc", kind = "dylib")]
-#[link(name = "icudata", kind = "dylib")]
+#[link(name = "icuuc", kind = "static")]
+#[link(name = "icudata", kind = "static")]
 extern "C" {
-    pub static mut utf8_countTrailBytes_57: [uint8_t; 256usize];
+    pub static mut utf8_countTrailBytes: [uint8_t; 256usize];
 }
-#[link(name = "icuuc", kind = "dylib")]
-#[link(name = "icudata", kind = "dylib")]
+#[link(name = "icuuc", kind = "static")]
+#[link(name = "icudata", kind = "static")]
 extern "C" {
-    pub fn utf8_nextCharSafeBody_57(s: *const uint8_t, pi: *mut int32_t,
-                                    length: int32_t, c: UChar32,
-                                    strict: UBool) -> UChar32;
-    pub fn utf8_appendCharSafeBody_57(s: *mut uint8_t, i: int32_t,
-                                      length: int32_t, c: UChar32,
-                                      pIsError: *mut UBool) -> int32_t;
-    pub fn utf8_prevCharSafeBody_57(s: *const uint8_t, start: int32_t,
-                                    pi: *mut int32_t, c: UChar32,
-                                    strict: UBool) -> UChar32;
-    pub fn utf8_back1SafeBody_57(s: *const uint8_t, start: int32_t,
-                                 i: int32_t) -> int32_t;
+    pub fn utf8_nextCharSafeBody(s: *const uint8_t, pi: *mut int32_t,
+                                 length: int32_t, c: UChar32, strict: UBool)
+     -> UChar32;
+    pub fn utf8_appendCharSafeBody(s: *mut uint8_t, i: int32_t,
+                                   length: int32_t, c: UChar32,
+                                   pIsError: *mut UBool) -> int32_t;
+    pub fn utf8_prevCharSafeBody(s: *const uint8_t, start: int32_t,
+                                 pi: *mut int32_t, c: UChar32, strict: UBool)
+     -> UChar32;
+    pub fn utf8_back1SafeBody(s: *const uint8_t, start: int32_t, i: int32_t)
+     -> int32_t;
 }

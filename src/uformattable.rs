@@ -58,33 +58,32 @@ pub enum UFormattableType {
     UFMT_COUNT = 7,
 }
 pub type UFormattable = *mut ::std::os::raw::c_void;
-#[link(name = "icuuc", kind = "dylib")]
-#[link(name = "icudata", kind = "dylib")]
+#[link(name = "icuuc", kind = "static")]
+#[link(name = "icudata", kind = "static")]
 extern "C" {
-    pub fn ufmt_open_57(status: *mut UErrorCode) -> *mut UFormattable;
-    pub fn ufmt_close_57(fmt: *mut UFormattable);
-    pub fn ufmt_getType_57(fmt: *const UFormattable, status: *mut UErrorCode)
+    pub fn ufmt_open(status: *mut UErrorCode) -> *mut UFormattable;
+    pub fn ufmt_close(fmt: *mut UFormattable);
+    pub fn ufmt_getType(fmt: *const UFormattable, status: *mut UErrorCode)
      -> UFormattableType;
-    pub fn ufmt_isNumeric_57(fmt: *const UFormattable) -> UBool;
-    pub fn ufmt_getDate_57(fmt: *const UFormattable, status: *mut UErrorCode)
+    pub fn ufmt_isNumeric(fmt: *const UFormattable) -> UBool;
+    pub fn ufmt_getDate(fmt: *const UFormattable, status: *mut UErrorCode)
      -> UDate;
-    pub fn ufmt_getDouble_57(fmt: *mut UFormattable, status: *mut UErrorCode)
+    pub fn ufmt_getDouble(fmt: *mut UFormattable, status: *mut UErrorCode)
      -> f64;
-    pub fn ufmt_getLong_57(fmt: *mut UFormattable, status: *mut UErrorCode)
+    pub fn ufmt_getLong(fmt: *mut UFormattable, status: *mut UErrorCode)
      -> int32_t;
-    pub fn ufmt_getInt64_57(fmt: *mut UFormattable, status: *mut UErrorCode)
+    pub fn ufmt_getInt64(fmt: *mut UFormattable, status: *mut UErrorCode)
      -> int64_t;
-    pub fn ufmt_getObject_57(fmt: *const UFormattable,
-                             status: *mut UErrorCode)
+    pub fn ufmt_getObject(fmt: *const UFormattable, status: *mut UErrorCode)
      -> *const ::std::os::raw::c_void;
-    pub fn ufmt_getUChars_57(fmt: *mut UFormattable, len: *mut int32_t,
-                             status: *mut UErrorCode) -> *const UChar;
-    pub fn ufmt_getArrayLength_57(fmt: *const UFormattable,
-                                  status: *mut UErrorCode) -> int32_t;
-    pub fn ufmt_getArrayItemByIndex_57(fmt: *mut UFormattable, n: int32_t,
-                                       status: *mut UErrorCode)
+    pub fn ufmt_getUChars(fmt: *mut UFormattable, len: *mut int32_t,
+                          status: *mut UErrorCode) -> *const UChar;
+    pub fn ufmt_getArrayLength(fmt: *const UFormattable,
+                               status: *mut UErrorCode) -> int32_t;
+    pub fn ufmt_getArrayItemByIndex(fmt: *mut UFormattable, n: int32_t,
+                                    status: *mut UErrorCode)
      -> *mut UFormattable;
-    pub fn ufmt_getDecNumChars_57(fmt: *mut UFormattable, len: *mut int32_t,
-                                  status: *mut UErrorCode)
+    pub fn ufmt_getDecNumChars(fmt: *mut UFormattable, len: *mut int32_t,
+                               status: *mut UErrorCode)
      -> *const ::std::os::raw::c_char;
 }

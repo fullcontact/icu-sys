@@ -68,101 +68,97 @@ pub enum UResType {
     RES_RESERVED = 15,
     URES_LIMIT = 16,
 }
-#[link(name = "icuuc", kind = "dylib")]
-#[link(name = "icudata", kind = "dylib")]
+#[link(name = "icuuc", kind = "static")]
+#[link(name = "icudata", kind = "static")]
 extern "C" {
-    pub fn ures_open_57(packageName: *const ::std::os::raw::c_char,
-                        locale: *const ::std::os::raw::c_char,
-                        status: *mut UErrorCode) -> *mut UResourceBundle;
-    pub fn ures_openDirect_57(packageName: *const ::std::os::raw::c_char,
-                              locale: *const ::std::os::raw::c_char,
-                              status: *mut UErrorCode)
-     -> *mut UResourceBundle;
-    pub fn ures_openU_57(packageName: *const UChar,
-                         locale: *const ::std::os::raw::c_char,
-                         status: *mut UErrorCode) -> *mut UResourceBundle;
-    pub fn ures_countArrayItems_57(resourceBundle: *const UResourceBundle,
-                                   resourceKey: *const ::std::os::raw::c_char,
-                                   err: *mut UErrorCode) -> int32_t;
-    pub fn ures_close_57(resourceBundle: *mut UResourceBundle);
-    pub fn ures_getVersionNumber_57(resourceBundle: *const UResourceBundle)
+    pub fn ures_open(packageName: *const ::std::os::raw::c_char,
+                     locale: *const ::std::os::raw::c_char,
+                     status: *mut UErrorCode) -> *mut UResourceBundle;
+    pub fn ures_openDirect(packageName: *const ::std::os::raw::c_char,
+                           locale: *const ::std::os::raw::c_char,
+                           status: *mut UErrorCode) -> *mut UResourceBundle;
+    pub fn ures_openU(packageName: *const UChar,
+                      locale: *const ::std::os::raw::c_char,
+                      status: *mut UErrorCode) -> *mut UResourceBundle;
+    pub fn ures_countArrayItems(resourceBundle: *const UResourceBundle,
+                                resourceKey: *const ::std::os::raw::c_char,
+                                err: *mut UErrorCode) -> int32_t;
+    pub fn ures_close(resourceBundle: *mut UResourceBundle);
+    pub fn ures_getVersionNumber(resourceBundle: *const UResourceBundle)
      -> *const ::std::os::raw::c_char;
-    pub fn ures_getVersion_57(resB: *const UResourceBundle,
-                              versionInfo: UVersionInfo);
-    pub fn ures_getLocale_57(resourceBundle: *const UResourceBundle,
-                             status: *mut UErrorCode)
+    pub fn ures_getVersion(resB: *const UResourceBundle,
+                           versionInfo: UVersionInfo);
+    pub fn ures_getLocale(resourceBundle: *const UResourceBundle,
+                          status: *mut UErrorCode)
      -> *const ::std::os::raw::c_char;
-    pub fn ures_getLocaleByType_57(resourceBundle: *const UResourceBundle,
-                                   type_: ULocDataLocaleType,
-                                   status: *mut UErrorCode)
+    pub fn ures_getLocaleByType(resourceBundle: *const UResourceBundle,
+                                type_: ULocDataLocaleType,
+                                status: *mut UErrorCode)
      -> *const ::std::os::raw::c_char;
-    pub fn ures_openFillIn_57(r: *mut UResourceBundle,
-                              packageName: *const ::std::os::raw::c_char,
-                              localeID: *const ::std::os::raw::c_char,
-                              status: *mut UErrorCode);
-    pub fn ures_getString_57(resourceBundle: *const UResourceBundle,
-                             len: *mut int32_t, status: *mut UErrorCode)
+    pub fn ures_openFillIn(r: *mut UResourceBundle,
+                           packageName: *const ::std::os::raw::c_char,
+                           localeID: *const ::std::os::raw::c_char,
+                           status: *mut UErrorCode);
+    pub fn ures_getString(resourceBundle: *const UResourceBundle,
+                          len: *mut int32_t, status: *mut UErrorCode)
      -> *const UChar;
-    pub fn ures_getUTF8String_57(resB: *const UResourceBundle,
-                                 dest: *mut ::std::os::raw::c_char,
-                                 length: *mut int32_t, forceCopy: UBool,
-                                 status: *mut UErrorCode)
+    pub fn ures_getUTF8String(resB: *const UResourceBundle,
+                              dest: *mut ::std::os::raw::c_char,
+                              length: *mut int32_t, forceCopy: UBool,
+                              status: *mut UErrorCode)
      -> *const ::std::os::raw::c_char;
-    pub fn ures_getBinary_57(resourceBundle: *const UResourceBundle,
-                             len: *mut int32_t, status: *mut UErrorCode)
+    pub fn ures_getBinary(resourceBundle: *const UResourceBundle,
+                          len: *mut int32_t, status: *mut UErrorCode)
      -> *const uint8_t;
-    pub fn ures_getIntVector_57(resourceBundle: *const UResourceBundle,
-                                len: *mut int32_t, status: *mut UErrorCode)
+    pub fn ures_getIntVector(resourceBundle: *const UResourceBundle,
+                             len: *mut int32_t, status: *mut UErrorCode)
      -> *const int32_t;
-    pub fn ures_getUInt_57(resourceBundle: *const UResourceBundle,
-                           status: *mut UErrorCode) -> uint32_t;
-    pub fn ures_getInt_57(resourceBundle: *const UResourceBundle,
-                          status: *mut UErrorCode) -> int32_t;
-    pub fn ures_getSize_57(resourceBundle: *const UResourceBundle) -> int32_t;
-    pub fn ures_getType_57(resourceBundle: *const UResourceBundle)
-     -> UResType;
-    pub fn ures_getKey_57(resourceBundle: *const UResourceBundle)
+    pub fn ures_getUInt(resourceBundle: *const UResourceBundle,
+                        status: *mut UErrorCode) -> uint32_t;
+    pub fn ures_getInt(resourceBundle: *const UResourceBundle,
+                       status: *mut UErrorCode) -> int32_t;
+    pub fn ures_getSize(resourceBundle: *const UResourceBundle) -> int32_t;
+    pub fn ures_getType(resourceBundle: *const UResourceBundle) -> UResType;
+    pub fn ures_getKey(resourceBundle: *const UResourceBundle)
      -> *const ::std::os::raw::c_char;
-    pub fn ures_resetIterator_57(resourceBundle: *mut UResourceBundle);
-    pub fn ures_hasNext_57(resourceBundle: *const UResourceBundle) -> UBool;
-    pub fn ures_getNextResource_57(resourceBundle: *mut UResourceBundle,
-                                   fillIn: *mut UResourceBundle,
-                                   status: *mut UErrorCode)
+    pub fn ures_resetIterator(resourceBundle: *mut UResourceBundle);
+    pub fn ures_hasNext(resourceBundle: *const UResourceBundle) -> UBool;
+    pub fn ures_getNextResource(resourceBundle: *mut UResourceBundle,
+                                fillIn: *mut UResourceBundle,
+                                status: *mut UErrorCode)
      -> *mut UResourceBundle;
-    pub fn ures_getNextString_57(resourceBundle: *mut UResourceBundle,
-                                 len: *mut int32_t,
-                                 key: *mut *const ::std::os::raw::c_char,
+    pub fn ures_getNextString(resourceBundle: *mut UResourceBundle,
+                              len: *mut int32_t,
+                              key: *mut *const ::std::os::raw::c_char,
+                              status: *mut UErrorCode) -> *const UChar;
+    pub fn ures_getByIndex(resourceBundle: *const UResourceBundle,
+                           indexR: int32_t, fillIn: *mut UResourceBundle,
+                           status: *mut UErrorCode) -> *mut UResourceBundle;
+    pub fn ures_getStringByIndex(resourceBundle: *const UResourceBundle,
+                                 indexS: int32_t, len: *mut int32_t,
                                  status: *mut UErrorCode) -> *const UChar;
-    pub fn ures_getByIndex_57(resourceBundle: *const UResourceBundle,
-                              indexR: int32_t, fillIn: *mut UResourceBundle,
-                              status: *mut UErrorCode)
-     -> *mut UResourceBundle;
-    pub fn ures_getStringByIndex_57(resourceBundle: *const UResourceBundle,
-                                    indexS: int32_t, len: *mut int32_t,
-                                    status: *mut UErrorCode) -> *const UChar;
-    pub fn ures_getUTF8StringByIndex_57(resB: *const UResourceBundle,
-                                        stringIndex: int32_t,
-                                        dest: *mut ::std::os::raw::c_char,
-                                        pLength: *mut int32_t,
-                                        forceCopy: UBool,
-                                        status: *mut UErrorCode)
+    pub fn ures_getUTF8StringByIndex(resB: *const UResourceBundle,
+                                     stringIndex: int32_t,
+                                     dest: *mut ::std::os::raw::c_char,
+                                     pLength: *mut int32_t, forceCopy: UBool,
+                                     status: *mut UErrorCode)
      -> *const ::std::os::raw::c_char;
-    pub fn ures_getByKey_57(resourceBundle: *const UResourceBundle,
-                            key: *const ::std::os::raw::c_char,
-                            fillIn: *mut UResourceBundle,
-                            status: *mut UErrorCode) -> *mut UResourceBundle;
-    pub fn ures_getStringByKey_57(resB: *const UResourceBundle,
-                                  key: *const ::std::os::raw::c_char,
-                                  len: *mut int32_t, status: *mut UErrorCode)
+    pub fn ures_getByKey(resourceBundle: *const UResourceBundle,
+                         key: *const ::std::os::raw::c_char,
+                         fillIn: *mut UResourceBundle,
+                         status: *mut UErrorCode) -> *mut UResourceBundle;
+    pub fn ures_getStringByKey(resB: *const UResourceBundle,
+                               key: *const ::std::os::raw::c_char,
+                               len: *mut int32_t, status: *mut UErrorCode)
      -> *const UChar;
-    pub fn ures_getUTF8StringByKey_57(resB: *const UResourceBundle,
-                                      key: *const ::std::os::raw::c_char,
-                                      dest: *mut ::std::os::raw::c_char,
-                                      pLength: *mut int32_t, forceCopy: UBool,
-                                      status: *mut UErrorCode)
+    pub fn ures_getUTF8StringByKey(resB: *const UResourceBundle,
+                                   key: *const ::std::os::raw::c_char,
+                                   dest: *mut ::std::os::raw::c_char,
+                                   pLength: *mut int32_t, forceCopy: UBool,
+                                   status: *mut UErrorCode)
      -> *const ::std::os::raw::c_char;
-    pub fn ures_openAvailableLocales_57(packageName:
-                                            *const ::std::os::raw::c_char,
-                                        status: *mut UErrorCode)
+    pub fn ures_openAvailableLocales(packageName:
+                                         *const ::std::os::raw::c_char,
+                                     status: *mut UErrorCode)
      -> *mut UEnumeration;
 }

@@ -219,8 +219,8 @@ pub enum UErrorCode {
     U_PLUGIN_DIDNT_SET_LEVEL = 66817,
     U_PLUGIN_ERROR_LIMIT = 66818,
 }
-#[link(name = "icuuc", kind = "dylib")]
-#[link(name = "icudata", kind = "dylib")]
+#[link(name = "icuuc", kind = "static")]
+#[link(name = "icudata", kind = "static")]
 extern "C" {
-    pub fn u_errorName_57(code: UErrorCode) -> *const ::std::os::raw::c_char;
+    pub fn u_errorName(code: UErrorCode) -> *const ::std::os::raw::c_char;
 }

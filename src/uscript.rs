@@ -238,30 +238,27 @@ pub enum UScriptUsage {
     USCRIPT_USAGE_ASPIRATIONAL = 4,
     USCRIPT_USAGE_RECOMMENDED = 5,
 }
-#[link(name = "icuuc", kind = "dylib")]
-#[link(name = "icudata", kind = "dylib")]
+#[link(name = "icuuc", kind = "static")]
+#[link(name = "icudata", kind = "static")]
 extern "C" {
-    pub fn uscript_getCode_57(nameOrAbbrOrLocale:
-                                  *const ::std::os::raw::c_char,
-                              fillIn: *mut UScriptCode, capacity: int32_t,
-                              err: *mut UErrorCode) -> int32_t;
-    pub fn uscript_getName_57(scriptCode: UScriptCode)
+    pub fn uscript_getCode(nameOrAbbrOrLocale: *const ::std::os::raw::c_char,
+                           fillIn: *mut UScriptCode, capacity: int32_t,
+                           err: *mut UErrorCode) -> int32_t;
+    pub fn uscript_getName(scriptCode: UScriptCode)
      -> *const ::std::os::raw::c_char;
-    pub fn uscript_getShortName_57(scriptCode: UScriptCode)
+    pub fn uscript_getShortName(scriptCode: UScriptCode)
      -> *const ::std::os::raw::c_char;
-    pub fn uscript_getScript_57(codepoint: UChar32, err: *mut UErrorCode)
+    pub fn uscript_getScript(codepoint: UChar32, err: *mut UErrorCode)
      -> UScriptCode;
-    pub fn uscript_hasScript_57(c: UChar32, sc: UScriptCode) -> UBool;
-    pub fn uscript_getScriptExtensions_57(c: UChar32,
-                                          scripts: *mut UScriptCode,
-                                          capacity: int32_t,
-                                          errorCode: *mut UErrorCode)
-     -> int32_t;
-    pub fn uscript_getSampleString_57(script: UScriptCode, dest: *mut UChar,
-                                      capacity: int32_t,
-                                      pErrorCode: *mut UErrorCode) -> int32_t;
-    pub fn uscript_getUsage_57(script: UScriptCode) -> UScriptUsage;
-    pub fn uscript_isRightToLeft_57(script: UScriptCode) -> UBool;
-    pub fn uscript_breaksBetweenLetters_57(script: UScriptCode) -> UBool;
-    pub fn uscript_isCased_57(script: UScriptCode) -> UBool;
+    pub fn uscript_hasScript(c: UChar32, sc: UScriptCode) -> UBool;
+    pub fn uscript_getScriptExtensions(c: UChar32, scripts: *mut UScriptCode,
+                                       capacity: int32_t,
+                                       errorCode: *mut UErrorCode) -> int32_t;
+    pub fn uscript_getSampleString(script: UScriptCode, dest: *mut UChar,
+                                   capacity: int32_t,
+                                   pErrorCode: *mut UErrorCode) -> int32_t;
+    pub fn uscript_getUsage(script: UScriptCode) -> UScriptUsage;
+    pub fn uscript_isRightToLeft(script: UScriptCode) -> UBool;
+    pub fn uscript_breaksBetweenLetters(script: UScriptCode) -> UBool;
+    pub fn uscript_isCased(script: UScriptCode) -> UBool;
 }

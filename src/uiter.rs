@@ -117,21 +117,20 @@ pub struct UCharIterator {
 impl ::std::default::Default for UCharIterator {
     fn default() -> Self { unsafe { ::std::mem::zeroed() } }
 }
-#[link(name = "icuuc", kind = "dylib")]
-#[link(name = "icudata", kind = "dylib")]
+#[link(name = "icuuc", kind = "static")]
+#[link(name = "icudata", kind = "static")]
 extern "C" {
-    pub fn uiter_current32_57(iter: *mut UCharIterator) -> UChar32;
-    pub fn uiter_next32_57(iter: *mut UCharIterator) -> UChar32;
-    pub fn uiter_previous32_57(iter: *mut UCharIterator) -> UChar32;
-    pub fn uiter_getState_57(iter: *const UCharIterator) -> uint32_t;
-    pub fn uiter_setState_57(iter: *mut UCharIterator, state: uint32_t,
-                             pErrorCode: *mut UErrorCode);
-    pub fn uiter_setString_57(iter: *mut UCharIterator, s: *const UChar,
-                              length: int32_t);
-    pub fn uiter_setUTF16BE_57(iter: *mut UCharIterator,
-                               s: *const ::std::os::raw::c_char,
-                               length: int32_t);
-    pub fn uiter_setUTF8_57(iter: *mut UCharIterator,
+    pub fn uiter_current32(iter: *mut UCharIterator) -> UChar32;
+    pub fn uiter_next32(iter: *mut UCharIterator) -> UChar32;
+    pub fn uiter_previous32(iter: *mut UCharIterator) -> UChar32;
+    pub fn uiter_getState(iter: *const UCharIterator) -> uint32_t;
+    pub fn uiter_setState(iter: *mut UCharIterator, state: uint32_t,
+                          pErrorCode: *mut UErrorCode);
+    pub fn uiter_setString(iter: *mut UCharIterator, s: *const UChar,
+                           length: int32_t);
+    pub fn uiter_setUTF16BE(iter: *mut UCharIterator,
                             s: *const ::std::os::raw::c_char,
                             length: int32_t);
+    pub fn uiter_setUTF8(iter: *mut UCharIterator,
+                         s: *const ::std::os::raw::c_char, length: int32_t);
 }

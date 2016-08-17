@@ -81,102 +81,97 @@ pub type UBiDiClassCallback =
     ::std::option::Option<unsafe extern "C" fn(context:
                                                    *const ::std::os::raw::c_void,
                                                c: UChar32) -> UCharDirection>;
-#[link(name = "icuuc", kind = "dylib")]
-#[link(name = "icudata", kind = "dylib")]
+#[link(name = "icuuc", kind = "static")]
+#[link(name = "icudata", kind = "static")]
 extern "C" {
-    pub fn ubidi_open_57() -> *mut UBiDi;
-    pub fn ubidi_openSized_57(maxLength: int32_t, maxRunCount: int32_t,
-                              pErrorCode: *mut UErrorCode) -> *mut UBiDi;
-    pub fn ubidi_close_57(pBiDi: *mut UBiDi);
-    pub fn ubidi_setInverse_57(pBiDi: *mut UBiDi, isInverse: UBool);
-    pub fn ubidi_isInverse_57(pBiDi: *mut UBiDi) -> UBool;
-    pub fn ubidi_orderParagraphsLTR_57(pBiDi: *mut UBiDi,
-                                       orderParagraphsLTR: UBool);
-    pub fn ubidi_isOrderParagraphsLTR_57(pBiDi: *mut UBiDi) -> UBool;
-    pub fn ubidi_setReorderingMode_57(pBiDi: *mut UBiDi,
-                                      reorderingMode: UBiDiReorderingMode);
-    pub fn ubidi_getReorderingMode_57(pBiDi: *mut UBiDi)
-     -> UBiDiReorderingMode;
-    pub fn ubidi_setReorderingOptions_57(pBiDi: *mut UBiDi,
-                                         reorderingOptions: uint32_t);
-    pub fn ubidi_getReorderingOptions_57(pBiDi: *mut UBiDi) -> uint32_t;
-    pub fn ubidi_setContext_57(pBiDi: *mut UBiDi, prologue: *const UChar,
-                               proLength: int32_t, epilogue: *const UChar,
-                               epiLength: int32_t,
-                               pErrorCode: *mut UErrorCode);
-    pub fn ubidi_setPara_57(pBiDi: *mut UBiDi, text: *const UChar,
-                            length: int32_t, paraLevel: UBiDiLevel,
-                            embeddingLevels: *mut UBiDiLevel,
-                            pErrorCode: *mut UErrorCode);
-    pub fn ubidi_setLine_57(pParaBiDi: *const UBiDi, start: int32_t,
-                            limit: int32_t, pLineBiDi: *mut UBiDi,
-                            pErrorCode: *mut UErrorCode);
-    pub fn ubidi_getDirection_57(pBiDi: *const UBiDi) -> UBiDiDirection;
-    pub fn ubidi_getBaseDirection_57(text: *const UChar, length: int32_t)
+    pub fn ubidi_open() -> *mut UBiDi;
+    pub fn ubidi_openSized(maxLength: int32_t, maxRunCount: int32_t,
+                           pErrorCode: *mut UErrorCode) -> *mut UBiDi;
+    pub fn ubidi_close(pBiDi: *mut UBiDi);
+    pub fn ubidi_setInverse(pBiDi: *mut UBiDi, isInverse: UBool);
+    pub fn ubidi_isInverse(pBiDi: *mut UBiDi) -> UBool;
+    pub fn ubidi_orderParagraphsLTR(pBiDi: *mut UBiDi,
+                                    orderParagraphsLTR: UBool);
+    pub fn ubidi_isOrderParagraphsLTR(pBiDi: *mut UBiDi) -> UBool;
+    pub fn ubidi_setReorderingMode(pBiDi: *mut UBiDi,
+                                   reorderingMode: UBiDiReorderingMode);
+    pub fn ubidi_getReorderingMode(pBiDi: *mut UBiDi) -> UBiDiReorderingMode;
+    pub fn ubidi_setReorderingOptions(pBiDi: *mut UBiDi,
+                                      reorderingOptions: uint32_t);
+    pub fn ubidi_getReorderingOptions(pBiDi: *mut UBiDi) -> uint32_t;
+    pub fn ubidi_setContext(pBiDi: *mut UBiDi, prologue: *const UChar,
+                            proLength: int32_t, epilogue: *const UChar,
+                            epiLength: int32_t, pErrorCode: *mut UErrorCode);
+    pub fn ubidi_setPara(pBiDi: *mut UBiDi, text: *const UChar,
+                         length: int32_t, paraLevel: UBiDiLevel,
+                         embeddingLevels: *mut UBiDiLevel,
+                         pErrorCode: *mut UErrorCode);
+    pub fn ubidi_setLine(pParaBiDi: *const UBiDi, start: int32_t,
+                         limit: int32_t, pLineBiDi: *mut UBiDi,
+                         pErrorCode: *mut UErrorCode);
+    pub fn ubidi_getDirection(pBiDi: *const UBiDi) -> UBiDiDirection;
+    pub fn ubidi_getBaseDirection(text: *const UChar, length: int32_t)
      -> UBiDiDirection;
-    pub fn ubidi_getText_57(pBiDi: *const UBiDi) -> *const UChar;
-    pub fn ubidi_getLength_57(pBiDi: *const UBiDi) -> int32_t;
-    pub fn ubidi_getParaLevel_57(pBiDi: *const UBiDi) -> UBiDiLevel;
-    pub fn ubidi_countParagraphs_57(pBiDi: *mut UBiDi) -> int32_t;
-    pub fn ubidi_getParagraph_57(pBiDi: *const UBiDi, charIndex: int32_t,
-                                 pParaStart: *mut int32_t,
-                                 pParaLimit: *mut int32_t,
-                                 pParaLevel: *mut UBiDiLevel,
-                                 pErrorCode: *mut UErrorCode) -> int32_t;
-    pub fn ubidi_getParagraphByIndex_57(pBiDi: *const UBiDi,
-                                        paraIndex: int32_t,
-                                        pParaStart: *mut int32_t,
-                                        pParaLimit: *mut int32_t,
-                                        pParaLevel: *mut UBiDiLevel,
-                                        pErrorCode: *mut UErrorCode);
-    pub fn ubidi_getLevelAt_57(pBiDi: *const UBiDi, charIndex: int32_t)
-     -> UBiDiLevel;
-    pub fn ubidi_getLevels_57(pBiDi: *mut UBiDi, pErrorCode: *mut UErrorCode)
-     -> *const UBiDiLevel;
-    pub fn ubidi_getLogicalRun_57(pBiDi: *const UBiDi,
-                                  logicalPosition: int32_t,
-                                  pLogicalLimit: *mut int32_t,
-                                  pLevel: *mut UBiDiLevel);
-    pub fn ubidi_countRuns_57(pBiDi: *mut UBiDi, pErrorCode: *mut UErrorCode)
-     -> int32_t;
-    pub fn ubidi_getVisualRun_57(pBiDi: *mut UBiDi, runIndex: int32_t,
-                                 pLogicalStart: *mut int32_t,
-                                 pLength: *mut int32_t) -> UBiDiDirection;
-    pub fn ubidi_getVisualIndex_57(pBiDi: *mut UBiDi, logicalIndex: int32_t,
-                                   pErrorCode: *mut UErrorCode) -> int32_t;
-    pub fn ubidi_getLogicalIndex_57(pBiDi: *mut UBiDi, visualIndex: int32_t,
-                                    pErrorCode: *mut UErrorCode) -> int32_t;
-    pub fn ubidi_getLogicalMap_57(pBiDi: *mut UBiDi, indexMap: *mut int32_t,
-                                  pErrorCode: *mut UErrorCode);
-    pub fn ubidi_getVisualMap_57(pBiDi: *mut UBiDi, indexMap: *mut int32_t,
-                                 pErrorCode: *mut UErrorCode);
-    pub fn ubidi_reorderLogical_57(levels: *const UBiDiLevel, length: int32_t,
-                                   indexMap: *mut int32_t);
-    pub fn ubidi_reorderVisual_57(levels: *const UBiDiLevel, length: int32_t,
-                                  indexMap: *mut int32_t);
-    pub fn ubidi_invertMap_57(srcMap: *const int32_t, destMap: *mut int32_t,
-                              length: int32_t);
-    pub fn ubidi_getProcessedLength_57(pBiDi: *const UBiDi) -> int32_t;
-    pub fn ubidi_getResultLength_57(pBiDi: *const UBiDi) -> int32_t;
-    pub fn ubidi_getCustomizedClass_57(pBiDi: *mut UBiDi, c: UChar32)
-     -> UCharDirection;
-    pub fn ubidi_setClassCallback_57(pBiDi: *mut UBiDi,
-                                     newFn: UBiDiClassCallback,
-                                     newContext:
-                                         *const ::std::os::raw::c_void,
-                                     oldFn: *mut UBiDiClassCallback,
-                                     oldContext:
-                                         *mut *const ::std::os::raw::c_void,
+    pub fn ubidi_getText(pBiDi: *const UBiDi) -> *const UChar;
+    pub fn ubidi_getLength(pBiDi: *const UBiDi) -> int32_t;
+    pub fn ubidi_getParaLevel(pBiDi: *const UBiDi) -> UBiDiLevel;
+    pub fn ubidi_countParagraphs(pBiDi: *mut UBiDi) -> int32_t;
+    pub fn ubidi_getParagraph(pBiDi: *const UBiDi, charIndex: int32_t,
+                              pParaStart: *mut int32_t,
+                              pParaLimit: *mut int32_t,
+                              pParaLevel: *mut UBiDiLevel,
+                              pErrorCode: *mut UErrorCode) -> int32_t;
+    pub fn ubidi_getParagraphByIndex(pBiDi: *const UBiDi, paraIndex: int32_t,
+                                     pParaStart: *mut int32_t,
+                                     pParaLimit: *mut int32_t,
+                                     pParaLevel: *mut UBiDiLevel,
                                      pErrorCode: *mut UErrorCode);
-    pub fn ubidi_getClassCallback_57(pBiDi: *mut UBiDi,
-                                     fn_: *mut UBiDiClassCallback,
-                                     context:
-                                         *mut *const ::std::os::raw::c_void);
-    pub fn ubidi_writeReordered_57(pBiDi: *mut UBiDi, dest: *mut UChar,
-                                   destSize: int32_t, options: uint16_t,
-                                   pErrorCode: *mut UErrorCode) -> int32_t;
-    pub fn ubidi_writeReverse_57(src: *const UChar, srcLength: int32_t,
-                                 dest: *mut UChar, destSize: int32_t,
-                                 options: uint16_t,
+    pub fn ubidi_getLevelAt(pBiDi: *const UBiDi, charIndex: int32_t)
+     -> UBiDiLevel;
+    pub fn ubidi_getLevels(pBiDi: *mut UBiDi, pErrorCode: *mut UErrorCode)
+     -> *const UBiDiLevel;
+    pub fn ubidi_getLogicalRun(pBiDi: *const UBiDi, logicalPosition: int32_t,
+                               pLogicalLimit: *mut int32_t,
+                               pLevel: *mut UBiDiLevel);
+    pub fn ubidi_countRuns(pBiDi: *mut UBiDi, pErrorCode: *mut UErrorCode)
+     -> int32_t;
+    pub fn ubidi_getVisualRun(pBiDi: *mut UBiDi, runIndex: int32_t,
+                              pLogicalStart: *mut int32_t,
+                              pLength: *mut int32_t) -> UBiDiDirection;
+    pub fn ubidi_getVisualIndex(pBiDi: *mut UBiDi, logicalIndex: int32_t,
+                                pErrorCode: *mut UErrorCode) -> int32_t;
+    pub fn ubidi_getLogicalIndex(pBiDi: *mut UBiDi, visualIndex: int32_t,
                                  pErrorCode: *mut UErrorCode) -> int32_t;
+    pub fn ubidi_getLogicalMap(pBiDi: *mut UBiDi, indexMap: *mut int32_t,
+                               pErrorCode: *mut UErrorCode);
+    pub fn ubidi_getVisualMap(pBiDi: *mut UBiDi, indexMap: *mut int32_t,
+                              pErrorCode: *mut UErrorCode);
+    pub fn ubidi_reorderLogical(levels: *const UBiDiLevel, length: int32_t,
+                                indexMap: *mut int32_t);
+    pub fn ubidi_reorderVisual(levels: *const UBiDiLevel, length: int32_t,
+                               indexMap: *mut int32_t);
+    pub fn ubidi_invertMap(srcMap: *const int32_t, destMap: *mut int32_t,
+                           length: int32_t);
+    pub fn ubidi_getProcessedLength(pBiDi: *const UBiDi) -> int32_t;
+    pub fn ubidi_getResultLength(pBiDi: *const UBiDi) -> int32_t;
+    pub fn ubidi_getCustomizedClass(pBiDi: *mut UBiDi, c: UChar32)
+     -> UCharDirection;
+    pub fn ubidi_setClassCallback(pBiDi: *mut UBiDi,
+                                  newFn: UBiDiClassCallback,
+                                  newContext: *const ::std::os::raw::c_void,
+                                  oldFn: *mut UBiDiClassCallback,
+                                  oldContext:
+                                      *mut *const ::std::os::raw::c_void,
+                                  pErrorCode: *mut UErrorCode);
+    pub fn ubidi_getClassCallback(pBiDi: *mut UBiDi,
+                                  fn_: *mut UBiDiClassCallback,
+                                  context:
+                                      *mut *const ::std::os::raw::c_void);
+    pub fn ubidi_writeReordered(pBiDi: *mut UBiDi, dest: *mut UChar,
+                                destSize: int32_t, options: uint16_t,
+                                pErrorCode: *mut UErrorCode) -> int32_t;
+    pub fn ubidi_writeReverse(src: *const UChar, srcLength: int32_t,
+                              dest: *mut UChar, destSize: int32_t,
+                              options: uint16_t, pErrorCode: *mut UErrorCode)
+     -> int32_t;
 }

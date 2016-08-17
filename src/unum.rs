@@ -66,10 +66,7 @@ pub enum UNumberFormatStyle {
     UNUM_CURRENCY_PLURAL = 11,
     UNUM_CURRENCY_ACCOUNTING = 12,
     UNUM_CASH_CURRENCY = 13,
-    UNUM_DECIMAL_COMPACT_SHORT = 14,
-    UNUM_DECIMAL_COMPACT_LONG = 15,
-    UNUM_CURRENCY_STANDARD = 16,
-    UNUM_FORMAT_STYLE_COUNT = 17,
+    UNUM_FORMAT_STYLE_COUNT = 14,
 }
 pub const UNUM_FOUND_HALFEVEN: UNumberFormatRoundingMode =
     UNumberFormatRoundingMode::UNUM_ROUND_HALFEVEN;
@@ -159,7 +156,7 @@ pub enum UNumberFormatAttribute {
     UNUM_LENIENT_PARSE = 19,
     UNUM_PARSE_ALL_INPUT = 20,
     UNUM_SCALE = 21,
-    UNUM_MINIMUM_GROUPING_DIGITS = 22,
+    UNUM_NUMERIC_ATTRIBUTE_COUNT = 22,
     UNUM_CURRENCY_USAGE = 23,
     UNUM_MAX_NONBOOLEAN_ATTRIBUTE = 4095,
     UNUM_FORMAT_FAIL_IF_MORE_THAN_MAX_DIGITS = 4096,
@@ -214,118 +211,111 @@ pub enum UNumberFormatSymbol {
     UNUM_EXPONENT_MULTIPLICATION_SYMBOL = 27,
     UNUM_FORMAT_SYMBOL_COUNT = 28,
 }
-#[link(name = "icuuc", kind = "dylib")]
-#[link(name = "icudata", kind = "dylib")]
+#[link(name = "icuuc", kind = "static")]
+#[link(name = "icudata", kind = "static")]
 extern "C" {
-    pub fn unum_open_57(style: UNumberFormatStyle, pattern: *const UChar,
-                        patternLength: int32_t,
-                        locale: *const ::std::os::raw::c_char,
-                        parseErr: *mut UParseError, status: *mut UErrorCode)
+    pub fn unum_open(style: UNumberFormatStyle, pattern: *const UChar,
+                     patternLength: int32_t,
+                     locale: *const ::std::os::raw::c_char,
+                     parseErr: *mut UParseError, status: *mut UErrorCode)
      -> *mut UNumberFormat;
-    pub fn unum_close_57(fmt: *mut UNumberFormat);
-    pub fn unum_clone_57(fmt: *const UNumberFormat, status: *mut UErrorCode)
+    pub fn unum_close(fmt: *mut UNumberFormat);
+    pub fn unum_clone(fmt: *const UNumberFormat, status: *mut UErrorCode)
      -> *mut UNumberFormat;
-    pub fn unum_format_57(fmt: *const UNumberFormat, number: int32_t,
-                          result: *mut UChar, resultLength: int32_t,
-                          pos: *mut UFieldPosition, status: *mut UErrorCode)
+    pub fn unum_format(fmt: *const UNumberFormat, number: int32_t,
+                       result: *mut UChar, resultLength: int32_t,
+                       pos: *mut UFieldPosition, status: *mut UErrorCode)
      -> int32_t;
-    pub fn unum_formatInt64_57(fmt: *const UNumberFormat, number: int64_t,
-                               result: *mut UChar, resultLength: int32_t,
-                               pos: *mut UFieldPosition,
-                               status: *mut UErrorCode) -> int32_t;
-    pub fn unum_formatDouble_57(fmt: *const UNumberFormat, number: f64,
-                                result: *mut UChar, resultLength: int32_t,
-                                pos: *mut UFieldPosition,
-                                status: *mut UErrorCode) -> int32_t;
-    pub fn unum_formatDecimal_57(fmt: *const UNumberFormat,
-                                 number: *const ::std::os::raw::c_char,
-                                 length: int32_t, result: *mut UChar,
-                                 resultLength: int32_t,
-                                 pos: *mut UFieldPosition,
-                                 status: *mut UErrorCode) -> int32_t;
-    pub fn unum_formatDoubleCurrency_57(fmt: *const UNumberFormat,
-                                        number: f64, currency: *mut UChar,
-                                        result: *mut UChar,
-                                        resultLength: int32_t,
-                                        pos: *mut UFieldPosition,
-                                        status: *mut UErrorCode) -> int32_t;
-    pub fn unum_formatUFormattable_57(fmt: *const UNumberFormat,
-                                      number: *const UFormattable,
-                                      result: *mut UChar,
-                                      resultLength: int32_t,
-                                      pos: *mut UFieldPosition,
-                                      status: *mut UErrorCode) -> int32_t;
-    pub fn unum_parse_57(fmt: *const UNumberFormat, text: *const UChar,
-                         textLength: int32_t, parsePos: *mut int32_t,
-                         status: *mut UErrorCode) -> int32_t;
-    pub fn unum_parseInt64_57(fmt: *const UNumberFormat, text: *const UChar,
-                              textLength: int32_t, parsePos: *mut int32_t,
-                              status: *mut UErrorCode) -> int64_t;
-    pub fn unum_parseDouble_57(fmt: *const UNumberFormat, text: *const UChar,
-                               textLength: int32_t, parsePos: *mut int32_t,
-                               status: *mut UErrorCode) -> f64;
-    pub fn unum_parseDecimal_57(fmt: *const UNumberFormat, text: *const UChar,
-                                textLength: int32_t, parsePos: *mut int32_t,
-                                outBuf: *mut ::std::os::raw::c_char,
-                                outBufLength: int32_t,
-                                status: *mut UErrorCode) -> int32_t;
-    pub fn unum_parseDoubleCurrency_57(fmt: *const UNumberFormat,
-                                       text: *const UChar,
-                                       textLength: int32_t,
-                                       parsePos: *mut int32_t,
-                                       currency: *mut UChar,
-                                       status: *mut UErrorCode) -> f64;
-    pub fn unum_parseToUFormattable_57(fmt: *const UNumberFormat,
-                                       result: *mut UFormattable,
-                                       text: *const UChar,
-                                       textLength: int32_t,
-                                       parsePos: *mut int32_t,
-                                       status: *mut UErrorCode)
+    pub fn unum_formatInt64(fmt: *const UNumberFormat, number: int64_t,
+                            result: *mut UChar, resultLength: int32_t,
+                            pos: *mut UFieldPosition, status: *mut UErrorCode)
+     -> int32_t;
+    pub fn unum_formatDouble(fmt: *const UNumberFormat, number: f64,
+                             result: *mut UChar, resultLength: int32_t,
+                             pos: *mut UFieldPosition,
+                             status: *mut UErrorCode) -> int32_t;
+    pub fn unum_formatDecimal(fmt: *const UNumberFormat,
+                              number: *const ::std::os::raw::c_char,
+                              length: int32_t, result: *mut UChar,
+                              resultLength: int32_t, pos: *mut UFieldPosition,
+                              status: *mut UErrorCode) -> int32_t;
+    pub fn unum_formatDoubleCurrency(fmt: *const UNumberFormat, number: f64,
+                                     currency: *mut UChar, result: *mut UChar,
+                                     resultLength: int32_t,
+                                     pos: *mut UFieldPosition,
+                                     status: *mut UErrorCode) -> int32_t;
+    pub fn unum_formatUFormattable(fmt: *const UNumberFormat,
+                                   number: *const UFormattable,
+                                   result: *mut UChar, resultLength: int32_t,
+                                   pos: *mut UFieldPosition,
+                                   status: *mut UErrorCode) -> int32_t;
+    pub fn unum_parse(fmt: *const UNumberFormat, text: *const UChar,
+                      textLength: int32_t, parsePos: *mut int32_t,
+                      status: *mut UErrorCode) -> int32_t;
+    pub fn unum_parseInt64(fmt: *const UNumberFormat, text: *const UChar,
+                           textLength: int32_t, parsePos: *mut int32_t,
+                           status: *mut UErrorCode) -> int64_t;
+    pub fn unum_parseDouble(fmt: *const UNumberFormat, text: *const UChar,
+                            textLength: int32_t, parsePos: *mut int32_t,
+                            status: *mut UErrorCode) -> f64;
+    pub fn unum_parseDecimal(fmt: *const UNumberFormat, text: *const UChar,
+                             textLength: int32_t, parsePos: *mut int32_t,
+                             outBuf: *mut ::std::os::raw::c_char,
+                             outBufLength: int32_t, status: *mut UErrorCode)
+     -> int32_t;
+    pub fn unum_parseDoubleCurrency(fmt: *const UNumberFormat,
+                                    text: *const UChar, textLength: int32_t,
+                                    parsePos: *mut int32_t,
+                                    currency: *mut UChar,
+                                    status: *mut UErrorCode) -> f64;
+    pub fn unum_parseToUFormattable(fmt: *const UNumberFormat,
+                                    result: *mut UFormattable,
+                                    text: *const UChar, textLength: int32_t,
+                                    parsePos: *mut int32_t,
+                                    status: *mut UErrorCode)
      -> *mut UFormattable;
-    pub fn unum_applyPattern_57(format: *mut UNumberFormat, localized: UBool,
-                                pattern: *const UChar, patternLength: int32_t,
-                                parseError: *mut UParseError,
-                                status: *mut UErrorCode);
-    pub fn unum_getAvailable_57(localeIndex: int32_t)
+    pub fn unum_applyPattern(format: *mut UNumberFormat, localized: UBool,
+                             pattern: *const UChar, patternLength: int32_t,
+                             parseError: *mut UParseError,
+                             status: *mut UErrorCode);
+    pub fn unum_getAvailable(localeIndex: int32_t)
      -> *const ::std::os::raw::c_char;
-    pub fn unum_countAvailable_57() -> int32_t;
-    pub fn unum_getAttribute_57(fmt: *const UNumberFormat,
-                                attr: UNumberFormatAttribute) -> int32_t;
-    pub fn unum_setAttribute_57(fmt: *mut UNumberFormat,
-                                attr: UNumberFormatAttribute,
-                                newValue: int32_t);
-    pub fn unum_getDoubleAttribute_57(fmt: *const UNumberFormat,
-                                      attr: UNumberFormatAttribute) -> f64;
-    pub fn unum_setDoubleAttribute_57(fmt: *mut UNumberFormat,
-                                      attr: UNumberFormatAttribute,
-                                      newValue: f64);
-    pub fn unum_getTextAttribute_57(fmt: *const UNumberFormat,
-                                    tag: UNumberFormatTextAttribute,
-                                    result: *mut UChar, resultLength: int32_t,
-                                    status: *mut UErrorCode) -> int32_t;
-    pub fn unum_setTextAttribute_57(fmt: *mut UNumberFormat,
-                                    tag: UNumberFormatTextAttribute,
-                                    newValue: *const UChar,
-                                    newValueLength: int32_t,
-                                    status: *mut UErrorCode);
-    pub fn unum_toPattern_57(fmt: *const UNumberFormat,
-                             isPatternLocalized: UBool, result: *mut UChar,
-                             resultLength: int32_t, status: *mut UErrorCode)
+    pub fn unum_countAvailable() -> int32_t;
+    pub fn unum_getAttribute(fmt: *const UNumberFormat,
+                             attr: UNumberFormatAttribute) -> int32_t;
+    pub fn unum_setAttribute(fmt: *mut UNumberFormat,
+                             attr: UNumberFormatAttribute, newValue: int32_t);
+    pub fn unum_getDoubleAttribute(fmt: *const UNumberFormat,
+                                   attr: UNumberFormatAttribute) -> f64;
+    pub fn unum_setDoubleAttribute(fmt: *mut UNumberFormat,
+                                   attr: UNumberFormatAttribute,
+                                   newValue: f64);
+    pub fn unum_getTextAttribute(fmt: *const UNumberFormat,
+                                 tag: UNumberFormatTextAttribute,
+                                 result: *mut UChar, resultLength: int32_t,
+                                 status: *mut UErrorCode) -> int32_t;
+    pub fn unum_setTextAttribute(fmt: *mut UNumberFormat,
+                                 tag: UNumberFormatTextAttribute,
+                                 newValue: *const UChar,
+                                 newValueLength: int32_t,
+                                 status: *mut UErrorCode);
+    pub fn unum_toPattern(fmt: *const UNumberFormat,
+                          isPatternLocalized: UBool, result: *mut UChar,
+                          resultLength: int32_t, status: *mut UErrorCode)
      -> int32_t;
-    pub fn unum_getSymbol_57(fmt: *const UNumberFormat,
-                             symbol: UNumberFormatSymbol, buffer: *mut UChar,
-                             size: int32_t, status: *mut UErrorCode)
-     -> int32_t;
-    pub fn unum_setSymbol_57(fmt: *mut UNumberFormat,
-                             symbol: UNumberFormatSymbol, value: *const UChar,
-                             length: int32_t, status: *mut UErrorCode);
-    pub fn unum_getLocaleByType_57(fmt: *const UNumberFormat,
-                                   type_: ULocDataLocaleType,
-                                   status: *mut UErrorCode)
+    pub fn unum_getSymbol(fmt: *const UNumberFormat,
+                          symbol: UNumberFormatSymbol, buffer: *mut UChar,
+                          size: int32_t, status: *mut UErrorCode) -> int32_t;
+    pub fn unum_setSymbol(fmt: *mut UNumberFormat,
+                          symbol: UNumberFormatSymbol, value: *const UChar,
+                          length: int32_t, status: *mut UErrorCode);
+    pub fn unum_getLocaleByType(fmt: *const UNumberFormat,
+                                type_: ULocDataLocaleType,
+                                status: *mut UErrorCode)
      -> *const ::std::os::raw::c_char;
-    pub fn unum_setContext_57(fmt: *mut UNumberFormat, value: UDisplayContext,
-                              status: *mut UErrorCode);
-    pub fn unum_getContext_57(fmt: *const UNumberFormat,
-                              type_: UDisplayContextType,
-                              status: *mut UErrorCode) -> UDisplayContext;
+    pub fn unum_setContext(fmt: *mut UNumberFormat, value: UDisplayContext,
+                           status: *mut UErrorCode);
+    pub fn unum_getContext(fmt: *const UNumberFormat,
+                           type_: UDisplayContextType,
+                           status: *mut UErrorCode) -> UDisplayContext;
 }

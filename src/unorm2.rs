@@ -62,76 +62,69 @@ pub enum UNormalizationCheckResult {
     UNORM_MAYBE = 2,
 }
 pub enum UNormalizer2 { }
-#[link(name = "icuuc", kind = "dylib")]
-#[link(name = "icudata", kind = "dylib")]
+#[link(name = "icuuc", kind = "static")]
+#[link(name = "icudata", kind = "static")]
 extern "C" {
-    pub fn unorm2_getNFCInstance_57(pErrorCode: *mut UErrorCode)
+    pub fn unorm2_getNFCInstance(pErrorCode: *mut UErrorCode)
      -> *const UNormalizer2;
-    pub fn unorm2_getNFDInstance_57(pErrorCode: *mut UErrorCode)
+    pub fn unorm2_getNFDInstance(pErrorCode: *mut UErrorCode)
      -> *const UNormalizer2;
-    pub fn unorm2_getNFKCInstance_57(pErrorCode: *mut UErrorCode)
+    pub fn unorm2_getNFKCInstance(pErrorCode: *mut UErrorCode)
      -> *const UNormalizer2;
-    pub fn unorm2_getNFKDInstance_57(pErrorCode: *mut UErrorCode)
+    pub fn unorm2_getNFKDInstance(pErrorCode: *mut UErrorCode)
      -> *const UNormalizer2;
-    pub fn unorm2_getNFKCCasefoldInstance_57(pErrorCode: *mut UErrorCode)
+    pub fn unorm2_getNFKCCasefoldInstance(pErrorCode: *mut UErrorCode)
      -> *const UNormalizer2;
-    pub fn unorm2_getInstance_57(packageName: *const ::std::os::raw::c_char,
-                                 name: *const ::std::os::raw::c_char,
-                                 mode: UNormalization2Mode,
-                                 pErrorCode: *mut UErrorCode)
+    pub fn unorm2_getInstance(packageName: *const ::std::os::raw::c_char,
+                              name: *const ::std::os::raw::c_char,
+                              mode: UNormalization2Mode,
+                              pErrorCode: *mut UErrorCode)
      -> *const UNormalizer2;
-    pub fn unorm2_openFiltered_57(norm2: *const UNormalizer2,
-                                  filterSet: *const USet,
-                                  pErrorCode: *mut UErrorCode)
+    pub fn unorm2_openFiltered(norm2: *const UNormalizer2,
+                               filterSet: *const USet,
+                               pErrorCode: *mut UErrorCode)
      -> *mut UNormalizer2;
-    pub fn unorm2_close_57(norm2: *mut UNormalizer2);
-    pub fn unorm2_normalize_57(norm2: *const UNormalizer2, src: *const UChar,
-                               length: int32_t, dest: *mut UChar,
-                               capacity: int32_t, pErrorCode: *mut UErrorCode)
+    pub fn unorm2_close(norm2: *mut UNormalizer2);
+    pub fn unorm2_normalize(norm2: *const UNormalizer2, src: *const UChar,
+                            length: int32_t, dest: *mut UChar,
+                            capacity: int32_t, pErrorCode: *mut UErrorCode)
      -> int32_t;
-    pub fn unorm2_normalizeSecondAndAppend_57(norm2: *const UNormalizer2,
-                                              first: *mut UChar,
-                                              firstLength: int32_t,
-                                              firstCapacity: int32_t,
-                                              second: *const UChar,
-                                              secondLength: int32_t,
-                                              pErrorCode: *mut UErrorCode)
+    pub fn unorm2_normalizeSecondAndAppend(norm2: *const UNormalizer2,
+                                           first: *mut UChar,
+                                           firstLength: int32_t,
+                                           firstCapacity: int32_t,
+                                           second: *const UChar,
+                                           secondLength: int32_t,
+                                           pErrorCode: *mut UErrorCode)
      -> int32_t;
-    pub fn unorm2_append_57(norm2: *const UNormalizer2, first: *mut UChar,
-                            firstLength: int32_t, firstCapacity: int32_t,
-                            second: *const UChar, secondLength: int32_t,
-                            pErrorCode: *mut UErrorCode) -> int32_t;
-    pub fn unorm2_getDecomposition_57(norm2: *const UNormalizer2, c: UChar32,
+    pub fn unorm2_append(norm2: *const UNormalizer2, first: *mut UChar,
+                         firstLength: int32_t, firstCapacity: int32_t,
+                         second: *const UChar, secondLength: int32_t,
+                         pErrorCode: *mut UErrorCode) -> int32_t;
+    pub fn unorm2_getDecomposition(norm2: *const UNormalizer2, c: UChar32,
+                                   decomposition: *mut UChar,
+                                   capacity: int32_t,
+                                   pErrorCode: *mut UErrorCode) -> int32_t;
+    pub fn unorm2_getRawDecomposition(norm2: *const UNormalizer2, c: UChar32,
                                       decomposition: *mut UChar,
                                       capacity: int32_t,
                                       pErrorCode: *mut UErrorCode) -> int32_t;
-    pub fn unorm2_getRawDecomposition_57(norm2: *const UNormalizer2,
-                                         c: UChar32,
-                                         decomposition: *mut UChar,
-                                         capacity: int32_t,
-                                         pErrorCode: *mut UErrorCode)
-     -> int32_t;
-    pub fn unorm2_composePair_57(norm2: *const UNormalizer2, a: UChar32,
-                                 b: UChar32) -> UChar32;
-    pub fn unorm2_getCombiningClass_57(norm2: *const UNormalizer2, c: UChar32)
+    pub fn unorm2_composePair(norm2: *const UNormalizer2, a: UChar32,
+                              b: UChar32) -> UChar32;
+    pub fn unorm2_getCombiningClass(norm2: *const UNormalizer2, c: UChar32)
      -> uint8_t;
-    pub fn unorm2_isNormalized_57(norm2: *const UNormalizer2, s: *const UChar,
-                                  length: int32_t,
-                                  pErrorCode: *mut UErrorCode) -> UBool;
-    pub fn unorm2_quickCheck_57(norm2: *const UNormalizer2, s: *const UChar,
-                                length: int32_t, pErrorCode: *mut UErrorCode)
+    pub fn unorm2_isNormalized(norm2: *const UNormalizer2, s: *const UChar,
+                               length: int32_t, pErrorCode: *mut UErrorCode)
+     -> UBool;
+    pub fn unorm2_quickCheck(norm2: *const UNormalizer2, s: *const UChar,
+                             length: int32_t, pErrorCode: *mut UErrorCode)
      -> UNormalizationCheckResult;
-    pub fn unorm2_spanQuickCheckYes_57(norm2: *const UNormalizer2,
-                                       s: *const UChar, length: int32_t,
-                                       pErrorCode: *mut UErrorCode)
-     -> int32_t;
-    pub fn unorm2_hasBoundaryBefore_57(norm2: *const UNormalizer2, c: UChar32)
+    pub fn unorm2_spanQuickCheckYes(norm2: *const UNormalizer2,
+                                    s: *const UChar, length: int32_t,
+                                    pErrorCode: *mut UErrorCode) -> int32_t;
+    pub fn unorm2_hasBoundaryBefore(norm2: *const UNormalizer2, c: UChar32)
      -> UBool;
-    pub fn unorm2_hasBoundaryAfter_57(norm2: *const UNormalizer2, c: UChar32)
+    pub fn unorm2_hasBoundaryAfter(norm2: *const UNormalizer2, c: UChar32)
      -> UBool;
-    pub fn unorm2_isInert_57(norm2: *const UNormalizer2, c: UChar32) -> UBool;
-    pub fn unorm_compare_57(s1: *const UChar, length1: int32_t,
-                            s2: *const UChar, length2: int32_t,
-                            options: uint32_t, pErrorCode: *mut UErrorCode)
-     -> int32_t;
+    pub fn unorm2_isInert(norm2: *const UNormalizer2, c: UChar32) -> UBool;
 }

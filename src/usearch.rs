@@ -66,83 +66,75 @@ pub enum USearchAttributeValue {
     USEARCH_ANY_BASE_WEIGHT_IS_WILDCARD = 4,
     USEARCH_ATTRIBUTE_VALUE_COUNT = 5,
 }
-#[link(name = "icuuc", kind = "dylib")]
-#[link(name = "icudata", kind = "dylib")]
+#[link(name = "icuuc", kind = "static")]
+#[link(name = "icudata", kind = "static")]
 extern "C" {
-    pub fn usearch_open_57(pattern: *const UChar, patternlength: int32_t,
-                           text: *const UChar, textlength: int32_t,
-                           locale: *const ::std::os::raw::c_char,
-                           breakiter: *mut UBreakIterator,
-                           status: *mut UErrorCode) -> *mut UStringSearch;
-    pub fn usearch_openFromCollator_57(pattern: *const UChar,
-                                       patternlength: int32_t,
-                                       text: *const UChar,
-                                       textlength: int32_t,
-                                       collator: *const UCollator,
-                                       breakiter: *mut UBreakIterator,
-                                       status: *mut UErrorCode)
+    pub fn usearch_open(pattern: *const UChar, patternlength: int32_t,
+                        text: *const UChar, textlength: int32_t,
+                        locale: *const ::std::os::raw::c_char,
+                        breakiter: *mut UBreakIterator,
+                        status: *mut UErrorCode) -> *mut UStringSearch;
+    pub fn usearch_openFromCollator(pattern: *const UChar,
+                                    patternlength: int32_t,
+                                    text: *const UChar, textlength: int32_t,
+                                    collator: *const UCollator,
+                                    breakiter: *mut UBreakIterator,
+                                    status: *mut UErrorCode)
      -> *mut UStringSearch;
-    pub fn usearch_close_57(searchiter: *mut UStringSearch);
-    pub fn usearch_setOffset_57(strsrch: *mut UStringSearch,
-                                position: int32_t, status: *mut UErrorCode);
-    pub fn usearch_getOffset_57(strsrch: *const UStringSearch) -> int32_t;
-    pub fn usearch_setAttribute_57(strsrch: *mut UStringSearch,
-                                   attribute: USearchAttribute,
-                                   value: USearchAttributeValue,
-                                   status: *mut UErrorCode);
-    pub fn usearch_getAttribute_57(strsrch: *const UStringSearch,
-                                   attribute: USearchAttribute)
+    pub fn usearch_close(searchiter: *mut UStringSearch);
+    pub fn usearch_setOffset(strsrch: *mut UStringSearch, position: int32_t,
+                             status: *mut UErrorCode);
+    pub fn usearch_getOffset(strsrch: *const UStringSearch) -> int32_t;
+    pub fn usearch_setAttribute(strsrch: *mut UStringSearch,
+                                attribute: USearchAttribute,
+                                value: USearchAttributeValue,
+                                status: *mut UErrorCode);
+    pub fn usearch_getAttribute(strsrch: *const UStringSearch,
+                                attribute: USearchAttribute)
      -> USearchAttributeValue;
-    pub fn usearch_getMatchedStart_57(strsrch: *const UStringSearch)
-     -> int32_t;
-    pub fn usearch_getMatchedLength_57(strsrch: *const UStringSearch)
-     -> int32_t;
-    pub fn usearch_getMatchedText_57(strsrch: *const UStringSearch,
-                                     result: *mut UChar,
-                                     resultCapacity: int32_t,
-                                     status: *mut UErrorCode) -> int32_t;
-    pub fn usearch_setBreakIterator_57(strsrch: *mut UStringSearch,
-                                       breakiter: *mut UBreakIterator,
-                                       status: *mut UErrorCode);
-    pub fn usearch_getBreakIterator_57(strsrch: *const UStringSearch)
+    pub fn usearch_getMatchedStart(strsrch: *const UStringSearch) -> int32_t;
+    pub fn usearch_getMatchedLength(strsrch: *const UStringSearch) -> int32_t;
+    pub fn usearch_getMatchedText(strsrch: *const UStringSearch,
+                                  result: *mut UChar, resultCapacity: int32_t,
+                                  status: *mut UErrorCode) -> int32_t;
+    pub fn usearch_setBreakIterator(strsrch: *mut UStringSearch,
+                                    breakiter: *mut UBreakIterator,
+                                    status: *mut UErrorCode);
+    pub fn usearch_getBreakIterator(strsrch: *const UStringSearch)
      -> *const UBreakIterator;
-    pub fn usearch_setText_57(strsrch: *mut UStringSearch, text: *const UChar,
-                              textlength: int32_t, status: *mut UErrorCode);
-    pub fn usearch_getText_57(strsrch: *const UStringSearch,
-                              length: *mut int32_t) -> *const UChar;
-    pub fn usearch_getCollator_57(strsrch: *const UStringSearch)
+    pub fn usearch_setText(strsrch: *mut UStringSearch, text: *const UChar,
+                           textlength: int32_t, status: *mut UErrorCode);
+    pub fn usearch_getText(strsrch: *const UStringSearch,
+                           length: *mut int32_t) -> *const UChar;
+    pub fn usearch_getCollator(strsrch: *const UStringSearch)
      -> *mut UCollator;
-    pub fn usearch_setCollator_57(strsrch: *mut UStringSearch,
-                                  collator: *const UCollator,
-                                  status: *mut UErrorCode);
-    pub fn usearch_setPattern_57(strsrch: *mut UStringSearch,
-                                 pattern: *const UChar,
-                                 patternlength: int32_t,
-                                 status: *mut UErrorCode);
-    pub fn usearch_getPattern_57(strsrch: *const UStringSearch,
-                                 length: *mut int32_t) -> *const UChar;
-    pub fn usearch_first_57(strsrch: *mut UStringSearch,
+    pub fn usearch_setCollator(strsrch: *mut UStringSearch,
+                               collator: *const UCollator,
+                               status: *mut UErrorCode);
+    pub fn usearch_setPattern(strsrch: *mut UStringSearch,
+                              pattern: *const UChar, patternlength: int32_t,
+                              status: *mut UErrorCode);
+    pub fn usearch_getPattern(strsrch: *const UStringSearch,
+                              length: *mut int32_t) -> *const UChar;
+    pub fn usearch_first(strsrch: *mut UStringSearch, status: *mut UErrorCode)
+     -> int32_t;
+    pub fn usearch_following(strsrch: *mut UStringSearch, position: int32_t,
+                             status: *mut UErrorCode) -> int32_t;
+    pub fn usearch_last(strsrch: *mut UStringSearch, status: *mut UErrorCode)
+     -> int32_t;
+    pub fn usearch_preceding(strsrch: *mut UStringSearch, position: int32_t,
+                             status: *mut UErrorCode) -> int32_t;
+    pub fn usearch_next(strsrch: *mut UStringSearch, status: *mut UErrorCode)
+     -> int32_t;
+    pub fn usearch_previous(strsrch: *mut UStringSearch,
                             status: *mut UErrorCode) -> int32_t;
-    pub fn usearch_following_57(strsrch: *mut UStringSearch,
-                                position: int32_t, status: *mut UErrorCode)
-     -> int32_t;
-    pub fn usearch_last_57(strsrch: *mut UStringSearch,
-                           status: *mut UErrorCode) -> int32_t;
-    pub fn usearch_preceding_57(strsrch: *mut UStringSearch,
-                                position: int32_t, status: *mut UErrorCode)
-     -> int32_t;
-    pub fn usearch_next_57(strsrch: *mut UStringSearch,
-                           status: *mut UErrorCode) -> int32_t;
-    pub fn usearch_previous_57(strsrch: *mut UStringSearch,
-                               status: *mut UErrorCode) -> int32_t;
-    pub fn usearch_reset_57(strsrch: *mut UStringSearch);
-    pub fn usearch_search_57(strsrch: *mut UStringSearch, startIdx: int32_t,
-                             matchStart: *mut int32_t,
-                             matchLimit: *mut int32_t,
-                             status: *mut UErrorCode) -> UBool;
-    pub fn usearch_searchBackwards_57(strsrch: *mut UStringSearch,
-                                      startIdx: int32_t,
-                                      matchStart: *mut int32_t,
-                                      matchLimit: *mut int32_t,
-                                      status: *mut UErrorCode) -> UBool;
+    pub fn usearch_reset(strsrch: *mut UStringSearch);
+    pub fn usearch_search(strsrch: *mut UStringSearch, startIdx: int32_t,
+                          matchStart: *mut int32_t, matchLimit: *mut int32_t,
+                          status: *mut UErrorCode) -> UBool;
+    pub fn usearch_searchBackwards(strsrch: *mut UStringSearch,
+                                   startIdx: int32_t,
+                                   matchStart: *mut int32_t,
+                                   matchLimit: *mut int32_t,
+                                   status: *mut UErrorCode) -> UBool;
 }

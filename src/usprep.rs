@@ -64,19 +64,19 @@ pub enum UStringPrepProfileType {
     USPREP_RFC4518_LDAP = 12,
     USPREP_RFC4518_LDAP_CI = 13,
 }
-#[link(name = "icuuc", kind = "dylib")]
-#[link(name = "icudata", kind = "dylib")]
+#[link(name = "icuuc", kind = "static")]
+#[link(name = "icudata", kind = "static")]
 extern "C" {
-    pub fn usprep_open_57(path: *const ::std::os::raw::c_char,
-                          fileName: *const ::std::os::raw::c_char,
-                          status: *mut UErrorCode) -> *mut UStringPrepProfile;
-    pub fn usprep_openByType_57(type_: UStringPrepProfileType,
-                                status: *mut UErrorCode)
+    pub fn usprep_open(path: *const ::std::os::raw::c_char,
+                       fileName: *const ::std::os::raw::c_char,
+                       status: *mut UErrorCode) -> *mut UStringPrepProfile;
+    pub fn usprep_openByType(type_: UStringPrepProfileType,
+                             status: *mut UErrorCode)
      -> *mut UStringPrepProfile;
-    pub fn usprep_close_57(profile: *mut UStringPrepProfile);
-    pub fn usprep_prepare_57(prep: *const UStringPrepProfile,
-                             src: *const UChar, srcLength: int32_t,
-                             dest: *mut UChar, destCapacity: int32_t,
-                             options: int32_t, parseError: *mut UParseError,
-                             status: *mut UErrorCode) -> int32_t;
+    pub fn usprep_close(profile: *mut UStringPrepProfile);
+    pub fn usprep_prepare(prep: *const UStringPrepProfile, src: *const UChar,
+                          srcLength: int32_t, dest: *mut UChar,
+                          destCapacity: int32_t, options: int32_t,
+                          parseError: *mut UParseError,
+                          status: *mut UErrorCode) -> int32_t;
 }

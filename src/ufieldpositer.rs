@@ -45,13 +45,13 @@ use umisc::*;
 use ucnv_err::*;
 
 pub enum UFieldPositionIterator { }
-#[link(name = "icuuc", kind = "dylib")]
-#[link(name = "icudata", kind = "dylib")]
+#[link(name = "icuuc", kind = "static")]
+#[link(name = "icudata", kind = "static")]
 extern "C" {
-    pub fn ufieldpositer_open_57(status: *mut UErrorCode)
+    pub fn ufieldpositer_open(status: *mut UErrorCode)
      -> *mut UFieldPositionIterator;
-    pub fn ufieldpositer_close_57(fpositer: *mut UFieldPositionIterator);
-    pub fn ufieldpositer_next_57(fpositer: *mut UFieldPositionIterator,
-                                 beginIndex: *mut int32_t,
-                                 endIndex: *mut int32_t) -> int32_t;
+    pub fn ufieldpositer_close(fpositer: *mut UFieldPositionIterator);
+    pub fn ufieldpositer_next(fpositer: *mut UFieldPositionIterator,
+                              beginIndex: *mut int32_t,
+                              endIndex: *mut int32_t) -> int32_t;
 }

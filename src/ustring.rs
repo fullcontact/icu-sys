@@ -49,185 +49,173 @@ pub type UNESCAPE_CHAR_AT =
                                                context:
                                                    *mut ::std::os::raw::c_void)
                               -> UChar>;
-#[link(name = "icuuc", kind = "dylib")]
-#[link(name = "icudata", kind = "dylib")]
+#[link(name = "icuuc", kind = "static")]
+#[link(name = "icudata", kind = "static")]
 extern "C" {
-    pub fn u_strlen_57(s: *const UChar) -> int32_t;
-    pub fn u_countChar32_57(s: *const UChar, length: int32_t) -> int32_t;
-    pub fn u_strHasMoreChar32Than_57(s: *const UChar, length: int32_t,
-                                     number: int32_t) -> UBool;
-    pub fn u_strcat_57(dst: *mut UChar, src: *const UChar) -> *mut UChar;
-    pub fn u_strncat_57(dst: *mut UChar, src: *const UChar, n: int32_t)
+    pub fn u_strlen(s: *const UChar) -> int32_t;
+    pub fn u_countChar32(s: *const UChar, length: int32_t) -> int32_t;
+    pub fn u_strHasMoreChar32Than(s: *const UChar, length: int32_t,
+                                  number: int32_t) -> UBool;
+    pub fn u_strcat(dst: *mut UChar, src: *const UChar) -> *mut UChar;
+    pub fn u_strncat(dst: *mut UChar, src: *const UChar, n: int32_t)
      -> *mut UChar;
-    pub fn u_strstr_57(s: *const UChar, substring: *const UChar)
+    pub fn u_strstr(s: *const UChar, substring: *const UChar) -> *mut UChar;
+    pub fn u_strFindFirst(s: *const UChar, length: int32_t,
+                          substring: *const UChar, subLength: int32_t)
      -> *mut UChar;
-    pub fn u_strFindFirst_57(s: *const UChar, length: int32_t,
-                             substring: *const UChar, subLength: int32_t)
+    pub fn u_strchr(s: *const UChar, c: UChar) -> *mut UChar;
+    pub fn u_strchr32(s: *const UChar, c: UChar32) -> *mut UChar;
+    pub fn u_strrstr(s: *const UChar, substring: *const UChar) -> *mut UChar;
+    pub fn u_strFindLast(s: *const UChar, length: int32_t,
+                         substring: *const UChar, subLength: int32_t)
      -> *mut UChar;
-    pub fn u_strchr_57(s: *const UChar, c: UChar) -> *mut UChar;
-    pub fn u_strchr32_57(s: *const UChar, c: UChar32) -> *mut UChar;
-    pub fn u_strrstr_57(s: *const UChar, substring: *const UChar)
+    pub fn u_strrchr(s: *const UChar, c: UChar) -> *mut UChar;
+    pub fn u_strrchr32(s: *const UChar, c: UChar32) -> *mut UChar;
+    pub fn u_strpbrk(string: *const UChar, matchSet: *const UChar)
      -> *mut UChar;
-    pub fn u_strFindLast_57(s: *const UChar, length: int32_t,
-                            substring: *const UChar, subLength: int32_t)
-     -> *mut UChar;
-    pub fn u_strrchr_57(s: *const UChar, c: UChar) -> *mut UChar;
-    pub fn u_strrchr32_57(s: *const UChar, c: UChar32) -> *mut UChar;
-    pub fn u_strpbrk_57(string: *const UChar, matchSet: *const UChar)
-     -> *mut UChar;
-    pub fn u_strcspn_57(string: *const UChar, matchSet: *const UChar)
+    pub fn u_strcspn(string: *const UChar, matchSet: *const UChar) -> int32_t;
+    pub fn u_strspn(string: *const UChar, matchSet: *const UChar) -> int32_t;
+    pub fn u_strtok_r(src: *mut UChar, delim: *const UChar,
+                      saveState: *mut *mut UChar) -> *mut UChar;
+    pub fn u_strcmp(s1: *const UChar, s2: *const UChar) -> int32_t;
+    pub fn u_strcmpCodePointOrder(s1: *const UChar, s2: *const UChar)
      -> int32_t;
-    pub fn u_strspn_57(string: *const UChar, matchSet: *const UChar)
+    pub fn u_strCompare(s1: *const UChar, length1: int32_t, s2: *const UChar,
+                        length2: int32_t, codePointOrder: UBool) -> int32_t;
+    pub fn u_strCompareIter(iter1: *mut UCharIterator,
+                            iter2: *mut UCharIterator, codePointOrder: UBool)
      -> int32_t;
-    pub fn u_strtok_r_57(src: *mut UChar, delim: *const UChar,
-                         saveState: *mut *mut UChar) -> *mut UChar;
-    pub fn u_strcmp_57(s1: *const UChar, s2: *const UChar) -> int32_t;
-    pub fn u_strcmpCodePointOrder_57(s1: *const UChar, s2: *const UChar)
-     -> int32_t;
-    pub fn u_strCompare_57(s1: *const UChar, length1: int32_t,
-                           s2: *const UChar, length2: int32_t,
-                           codePointOrder: UBool) -> int32_t;
-    pub fn u_strCompareIter_57(iter1: *mut UCharIterator,
-                               iter2: *mut UCharIterator,
-                               codePointOrder: UBool) -> int32_t;
-    pub fn u_strCaseCompare_57(s1: *const UChar, length1: int32_t,
-                               s2: *const UChar, length2: int32_t,
-                               options: uint32_t, pErrorCode: *mut UErrorCode)
-     -> int32_t;
-    pub fn u_strncmp_57(ucs1: *const UChar, ucs2: *const UChar, n: int32_t)
-     -> int32_t;
-    pub fn u_strncmpCodePointOrder_57(s1: *const UChar, s2: *const UChar,
-                                      n: int32_t) -> int32_t;
-    pub fn u_strcasecmp_57(s1: *const UChar, s2: *const UChar,
-                           options: uint32_t) -> int32_t;
-    pub fn u_strncasecmp_57(s1: *const UChar, s2: *const UChar, n: int32_t,
-                            options: uint32_t) -> int32_t;
-    pub fn u_memcasecmp_57(s1: *const UChar, s2: *const UChar,
-                           length: int32_t, options: uint32_t) -> int32_t;
-    pub fn u_strcpy_57(dst: *mut UChar, src: *const UChar) -> *mut UChar;
-    pub fn u_strncpy_57(dst: *mut UChar, src: *const UChar, n: int32_t)
-     -> *mut UChar;
-    pub fn u_uastrcpy_57(dst: *mut UChar, src: *const ::std::os::raw::c_char)
-     -> *mut UChar;
-    pub fn u_uastrncpy_57(dst: *mut UChar, src: *const ::std::os::raw::c_char,
-                          n: int32_t) -> *mut UChar;
-    pub fn u_austrcpy_57(dst: *mut ::std::os::raw::c_char, src: *const UChar)
-     -> *mut ::std::os::raw::c_char;
-    pub fn u_austrncpy_57(dst: *mut ::std::os::raw::c_char, src: *const UChar,
-                          n: int32_t) -> *mut ::std::os::raw::c_char;
-    pub fn u_memcpy_57(dest: *mut UChar, src: *const UChar, count: int32_t)
-     -> *mut UChar;
-    pub fn u_memmove_57(dest: *mut UChar, src: *const UChar, count: int32_t)
-     -> *mut UChar;
-    pub fn u_memset_57(dest: *mut UChar, c: UChar, count: int32_t)
-     -> *mut UChar;
-    pub fn u_memcmp_57(buf1: *const UChar, buf2: *const UChar, count: int32_t)
-     -> int32_t;
-    pub fn u_memcmpCodePointOrder_57(s1: *const UChar, s2: *const UChar,
-                                     count: int32_t) -> int32_t;
-    pub fn u_memchr_57(s: *const UChar, c: UChar, count: int32_t)
-     -> *mut UChar;
-    pub fn u_memchr32_57(s: *const UChar, c: UChar32, count: int32_t)
-     -> *mut UChar;
-    pub fn u_memrchr_57(s: *const UChar, c: UChar, count: int32_t)
-     -> *mut UChar;
-    pub fn u_memrchr32_57(s: *const UChar, c: UChar32, count: int32_t)
-     -> *mut UChar;
-    pub fn u_unescape_57(src: *const ::std::os::raw::c_char, dest: *mut UChar,
-                         destCapacity: int32_t) -> int32_t;
-    pub fn u_unescapeAt_57(charAt: UNESCAPE_CHAR_AT, offset: *mut int32_t,
-                           length: int32_t,
-                           context: *mut ::std::os::raw::c_void) -> UChar32;
-    pub fn u_strToUpper_57(dest: *mut UChar, destCapacity: int32_t,
-                           src: *const UChar, srcLength: int32_t,
-                           locale: *const ::std::os::raw::c_char,
-                           pErrorCode: *mut UErrorCode) -> int32_t;
-    pub fn u_strToLower_57(dest: *mut UChar, destCapacity: int32_t,
-                           src: *const UChar, srcLength: int32_t,
-                           locale: *const ::std::os::raw::c_char,
-                           pErrorCode: *mut UErrorCode) -> int32_t;
-    pub fn u_strToTitle_57(dest: *mut UChar, destCapacity: int32_t,
-                           src: *const UChar, srcLength: int32_t,
-                           titleIter: *mut UBreakIterator,
-                           locale: *const ::std::os::raw::c_char,
-                           pErrorCode: *mut UErrorCode) -> int32_t;
-    pub fn u_strFoldCase_57(dest: *mut UChar, destCapacity: int32_t,
-                            src: *const UChar, srcLength: int32_t,
+    pub fn u_strCaseCompare(s1: *const UChar, length1: int32_t,
+                            s2: *const UChar, length2: int32_t,
                             options: uint32_t, pErrorCode: *mut UErrorCode)
      -> int32_t;
-    pub fn u_strToWCS_57(dest: *mut wchar_t, destCapacity: int32_t,
-                         pDestLength: *mut int32_t, src: *const UChar,
-                         srcLength: int32_t, pErrorCode: *mut UErrorCode)
+    pub fn u_strncmp(ucs1: *const UChar, ucs2: *const UChar, n: int32_t)
+     -> int32_t;
+    pub fn u_strncmpCodePointOrder(s1: *const UChar, s2: *const UChar,
+                                   n: int32_t) -> int32_t;
+    pub fn u_strcasecmp(s1: *const UChar, s2: *const UChar, options: uint32_t)
+     -> int32_t;
+    pub fn u_strncasecmp(s1: *const UChar, s2: *const UChar, n: int32_t,
+                         options: uint32_t) -> int32_t;
+    pub fn u_memcasecmp(s1: *const UChar, s2: *const UChar, length: int32_t,
+                        options: uint32_t) -> int32_t;
+    pub fn u_strcpy(dst: *mut UChar, src: *const UChar) -> *mut UChar;
+    pub fn u_strncpy(dst: *mut UChar, src: *const UChar, n: int32_t)
+     -> *mut UChar;
+    pub fn u_uastrcpy(dst: *mut UChar, src: *const ::std::os::raw::c_char)
+     -> *mut UChar;
+    pub fn u_uastrncpy(dst: *mut UChar, src: *const ::std::os::raw::c_char,
+                       n: int32_t) -> *mut UChar;
+    pub fn u_austrcpy(dst: *mut ::std::os::raw::c_char, src: *const UChar)
+     -> *mut ::std::os::raw::c_char;
+    pub fn u_austrncpy(dst: *mut ::std::os::raw::c_char, src: *const UChar,
+                       n: int32_t) -> *mut ::std::os::raw::c_char;
+    pub fn u_memcpy(dest: *mut UChar, src: *const UChar, count: int32_t)
+     -> *mut UChar;
+    pub fn u_memmove(dest: *mut UChar, src: *const UChar, count: int32_t)
+     -> *mut UChar;
+    pub fn u_memset(dest: *mut UChar, c: UChar, count: int32_t) -> *mut UChar;
+    pub fn u_memcmp(buf1: *const UChar, buf2: *const UChar, count: int32_t)
+     -> int32_t;
+    pub fn u_memcmpCodePointOrder(s1: *const UChar, s2: *const UChar,
+                                  count: int32_t) -> int32_t;
+    pub fn u_memchr(s: *const UChar, c: UChar, count: int32_t) -> *mut UChar;
+    pub fn u_memchr32(s: *const UChar, c: UChar32, count: int32_t)
+     -> *mut UChar;
+    pub fn u_memrchr(s: *const UChar, c: UChar, count: int32_t) -> *mut UChar;
+    pub fn u_memrchr32(s: *const UChar, c: UChar32, count: int32_t)
+     -> *mut UChar;
+    pub fn u_unescape(src: *const ::std::os::raw::c_char, dest: *mut UChar,
+                      destCapacity: int32_t) -> int32_t;
+    pub fn u_unescapeAt(charAt: UNESCAPE_CHAR_AT, offset: *mut int32_t,
+                        length: int32_t, context: *mut ::std::os::raw::c_void)
+     -> UChar32;
+    pub fn u_strToUpper(dest: *mut UChar, destCapacity: int32_t,
+                        src: *const UChar, srcLength: int32_t,
+                        locale: *const ::std::os::raw::c_char,
+                        pErrorCode: *mut UErrorCode) -> int32_t;
+    pub fn u_strToLower(dest: *mut UChar, destCapacity: int32_t,
+                        src: *const UChar, srcLength: int32_t,
+                        locale: *const ::std::os::raw::c_char,
+                        pErrorCode: *mut UErrorCode) -> int32_t;
+    pub fn u_strToTitle(dest: *mut UChar, destCapacity: int32_t,
+                        src: *const UChar, srcLength: int32_t,
+                        titleIter: *mut UBreakIterator,
+                        locale: *const ::std::os::raw::c_char,
+                        pErrorCode: *mut UErrorCode) -> int32_t;
+    pub fn u_strFoldCase(dest: *mut UChar, destCapacity: int32_t,
+                         src: *const UChar, srcLength: int32_t,
+                         options: uint32_t, pErrorCode: *mut UErrorCode)
+     -> int32_t;
+    pub fn u_strToWCS(dest: *mut wchar_t, destCapacity: int32_t,
+                      pDestLength: *mut int32_t, src: *const UChar,
+                      srcLength: int32_t, pErrorCode: *mut UErrorCode)
      -> *mut wchar_t;
-    pub fn u_strFromWCS_57(dest: *mut UChar, destCapacity: int32_t,
-                           pDestLength: *mut int32_t, src: *const wchar_t,
-                           srcLength: int32_t, pErrorCode: *mut UErrorCode)
+    pub fn u_strFromWCS(dest: *mut UChar, destCapacity: int32_t,
+                        pDestLength: *mut int32_t, src: *const wchar_t,
+                        srcLength: int32_t, pErrorCode: *mut UErrorCode)
      -> *mut UChar;
-    pub fn u_strToUTF8_57(dest: *mut ::std::os::raw::c_char,
-                          destCapacity: int32_t, pDestLength: *mut int32_t,
-                          src: *const UChar, srcLength: int32_t,
-                          pErrorCode: *mut UErrorCode)
+    pub fn u_strToUTF8(dest: *mut ::std::os::raw::c_char,
+                       destCapacity: int32_t, pDestLength: *mut int32_t,
+                       src: *const UChar, srcLength: int32_t,
+                       pErrorCode: *mut UErrorCode)
      -> *mut ::std::os::raw::c_char;
-    pub fn u_strFromUTF8_57(dest: *mut UChar, destCapacity: int32_t,
-                            pDestLength: *mut int32_t,
-                            src: *const ::std::os::raw::c_char,
-                            srcLength: int32_t, pErrorCode: *mut UErrorCode)
+    pub fn u_strFromUTF8(dest: *mut UChar, destCapacity: int32_t,
+                         pDestLength: *mut int32_t,
+                         src: *const ::std::os::raw::c_char,
+                         srcLength: int32_t, pErrorCode: *mut UErrorCode)
      -> *mut UChar;
-    pub fn u_strToUTF8WithSub_57(dest: *mut ::std::os::raw::c_char,
-                                 destCapacity: int32_t,
-                                 pDestLength: *mut int32_t, src: *const UChar,
-                                 srcLength: int32_t, subchar: UChar32,
+    pub fn u_strToUTF8WithSub(dest: *mut ::std::os::raw::c_char,
+                              destCapacity: int32_t,
+                              pDestLength: *mut int32_t, src: *const UChar,
+                              srcLength: int32_t, subchar: UChar32,
+                              pNumSubstitutions: *mut int32_t,
+                              pErrorCode: *mut UErrorCode)
+     -> *mut ::std::os::raw::c_char;
+    pub fn u_strFromUTF8WithSub(dest: *mut UChar, destCapacity: int32_t,
+                                pDestLength: *mut int32_t,
+                                src: *const ::std::os::raw::c_char,
+                                srcLength: int32_t, subchar: UChar32,
+                                pNumSubstitutions: *mut int32_t,
+                                pErrorCode: *mut UErrorCode) -> *mut UChar;
+    pub fn u_strFromUTF8Lenient(dest: *mut UChar, destCapacity: int32_t,
+                                pDestLength: *mut int32_t,
+                                src: *const ::std::os::raw::c_char,
+                                srcLength: int32_t,
+                                pErrorCode: *mut UErrorCode) -> *mut UChar;
+    pub fn u_strToUTF32(dest: *mut UChar32, destCapacity: int32_t,
+                        pDestLength: *mut int32_t, src: *const UChar,
+                        srcLength: int32_t, pErrorCode: *mut UErrorCode)
+     -> *mut UChar32;
+    pub fn u_strFromUTF32(dest: *mut UChar, destCapacity: int32_t,
+                          pDestLength: *mut int32_t, src: *const UChar32,
+                          srcLength: int32_t, pErrorCode: *mut UErrorCode)
+     -> *mut UChar;
+    pub fn u_strToUTF32WithSub(dest: *mut UChar32, destCapacity: int32_t,
+                               pDestLength: *mut int32_t, src: *const UChar,
+                               srcLength: int32_t, subchar: UChar32,
+                               pNumSubstitutions: *mut int32_t,
+                               pErrorCode: *mut UErrorCode) -> *mut UChar32;
+    pub fn u_strFromUTF32WithSub(dest: *mut UChar, destCapacity: int32_t,
+                                 pDestLength: *mut int32_t,
+                                 src: *const UChar32, srcLength: int32_t,
+                                 subchar: UChar32,
                                  pNumSubstitutions: *mut int32_t,
-                                 pErrorCode: *mut UErrorCode)
-     -> *mut ::std::os::raw::c_char;
-    pub fn u_strFromUTF8WithSub_57(dest: *mut UChar, destCapacity: int32_t,
+                                 pErrorCode: *mut UErrorCode) -> *mut UChar;
+    pub fn u_strToJavaModifiedUTF8(dest: *mut ::std::os::raw::c_char,
+                                   destCapacity: int32_t,
                                    pDestLength: *mut int32_t,
-                                   src: *const ::std::os::raw::c_char,
-                                   srcLength: int32_t, subchar: UChar32,
-                                   pNumSubstitutions: *mut int32_t,
-                                   pErrorCode: *mut UErrorCode) -> *mut UChar;
-    pub fn u_strFromUTF8Lenient_57(dest: *mut UChar, destCapacity: int32_t,
-                                   pDestLength: *mut int32_t,
-                                   src: *const ::std::os::raw::c_char,
-                                   srcLength: int32_t,
-                                   pErrorCode: *mut UErrorCode) -> *mut UChar;
-    pub fn u_strToUTF32_57(dest: *mut UChar32, destCapacity: int32_t,
-                           pDestLength: *mut int32_t, src: *const UChar,
-                           srcLength: int32_t, pErrorCode: *mut UErrorCode)
-     -> *mut UChar32;
-    pub fn u_strFromUTF32_57(dest: *mut UChar, destCapacity: int32_t,
-                             pDestLength: *mut int32_t, src: *const UChar32,
-                             srcLength: int32_t, pErrorCode: *mut UErrorCode)
-     -> *mut UChar;
-    pub fn u_strToUTF32WithSub_57(dest: *mut UChar32, destCapacity: int32_t,
-                                  pDestLength: *mut int32_t,
-                                  src: *const UChar, srcLength: int32_t,
-                                  subchar: UChar32,
-                                  pNumSubstitutions: *mut int32_t,
-                                  pErrorCode: *mut UErrorCode)
-     -> *mut UChar32;
-    pub fn u_strFromUTF32WithSub_57(dest: *mut UChar, destCapacity: int32_t,
-                                    pDestLength: *mut int32_t,
-                                    src: *const UChar32, srcLength: int32_t,
-                                    subchar: UChar32,
-                                    pNumSubstitutions: *mut int32_t,
-                                    pErrorCode: *mut UErrorCode)
-     -> *mut UChar;
-    pub fn u_strToJavaModifiedUTF8_57(dest: *mut ::std::os::raw::c_char,
-                                      destCapacity: int32_t,
-                                      pDestLength: *mut int32_t,
-                                      src: *const UChar, srcLength: int32_t,
-                                      pErrorCode: *mut UErrorCode)
+                                   src: *const UChar, srcLength: int32_t,
+                                   pErrorCode: *mut UErrorCode)
      -> *mut ::std::os::raw::c_char;
-    pub fn u_strFromJavaModifiedUTF8WithSub_57(dest: *mut UChar,
-                                               destCapacity: int32_t,
-                                               pDestLength: *mut int32_t,
-                                               src:
-                                                   *const ::std::os::raw::c_char,
-                                               srcLength: int32_t,
-                                               subchar: UChar32,
-                                               pNumSubstitutions:
-                                                   *mut int32_t,
-                                               pErrorCode: *mut UErrorCode)
+    pub fn u_strFromJavaModifiedUTF8WithSub(dest: *mut UChar,
+                                            destCapacity: int32_t,
+                                            pDestLength: *mut int32_t,
+                                            src:
+                                                *const ::std::os::raw::c_char,
+                                            srcLength: int32_t,
+                                            subchar: UChar32,
+                                            pNumSubstitutions: *mut int32_t,
+                                            pErrorCode: *mut UErrorCode)
      -> *mut UChar;
 }

@@ -45,15 +45,14 @@ use ufieldpositer::*;
 use ucnv_err::*;
 
 pub type UVersionInfo = [uint8_t; 4usize];
-#[link(name = "icuuc", kind = "dylib")]
-#[link(name = "icudata", kind = "dylib")]
+#[link(name = "icuuc", kind = "static")]
+#[link(name = "icudata", kind = "static")]
 extern "C" {
-    pub fn u_versionFromString_57(versionArray: UVersionInfo,
-                                  versionString:
-                                      *const ::std::os::raw::c_char);
-    pub fn u_versionFromUString_57(versionArray: UVersionInfo,
-                                   versionString: *const UChar);
-    pub fn u_versionToString_57(versionArray: UVersionInfo,
-                                versionString: *mut ::std::os::raw::c_char);
-    pub fn u_getVersion_57(versionArray: UVersionInfo);
+    pub fn u_versionFromString(versionArray: UVersionInfo,
+                               versionString: *const ::std::os::raw::c_char);
+    pub fn u_versionFromUString(versionArray: UVersionInfo,
+                                versionString: *const UChar);
+    pub fn u_versionToString(versionArray: UVersionInfo,
+                             versionString: *mut ::std::os::raw::c_char);
+    pub fn u_getVersion(versionArray: UVersionInfo);
 }

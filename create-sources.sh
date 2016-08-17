@@ -1,14 +1,15 @@
 #! /bin/sh
 
 # Usage: ./create-sources.sh /path/to/icu/includes
-# Eg, ./create-sources.sh /usr/include/unicode
+# Eg, ./create-sources.sh target/debug/icu-sys-XXX/out/prefix/include/unicode
 #
 # This is not part of the build system proper since doing so would require
 # locating the ICU headers for everyone and making sure that `bindgen` works
 # reliably (which it doesn't if you have lots of clang versions installed).
 
 BASE="$1"
-LINK="--link dynamic=icuuc"
+LINK="--link static=icuuc"
+FLAGS="-DU_DISABLE_RENAMING=1"
 MODULES="utypes ustring utf8 utf16 uchar uscript
          uset ucnv uloc ures unorm2 ucal udat
          unum utrans ubidi ushape ucol usearch
@@ -26,12 +27,13 @@ mkdir src
 
 for module in $MODULES; do
     >>src/$module.rs echo "#![allow(unused_imports)]"
-    >>src/$module.rs bindgen $LINK --match $module.h $BASE/$module.h
+    >>src/$module.rs bindgen $LINK --match $module.h $BASE/$module.h \
+      -- $FLAGS
     (
         # bindgen doesn't allow passing --link more than once, but we need to
         # link against both icuuc and icudata.
         echo '/#\\[link/a \\
-#[link(name = "icudata", kind = "dylib")]
+#[link(name = "icudata", kind = "static")]
 ;'
         echo "8i \\"
         # Erase the rust namespacing

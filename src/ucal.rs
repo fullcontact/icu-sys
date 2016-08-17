@@ -179,135 +179,126 @@ pub enum UTimeZoneTransitionType {
     UCAL_TZ_TRANSITION_PREVIOUS = 2,
     UCAL_TZ_TRANSITION_PREVIOUS_INCLUSIVE = 3,
 }
-#[link(name = "icuuc", kind = "dylib")]
-#[link(name = "icudata", kind = "dylib")]
+#[link(name = "icuuc", kind = "static")]
+#[link(name = "icudata", kind = "static")]
 extern "C" {
-    pub fn ucal_openTimeZoneIDEnumeration_57(zoneType: USystemTimeZoneType,
-                                             region:
-                                                 *const ::std::os::raw::c_char,
-                                             rawOffset: *const int32_t,
-                                             ec: *mut UErrorCode)
+    pub fn ucal_openTimeZoneIDEnumeration(zoneType: USystemTimeZoneType,
+                                          region:
+                                              *const ::std::os::raw::c_char,
+                                          rawOffset: *const int32_t,
+                                          ec: *mut UErrorCode)
      -> *mut UEnumeration;
-    pub fn ucal_openTimeZones_57(ec: *mut UErrorCode) -> *mut UEnumeration;
-    pub fn ucal_openCountryTimeZones_57(country:
-                                            *const ::std::os::raw::c_char,
-                                        ec: *mut UErrorCode)
+    pub fn ucal_openTimeZones(ec: *mut UErrorCode) -> *mut UEnumeration;
+    pub fn ucal_openCountryTimeZones(country: *const ::std::os::raw::c_char,
+                                     ec: *mut UErrorCode)
      -> *mut UEnumeration;
-    pub fn ucal_getDefaultTimeZone_57(result: *mut UChar,
-                                      resultCapacity: int32_t,
-                                      ec: *mut UErrorCode) -> int32_t;
-    pub fn ucal_setDefaultTimeZone_57(zoneID: *const UChar,
-                                      ec: *mut UErrorCode);
-    pub fn ucal_getDSTSavings_57(zoneID: *const UChar, ec: *mut UErrorCode)
+    pub fn ucal_getDefaultTimeZone(result: *mut UChar,
+                                   resultCapacity: int32_t,
+                                   ec: *mut UErrorCode) -> int32_t;
+    pub fn ucal_setDefaultTimeZone(zoneID: *const UChar, ec: *mut UErrorCode);
+    pub fn ucal_getDSTSavings(zoneID: *const UChar, ec: *mut UErrorCode)
      -> int32_t;
-    pub fn ucal_getNow_57() -> UDate;
-    pub fn ucal_open_57(zoneID: *const UChar, len: int32_t,
-                        locale: *const ::std::os::raw::c_char,
-                        type_: UCalendarType, status: *mut UErrorCode)
+    pub fn ucal_getNow() -> UDate;
+    pub fn ucal_open(zoneID: *const UChar, len: int32_t,
+                     locale: *const ::std::os::raw::c_char,
+                     type_: UCalendarType, status: *mut UErrorCode)
      -> *mut UCalendar;
-    pub fn ucal_close_57(cal: *mut UCalendar);
-    pub fn ucal_clone_57(cal: *const UCalendar, status: *mut UErrorCode)
+    pub fn ucal_close(cal: *mut UCalendar);
+    pub fn ucal_clone(cal: *const UCalendar, status: *mut UErrorCode)
      -> *mut UCalendar;
-    pub fn ucal_setTimeZone_57(cal: *mut UCalendar, zoneID: *const UChar,
-                               len: int32_t, status: *mut UErrorCode);
-    pub fn ucal_getTimeZoneID_57(cal: *const UCalendar, result: *mut UChar,
-                                 resultLength: int32_t,
-                                 status: *mut UErrorCode) -> int32_t;
-    pub fn ucal_getTimeZoneDisplayName_57(cal: *const UCalendar,
-                                          type_: UCalendarDisplayNameType,
+    pub fn ucal_setTimeZone(cal: *mut UCalendar, zoneID: *const UChar,
+                            len: int32_t, status: *mut UErrorCode);
+    pub fn ucal_getTimeZoneID(cal: *const UCalendar, result: *mut UChar,
+                              resultLength: int32_t, status: *mut UErrorCode)
+     -> int32_t;
+    pub fn ucal_getTimeZoneDisplayName(cal: *const UCalendar,
+                                       type_: UCalendarDisplayNameType,
+                                       locale: *const ::std::os::raw::c_char,
+                                       result: *mut UChar,
+                                       resultLength: int32_t,
+                                       status: *mut UErrorCode) -> int32_t;
+    pub fn ucal_inDaylightTime(cal: *const UCalendar, status: *mut UErrorCode)
+     -> UBool;
+    pub fn ucal_setGregorianChange(cal: *mut UCalendar, date: UDate,
+                                   pErrorCode: *mut UErrorCode);
+    pub fn ucal_getGregorianChange(cal: *const UCalendar,
+                                   pErrorCode: *mut UErrorCode) -> UDate;
+    pub fn ucal_getAttribute(cal: *const UCalendar, attr: UCalendarAttribute)
+     -> int32_t;
+    pub fn ucal_setAttribute(cal: *mut UCalendar, attr: UCalendarAttribute,
+                             newValue: int32_t);
+    pub fn ucal_getAvailable(localeIndex: int32_t)
+     -> *const ::std::os::raw::c_char;
+    pub fn ucal_countAvailable() -> int32_t;
+    pub fn ucal_getMillis(cal: *const UCalendar, status: *mut UErrorCode)
+     -> UDate;
+    pub fn ucal_setMillis(cal: *mut UCalendar, dateTime: UDate,
+                          status: *mut UErrorCode);
+    pub fn ucal_setDate(cal: *mut UCalendar, year: int32_t, month: int32_t,
+                        date: int32_t, status: *mut UErrorCode);
+    pub fn ucal_setDateTime(cal: *mut UCalendar, year: int32_t,
+                            month: int32_t, date: int32_t, hour: int32_t,
+                            minute: int32_t, second: int32_t,
+                            status: *mut UErrorCode);
+    pub fn ucal_equivalentTo(cal1: *const UCalendar, cal2: *const UCalendar)
+     -> UBool;
+    pub fn ucal_add(cal: *mut UCalendar, field: UCalendarDateFields,
+                    amount: int32_t, status: *mut UErrorCode);
+    pub fn ucal_roll(cal: *mut UCalendar, field: UCalendarDateFields,
+                     amount: int32_t, status: *mut UErrorCode);
+    pub fn ucal_get(cal: *const UCalendar, field: UCalendarDateFields,
+                    status: *mut UErrorCode) -> int32_t;
+    pub fn ucal_set(cal: *mut UCalendar, field: UCalendarDateFields,
+                    value: int32_t);
+    pub fn ucal_isSet(cal: *const UCalendar, field: UCalendarDateFields)
+     -> UBool;
+    pub fn ucal_clearField(cal: *mut UCalendar, field: UCalendarDateFields);
+    pub fn ucal_clear(calendar: *mut UCalendar);
+    pub fn ucal_getLimit(cal: *const UCalendar, field: UCalendarDateFields,
+                         type_: UCalendarLimitType, status: *mut UErrorCode)
+     -> int32_t;
+    pub fn ucal_getLocaleByType(cal: *const UCalendar,
+                                type_: ULocDataLocaleType,
+                                status: *mut UErrorCode)
+     -> *const ::std::os::raw::c_char;
+    pub fn ucal_getTZDataVersion(status: *mut UErrorCode)
+     -> *const ::std::os::raw::c_char;
+    pub fn ucal_getCanonicalTimeZoneID(id: *const UChar, len: int32_t,
+                                       result: *mut UChar,
+                                       resultCapacity: int32_t,
+                                       isSystemID: *mut UBool,
+                                       status: *mut UErrorCode) -> int32_t;
+    pub fn ucal_getType(cal: *const UCalendar, status: *mut UErrorCode)
+     -> *const ::std::os::raw::c_char;
+    pub fn ucal_getKeywordValuesForLocale(key: *const ::std::os::raw::c_char,
                                           locale:
                                               *const ::std::os::raw::c_char,
-                                          result: *mut UChar,
-                                          resultLength: int32_t,
-                                          status: *mut UErrorCode) -> int32_t;
-    pub fn ucal_inDaylightTime_57(cal: *const UCalendar,
-                                  status: *mut UErrorCode) -> UBool;
-    pub fn ucal_setGregorianChange_57(cal: *mut UCalendar, date: UDate,
-                                      pErrorCode: *mut UErrorCode);
-    pub fn ucal_getGregorianChange_57(cal: *const UCalendar,
-                                      pErrorCode: *mut UErrorCode) -> UDate;
-    pub fn ucal_getAttribute_57(cal: *const UCalendar,
-                                attr: UCalendarAttribute) -> int32_t;
-    pub fn ucal_setAttribute_57(cal: *mut UCalendar, attr: UCalendarAttribute,
-                                newValue: int32_t);
-    pub fn ucal_getAvailable_57(localeIndex: int32_t)
-     -> *const ::std::os::raw::c_char;
-    pub fn ucal_countAvailable_57() -> int32_t;
-    pub fn ucal_getMillis_57(cal: *const UCalendar, status: *mut UErrorCode)
-     -> UDate;
-    pub fn ucal_setMillis_57(cal: *mut UCalendar, dateTime: UDate,
-                             status: *mut UErrorCode);
-    pub fn ucal_setDate_57(cal: *mut UCalendar, year: int32_t, month: int32_t,
-                           date: int32_t, status: *mut UErrorCode);
-    pub fn ucal_setDateTime_57(cal: *mut UCalendar, year: int32_t,
-                               month: int32_t, date: int32_t, hour: int32_t,
-                               minute: int32_t, second: int32_t,
-                               status: *mut UErrorCode);
-    pub fn ucal_equivalentTo_57(cal1: *const UCalendar,
-                                cal2: *const UCalendar) -> UBool;
-    pub fn ucal_add_57(cal: *mut UCalendar, field: UCalendarDateFields,
-                       amount: int32_t, status: *mut UErrorCode);
-    pub fn ucal_roll_57(cal: *mut UCalendar, field: UCalendarDateFields,
-                        amount: int32_t, status: *mut UErrorCode);
-    pub fn ucal_get_57(cal: *const UCalendar, field: UCalendarDateFields,
-                       status: *mut UErrorCode) -> int32_t;
-    pub fn ucal_set_57(cal: *mut UCalendar, field: UCalendarDateFields,
-                       value: int32_t);
-    pub fn ucal_isSet_57(cal: *const UCalendar, field: UCalendarDateFields)
-     -> UBool;
-    pub fn ucal_clearField_57(cal: *mut UCalendar,
-                              field: UCalendarDateFields);
-    pub fn ucal_clear_57(calendar: *mut UCalendar);
-    pub fn ucal_getLimit_57(cal: *const UCalendar, field: UCalendarDateFields,
-                            type_: UCalendarLimitType,
-                            status: *mut UErrorCode) -> int32_t;
-    pub fn ucal_getLocaleByType_57(cal: *const UCalendar,
-                                   type_: ULocDataLocaleType,
-                                   status: *mut UErrorCode)
-     -> *const ::std::os::raw::c_char;
-    pub fn ucal_getTZDataVersion_57(status: *mut UErrorCode)
-     -> *const ::std::os::raw::c_char;
-    pub fn ucal_getCanonicalTimeZoneID_57(id: *const UChar, len: int32_t,
-                                          result: *mut UChar,
-                                          resultCapacity: int32_t,
-                                          isSystemID: *mut UBool,
-                                          status: *mut UErrorCode) -> int32_t;
-    pub fn ucal_getType_57(cal: *const UCalendar, status: *mut UErrorCode)
-     -> *const ::std::os::raw::c_char;
-    pub fn ucal_getKeywordValuesForLocale_57(key:
-                                                 *const ::std::os::raw::c_char,
-                                             locale:
-                                                 *const ::std::os::raw::c_char,
-                                             commonlyUsed: UBool,
-                                             status: *mut UErrorCode)
+                                          commonlyUsed: UBool,
+                                          status: *mut UErrorCode)
      -> *mut UEnumeration;
-    pub fn ucal_getDayOfWeekType_57(cal: *const UCalendar,
-                                    dayOfWeek: UCalendarDaysOfWeek,
-                                    status: *mut UErrorCode)
+    pub fn ucal_getDayOfWeekType(cal: *const UCalendar,
+                                 dayOfWeek: UCalendarDaysOfWeek,
+                                 status: *mut UErrorCode)
      -> UCalendarWeekdayType;
-    pub fn ucal_getWeekendTransition_57(cal: *const UCalendar,
-                                        dayOfWeek: UCalendarDaysOfWeek,
-                                        status: *mut UErrorCode) -> int32_t;
-    pub fn ucal_isWeekend_57(cal: *const UCalendar, date: UDate,
-                             status: *mut UErrorCode) -> UBool;
-    pub fn ucal_getFieldDifference_57(cal: *mut UCalendar, target: UDate,
-                                      field: UCalendarDateFields,
-                                      status: *mut UErrorCode) -> int32_t;
-    pub fn ucal_getTimeZoneTransitionDate_57(cal: *const UCalendar,
-                                             type_: UTimeZoneTransitionType,
-                                             transition: *mut UDate,
-                                             status: *mut UErrorCode)
-     -> UBool;
-    pub fn ucal_getWindowsTimeZoneID_57(id: *const UChar, len: int32_t,
-                                        winid: *mut UChar,
-                                        winidCapacity: int32_t,
-                                        status: *mut UErrorCode) -> int32_t;
-    pub fn ucal_getTimeZoneIDForWindowsID_57(winid: *const UChar,
-                                             len: int32_t,
-                                             region:
-                                                 *const ::std::os::raw::c_char,
-                                             id: *mut UChar,
-                                             idCapacity: int32_t,
-                                             status: *mut UErrorCode)
-     -> int32_t;
+    pub fn ucal_getWeekendTransition(cal: *const UCalendar,
+                                     dayOfWeek: UCalendarDaysOfWeek,
+                                     status: *mut UErrorCode) -> int32_t;
+    pub fn ucal_isWeekend(cal: *const UCalendar, date: UDate,
+                          status: *mut UErrorCode) -> UBool;
+    pub fn ucal_getFieldDifference(cal: *mut UCalendar, target: UDate,
+                                   field: UCalendarDateFields,
+                                   status: *mut UErrorCode) -> int32_t;
+    pub fn ucal_getTimeZoneTransitionDate(cal: *const UCalendar,
+                                          type_: UTimeZoneTransitionType,
+                                          transition: *mut UDate,
+                                          status: *mut UErrorCode) -> UBool;
+    pub fn ucal_getWindowsTimeZoneID(id: *const UChar, len: int32_t,
+                                     winid: *mut UChar,
+                                     winidCapacity: int32_t,
+                                     status: *mut UErrorCode) -> int32_t;
+    pub fn ucal_getTimeZoneIDForWindowsID(winid: *const UChar, len: int32_t,
+                                          region:
+                                              *const ::std::os::raw::c_char,
+                                          id: *mut UChar, idCapacity: int32_t,
+                                          status: *mut UErrorCode) -> int32_t;
 }

@@ -77,16 +77,14 @@ pub enum UTimeScaleValue {
     UTSV_MAX_ROUND_VALUE = 10,
     UTSV_MAX_SCALE_VALUE = 11,
 }
-#[link(name = "icuuc", kind = "dylib")]
-#[link(name = "icudata", kind = "dylib")]
+#[link(name = "icuuc", kind = "static")]
+#[link(name = "icudata", kind = "static")]
 extern "C" {
-    pub fn utmscale_getTimeScaleValue_57(timeScale: UDateTimeScale,
-                                         value: UTimeScaleValue,
-                                         status: *mut UErrorCode) -> int64_t;
-    pub fn utmscale_fromInt64_57(otherTime: int64_t,
-                                 timeScale: UDateTimeScale,
-                                 status: *mut UErrorCode) -> int64_t;
-    pub fn utmscale_toInt64_57(universalTime: int64_t,
-                               timeScale: UDateTimeScale,
-                               status: *mut UErrorCode) -> int64_t;
+    pub fn utmscale_getTimeScaleValue(timeScale: UDateTimeScale,
+                                      value: UTimeScaleValue,
+                                      status: *mut UErrorCode) -> int64_t;
+    pub fn utmscale_fromInt64(otherTime: int64_t, timeScale: UDateTimeScale,
+                              status: *mut UErrorCode) -> int64_t;
+    pub fn utmscale_toInt64(universalTime: int64_t, timeScale: UDateTimeScale,
+                            status: *mut UErrorCode) -> int64_t;
 }

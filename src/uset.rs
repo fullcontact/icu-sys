@@ -78,108 +78,98 @@ pub struct USerializedSet {
 impl ::std::default::Default for USerializedSet {
     fn default() -> Self { unsafe { ::std::mem::zeroed() } }
 }
-#[link(name = "icuuc", kind = "dylib")]
-#[link(name = "icudata", kind = "dylib")]
+#[link(name = "icuuc", kind = "static")]
+#[link(name = "icudata", kind = "static")]
 extern "C" {
-    pub fn uset_openEmpty_57() -> *mut USet;
-    pub fn uset_open_57(start: UChar32, end: UChar32) -> *mut USet;
-    pub fn uset_openPattern_57(pattern: *const UChar, patternLength: int32_t,
-                               ec: *mut UErrorCode) -> *mut USet;
-    pub fn uset_openPatternOptions_57(pattern: *const UChar,
-                                      patternLength: int32_t,
-                                      options: uint32_t, ec: *mut UErrorCode)
-     -> *mut USet;
-    pub fn uset_close_57(set: *mut USet);
-    pub fn uset_clone_57(set: *const USet) -> *mut USet;
-    pub fn uset_isFrozen_57(set: *const USet) -> UBool;
-    pub fn uset_freeze_57(set: *mut USet);
-    pub fn uset_cloneAsThawed_57(set: *const USet) -> *mut USet;
-    pub fn uset_set_57(set: *mut USet, start: UChar32, end: UChar32);
-    pub fn uset_applyPattern_57(set: *mut USet, pattern: *const UChar,
-                                patternLength: int32_t, options: uint32_t,
-                                status: *mut UErrorCode) -> int32_t;
-    pub fn uset_applyIntPropertyValue_57(set: *mut USet, prop: UProperty,
-                                         value: int32_t, ec: *mut UErrorCode);
-    pub fn uset_applyPropertyAlias_57(set: *mut USet, prop: *const UChar,
-                                      propLength: int32_t,
-                                      value: *const UChar,
-                                      valueLength: int32_t,
-                                      ec: *mut UErrorCode);
-    pub fn uset_resemblesPattern_57(pattern: *const UChar,
-                                    patternLength: int32_t, pos: int32_t)
+    pub fn uset_openEmpty() -> *mut USet;
+    pub fn uset_open(start: UChar32, end: UChar32) -> *mut USet;
+    pub fn uset_openPattern(pattern: *const UChar, patternLength: int32_t,
+                            ec: *mut UErrorCode) -> *mut USet;
+    pub fn uset_openPatternOptions(pattern: *const UChar,
+                                   patternLength: int32_t, options: uint32_t,
+                                   ec: *mut UErrorCode) -> *mut USet;
+    pub fn uset_close(set: *mut USet);
+    pub fn uset_clone(set: *const USet) -> *mut USet;
+    pub fn uset_isFrozen(set: *const USet) -> UBool;
+    pub fn uset_freeze(set: *mut USet);
+    pub fn uset_cloneAsThawed(set: *const USet) -> *mut USet;
+    pub fn uset_set(set: *mut USet, start: UChar32, end: UChar32);
+    pub fn uset_applyPattern(set: *mut USet, pattern: *const UChar,
+                             patternLength: int32_t, options: uint32_t,
+                             status: *mut UErrorCode) -> int32_t;
+    pub fn uset_applyIntPropertyValue(set: *mut USet, prop: UProperty,
+                                      value: int32_t, ec: *mut UErrorCode);
+    pub fn uset_applyPropertyAlias(set: *mut USet, prop: *const UChar,
+                                   propLength: int32_t, value: *const UChar,
+                                   valueLength: int32_t, ec: *mut UErrorCode);
+    pub fn uset_resemblesPattern(pattern: *const UChar,
+                                 patternLength: int32_t, pos: int32_t)
      -> UBool;
-    pub fn uset_toPattern_57(set: *const USet, result: *mut UChar,
-                             resultCapacity: int32_t,
-                             escapeUnprintable: UBool, ec: *mut UErrorCode)
-     -> int32_t;
-    pub fn uset_add_57(set: *mut USet, c: UChar32);
-    pub fn uset_addAll_57(set: *mut USet, additionalSet: *const USet);
-    pub fn uset_addRange_57(set: *mut USet, start: UChar32, end: UChar32);
-    pub fn uset_addString_57(set: *mut USet, str: *const UChar,
+    pub fn uset_toPattern(set: *const USet, result: *mut UChar,
+                          resultCapacity: int32_t, escapeUnprintable: UBool,
+                          ec: *mut UErrorCode) -> int32_t;
+    pub fn uset_add(set: *mut USet, c: UChar32);
+    pub fn uset_addAll(set: *mut USet, additionalSet: *const USet);
+    pub fn uset_addRange(set: *mut USet, start: UChar32, end: UChar32);
+    pub fn uset_addString(set: *mut USet, str: *const UChar, strLen: int32_t);
+    pub fn uset_addAllCodePoints(set: *mut USet, str: *const UChar,
+                                 strLen: int32_t);
+    pub fn uset_remove(set: *mut USet, c: UChar32);
+    pub fn uset_removeRange(set: *mut USet, start: UChar32, end: UChar32);
+    pub fn uset_removeString(set: *mut USet, str: *const UChar,
                              strLen: int32_t);
-    pub fn uset_addAllCodePoints_57(set: *mut USet, str: *const UChar,
-                                    strLen: int32_t);
-    pub fn uset_remove_57(set: *mut USet, c: UChar32);
-    pub fn uset_removeRange_57(set: *mut USet, start: UChar32, end: UChar32);
-    pub fn uset_removeString_57(set: *mut USet, str: *const UChar,
-                                strLen: int32_t);
-    pub fn uset_removeAll_57(set: *mut USet, removeSet: *const USet);
-    pub fn uset_retain_57(set: *mut USet, start: UChar32, end: UChar32);
-    pub fn uset_retainAll_57(set: *mut USet, retain: *const USet);
-    pub fn uset_compact_57(set: *mut USet);
-    pub fn uset_complement_57(set: *mut USet);
-    pub fn uset_complementAll_57(set: *mut USet, complement: *const USet);
-    pub fn uset_clear_57(set: *mut USet);
-    pub fn uset_closeOver_57(set: *mut USet, attributes: int32_t);
-    pub fn uset_removeAllStrings_57(set: *mut USet);
-    pub fn uset_isEmpty_57(set: *const USet) -> UBool;
-    pub fn uset_contains_57(set: *const USet, c: UChar32) -> UBool;
-    pub fn uset_containsRange_57(set: *const USet, start: UChar32,
-                                 end: UChar32) -> UBool;
-    pub fn uset_containsString_57(set: *const USet, str: *const UChar,
-                                  strLen: int32_t) -> UBool;
-    pub fn uset_indexOf_57(set: *const USet, c: UChar32) -> int32_t;
-    pub fn uset_charAt_57(set: *const USet, charIndex: int32_t) -> UChar32;
-    pub fn uset_size_57(set: *const USet) -> int32_t;
-    pub fn uset_getItemCount_57(set: *const USet) -> int32_t;
-    pub fn uset_getItem_57(set: *const USet, itemIndex: int32_t,
-                           start: *mut UChar32, end: *mut UChar32,
-                           str: *mut UChar, strCapacity: int32_t,
-                           ec: *mut UErrorCode) -> int32_t;
-    pub fn uset_containsAll_57(set1: *const USet, set2: *const USet) -> UBool;
-    pub fn uset_containsAllCodePoints_57(set: *const USet, str: *const UChar,
-                                         strLen: int32_t) -> UBool;
-    pub fn uset_containsNone_57(set1: *const USet, set2: *const USet)
+    pub fn uset_removeAll(set: *mut USet, removeSet: *const USet);
+    pub fn uset_retain(set: *mut USet, start: UChar32, end: UChar32);
+    pub fn uset_retainAll(set: *mut USet, retain: *const USet);
+    pub fn uset_compact(set: *mut USet);
+    pub fn uset_complement(set: *mut USet);
+    pub fn uset_complementAll(set: *mut USet, complement: *const USet);
+    pub fn uset_clear(set: *mut USet);
+    pub fn uset_closeOver(set: *mut USet, attributes: int32_t);
+    pub fn uset_removeAllStrings(set: *mut USet);
+    pub fn uset_isEmpty(set: *const USet) -> UBool;
+    pub fn uset_contains(set: *const USet, c: UChar32) -> UBool;
+    pub fn uset_containsRange(set: *const USet, start: UChar32, end: UChar32)
      -> UBool;
-    pub fn uset_containsSome_57(set1: *const USet, set2: *const USet)
-     -> UBool;
-    pub fn uset_span_57(set: *const USet, s: *const UChar, length: int32_t,
-                        spanCondition: USetSpanCondition) -> int32_t;
-    pub fn uset_spanBack_57(set: *const USet, s: *const UChar,
-                            length: int32_t, spanCondition: USetSpanCondition)
+    pub fn uset_containsString(set: *const USet, str: *const UChar,
+                               strLen: int32_t) -> UBool;
+    pub fn uset_indexOf(set: *const USet, c: UChar32) -> int32_t;
+    pub fn uset_charAt(set: *const USet, charIndex: int32_t) -> UChar32;
+    pub fn uset_size(set: *const USet) -> int32_t;
+    pub fn uset_getItemCount(set: *const USet) -> int32_t;
+    pub fn uset_getItem(set: *const USet, itemIndex: int32_t,
+                        start: *mut UChar32, end: *mut UChar32,
+                        str: *mut UChar, strCapacity: int32_t,
+                        ec: *mut UErrorCode) -> int32_t;
+    pub fn uset_containsAll(set1: *const USet, set2: *const USet) -> UBool;
+    pub fn uset_containsAllCodePoints(set: *const USet, str: *const UChar,
+                                      strLen: int32_t) -> UBool;
+    pub fn uset_containsNone(set1: *const USet, set2: *const USet) -> UBool;
+    pub fn uset_containsSome(set1: *const USet, set2: *const USet) -> UBool;
+    pub fn uset_span(set: *const USet, s: *const UChar, length: int32_t,
+                     spanCondition: USetSpanCondition) -> int32_t;
+    pub fn uset_spanBack(set: *const USet, s: *const UChar, length: int32_t,
+                         spanCondition: USetSpanCondition) -> int32_t;
+    pub fn uset_spanUTF8(set: *const USet, s: *const ::std::os::raw::c_char,
+                         length: int32_t, spanCondition: USetSpanCondition)
      -> int32_t;
-    pub fn uset_spanUTF8_57(set: *const USet,
-                            s: *const ::std::os::raw::c_char, length: int32_t,
-                            spanCondition: USetSpanCondition) -> int32_t;
-    pub fn uset_spanBackUTF8_57(set: *const USet,
-                                s: *const ::std::os::raw::c_char,
-                                length: int32_t,
-                                spanCondition: USetSpanCondition) -> int32_t;
-    pub fn uset_equals_57(set1: *const USet, set2: *const USet) -> UBool;
-    pub fn uset_serialize_57(set: *const USet, dest: *mut uint16_t,
-                             destCapacity: int32_t,
-                             pErrorCode: *mut UErrorCode) -> int32_t;
-    pub fn uset_getSerializedSet_57(fillSet: *mut USerializedSet,
-                                    src: *const uint16_t, srcLength: int32_t)
-     -> UBool;
-    pub fn uset_setSerializedToOne_57(fillSet: *mut USerializedSet,
-                                      c: UChar32);
-    pub fn uset_serializedContains_57(set: *const USerializedSet, c: UChar32)
-     -> UBool;
-    pub fn uset_getSerializedRangeCount_57(set: *const USerializedSet)
+    pub fn uset_spanBackUTF8(set: *const USet,
+                             s: *const ::std::os::raw::c_char,
+                             length: int32_t,
+                             spanCondition: USetSpanCondition) -> int32_t;
+    pub fn uset_equals(set1: *const USet, set2: *const USet) -> UBool;
+    pub fn uset_serialize(set: *const USet, dest: *mut uint16_t,
+                          destCapacity: int32_t, pErrorCode: *mut UErrorCode)
      -> int32_t;
-    pub fn uset_getSerializedRange_57(set: *const USerializedSet,
-                                      rangeIndex: int32_t,
-                                      pStart: *mut UChar32,
-                                      pEnd: *mut UChar32) -> UBool;
+    pub fn uset_getSerializedSet(fillSet: *mut USerializedSet,
+                                 src: *const uint16_t, srcLength: int32_t)
+     -> UBool;
+    pub fn uset_setSerializedToOne(fillSet: *mut USerializedSet, c: UChar32);
+    pub fn uset_serializedContains(set: *const USerializedSet, c: UChar32)
+     -> UBool;
+    pub fn uset_getSerializedRangeCount(set: *const USerializedSet)
+     -> int32_t;
+    pub fn uset_getSerializedRange(set: *const USerializedSet,
+                                   rangeIndex: int32_t, pStart: *mut UChar32,
+                                   pEnd: *mut UChar32) -> UBool;
 }

@@ -61,69 +61,64 @@ pub struct UTransPosition {
 impl ::std::default::Default for UTransPosition {
     fn default() -> Self { unsafe { ::std::mem::zeroed() } }
 }
-#[link(name = "icuuc", kind = "dylib")]
-#[link(name = "icudata", kind = "dylib")]
+#[link(name = "icuuc", kind = "static")]
+#[link(name = "icudata", kind = "static")]
 extern "C" {
-    pub fn utrans_openU_57(id: *const UChar, idLength: int32_t,
-                           dir: UTransDirection, rules: *const UChar,
-                           rulesLength: int32_t, parseError: *mut UParseError,
-                           pErrorCode: *mut UErrorCode)
+    pub fn utrans_openU(id: *const UChar, idLength: int32_t,
+                        dir: UTransDirection, rules: *const UChar,
+                        rulesLength: int32_t, parseError: *mut UParseError,
+                        pErrorCode: *mut UErrorCode) -> *mut UTransliterator;
+    pub fn utrans_openInverse(trans: *const UTransliterator,
+                              status: *mut UErrorCode)
      -> *mut UTransliterator;
-    pub fn utrans_openInverse_57(trans: *const UTransliterator,
-                                 status: *mut UErrorCode)
-     -> *mut UTransliterator;
-    pub fn utrans_clone_57(trans: *const UTransliterator,
-                           status: *mut UErrorCode) -> *mut UTransliterator;
-    pub fn utrans_close_57(trans: *mut UTransliterator);
-    pub fn utrans_getUnicodeID_57(trans: *const UTransliterator,
-                                  resultLength: *mut int32_t) -> *const UChar;
-    pub fn utrans_register_57(adoptedTrans: *mut UTransliterator,
-                              status: *mut UErrorCode);
-    pub fn utrans_unregisterID_57(id: *const UChar, idLength: int32_t);
-    pub fn utrans_setFilter_57(trans: *mut UTransliterator,
-                               filterPattern: *const UChar,
-                               filterPatternLen: int32_t,
-                               status: *mut UErrorCode);
-    pub fn utrans_countAvailableIDs_57() -> int32_t;
-    pub fn utrans_openIDs_57(pErrorCode: *mut UErrorCode)
-     -> *mut UEnumeration;
-    pub fn utrans_trans_57(trans: *const UTransliterator,
-                           rep: *mut UReplaceable,
-                           repFunc: *mut UReplaceableCallbacks,
-                           start: int32_t, limit: *mut int32_t,
+    pub fn utrans_clone(trans: *const UTransliterator,
+                        status: *mut UErrorCode) -> *mut UTransliterator;
+    pub fn utrans_close(trans: *mut UTransliterator);
+    pub fn utrans_getUnicodeID(trans: *const UTransliterator,
+                               resultLength: *mut int32_t) -> *const UChar;
+    pub fn utrans_register(adoptedTrans: *mut UTransliterator,
                            status: *mut UErrorCode);
-    pub fn utrans_transIncremental_57(trans: *const UTransliterator,
-                                      rep: *mut UReplaceable,
-                                      repFunc: *mut UReplaceableCallbacks,
-                                      pos: *mut UTransPosition,
-                                      status: *mut UErrorCode);
-    pub fn utrans_transUChars_57(trans: *const UTransliterator,
-                                 text: *mut UChar, textLength: *mut int32_t,
-                                 textCapacity: int32_t, start: int32_t,
-                                 limit: *mut int32_t,
-                                 status: *mut UErrorCode);
-    pub fn utrans_transIncrementalUChars_57(trans: *const UTransliterator,
-                                            text: *mut UChar,
-                                            textLength: *mut int32_t,
-                                            textCapacity: int32_t,
-                                            pos: *mut UTransPosition,
-                                            status: *mut UErrorCode);
-    pub fn utrans_toRules_57(trans: *const UTransliterator,
-                             escapeUnprintable: UBool, result: *mut UChar,
-                             resultLength: int32_t, status: *mut UErrorCode)
+    pub fn utrans_unregisterID(id: *const UChar, idLength: int32_t);
+    pub fn utrans_setFilter(trans: *mut UTransliterator,
+                            filterPattern: *const UChar,
+                            filterPatternLen: int32_t,
+                            status: *mut UErrorCode);
+    pub fn utrans_countAvailableIDs() -> int32_t;
+    pub fn utrans_openIDs(pErrorCode: *mut UErrorCode) -> *mut UEnumeration;
+    pub fn utrans_trans(trans: *const UTransliterator, rep: *mut UReplaceable,
+                        repFunc: *mut UReplaceableCallbacks, start: int32_t,
+                        limit: *mut int32_t, status: *mut UErrorCode);
+    pub fn utrans_transIncremental(trans: *const UTransliterator,
+                                   rep: *mut UReplaceable,
+                                   repFunc: *mut UReplaceableCallbacks,
+                                   pos: *mut UTransPosition,
+                                   status: *mut UErrorCode);
+    pub fn utrans_transUChars(trans: *const UTransliterator, text: *mut UChar,
+                              textLength: *mut int32_t, textCapacity: int32_t,
+                              start: int32_t, limit: *mut int32_t,
+                              status: *mut UErrorCode);
+    pub fn utrans_transIncrementalUChars(trans: *const UTransliterator,
+                                         text: *mut UChar,
+                                         textLength: *mut int32_t,
+                                         textCapacity: int32_t,
+                                         pos: *mut UTransPosition,
+                                         status: *mut UErrorCode);
+    pub fn utrans_toRules(trans: *const UTransliterator,
+                          escapeUnprintable: UBool, result: *mut UChar,
+                          resultLength: int32_t, status: *mut UErrorCode)
      -> int32_t;
-    pub fn utrans_getSourceSet_57(trans: *const UTransliterator,
-                                  ignoreFilter: UBool, fillIn: *mut USet,
-                                  status: *mut UErrorCode) -> *mut USet;
-    pub fn utrans_open_57(id: *const ::std::os::raw::c_char,
-                          dir: UTransDirection, rules: *const UChar,
-                          rulesLength: int32_t, parseError: *mut UParseError,
-                          status: *mut UErrorCode) -> *mut UTransliterator;
-    pub fn utrans_getID_57(trans: *const UTransliterator,
-                           buf: *mut ::std::os::raw::c_char,
-                           bufCapacity: int32_t) -> int32_t;
-    pub fn utrans_unregister_57(id: *const ::std::os::raw::c_char);
-    pub fn utrans_getAvailableID_57(index: int32_t,
-                                    buf: *mut ::std::os::raw::c_char,
-                                    bufCapacity: int32_t) -> int32_t;
+    pub fn utrans_getSourceSet(trans: *const UTransliterator,
+                               ignoreFilter: UBool, fillIn: *mut USet,
+                               status: *mut UErrorCode) -> *mut USet;
+    pub fn utrans_open(id: *const ::std::os::raw::c_char,
+                       dir: UTransDirection, rules: *const UChar,
+                       rulesLength: int32_t, parseError: *mut UParseError,
+                       status: *mut UErrorCode) -> *mut UTransliterator;
+    pub fn utrans_getID(trans: *const UTransliterator,
+                        buf: *mut ::std::os::raw::c_char,
+                        bufCapacity: int32_t) -> int32_t;
+    pub fn utrans_unregister(id: *const ::std::os::raw::c_char);
+    pub fn utrans_getAvailableID(index: int32_t,
+                                 buf: *mut ::std::os::raw::c_char,
+                                 bufCapacity: int32_t) -> int32_t;
 }

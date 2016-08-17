@@ -90,49 +90,46 @@ pub enum USentenceBreakTag {
     UBRK_SENTENCE_TERM_LIMIT = 100,
     UBRK_SENTENCE_SEP_LIMIT = 200,
 }
-#[link(name = "icuuc", kind = "dylib")]
-#[link(name = "icudata", kind = "dylib")]
+#[link(name = "icuuc", kind = "static")]
+#[link(name = "icudata", kind = "static")]
 extern "C" {
-    pub fn ubrk_open_57(type_: UBreakIteratorType,
-                        locale: *const ::std::os::raw::c_char,
-                        text: *const UChar, textLength: int32_t,
-                        status: *mut UErrorCode) -> *mut UBreakIterator;
-    pub fn ubrk_openRules_57(rules: *const UChar, rulesLength: int32_t,
-                             text: *const UChar, textLength: int32_t,
-                             parseErr: *mut UParseError,
-                             status: *mut UErrorCode) -> *mut UBreakIterator;
-    pub fn ubrk_safeClone_57(bi: *const UBreakIterator,
-                             stackBuffer: *mut ::std::os::raw::c_void,
-                             pBufferSize: *mut int32_t,
-                             status: *mut UErrorCode) -> *mut UBreakIterator;
-    pub fn ubrk_close_57(bi: *mut UBreakIterator);
-    pub fn ubrk_setText_57(bi: *mut UBreakIterator, text: *const UChar,
-                           textLength: int32_t, status: *mut UErrorCode);
-    pub fn ubrk_setUText_57(bi: *mut UBreakIterator, text: *mut UText,
-                            status: *mut UErrorCode);
-    pub fn ubrk_current_57(bi: *const UBreakIterator) -> int32_t;
-    pub fn ubrk_next_57(bi: *mut UBreakIterator) -> int32_t;
-    pub fn ubrk_previous_57(bi: *mut UBreakIterator) -> int32_t;
-    pub fn ubrk_first_57(bi: *mut UBreakIterator) -> int32_t;
-    pub fn ubrk_last_57(bi: *mut UBreakIterator) -> int32_t;
-    pub fn ubrk_preceding_57(bi: *mut UBreakIterator, offset: int32_t)
+    pub fn ubrk_open(type_: UBreakIteratorType,
+                     locale: *const ::std::os::raw::c_char,
+                     text: *const UChar, textLength: int32_t,
+                     status: *mut UErrorCode) -> *mut UBreakIterator;
+    pub fn ubrk_openRules(rules: *const UChar, rulesLength: int32_t,
+                          text: *const UChar, textLength: int32_t,
+                          parseErr: *mut UParseError, status: *mut UErrorCode)
+     -> *mut UBreakIterator;
+    pub fn ubrk_safeClone(bi: *const UBreakIterator,
+                          stackBuffer: *mut ::std::os::raw::c_void,
+                          pBufferSize: *mut int32_t, status: *mut UErrorCode)
+     -> *mut UBreakIterator;
+    pub fn ubrk_close(bi: *mut UBreakIterator);
+    pub fn ubrk_setText(bi: *mut UBreakIterator, text: *const UChar,
+                        textLength: int32_t, status: *mut UErrorCode);
+    pub fn ubrk_setUText(bi: *mut UBreakIterator, text: *mut UText,
+                         status: *mut UErrorCode);
+    pub fn ubrk_current(bi: *const UBreakIterator) -> int32_t;
+    pub fn ubrk_next(bi: *mut UBreakIterator) -> int32_t;
+    pub fn ubrk_previous(bi: *mut UBreakIterator) -> int32_t;
+    pub fn ubrk_first(bi: *mut UBreakIterator) -> int32_t;
+    pub fn ubrk_last(bi: *mut UBreakIterator) -> int32_t;
+    pub fn ubrk_preceding(bi: *mut UBreakIterator, offset: int32_t)
      -> int32_t;
-    pub fn ubrk_following_57(bi: *mut UBreakIterator, offset: int32_t)
+    pub fn ubrk_following(bi: *mut UBreakIterator, offset: int32_t)
      -> int32_t;
-    pub fn ubrk_getAvailable_57(index: int32_t)
+    pub fn ubrk_getAvailable(index: int32_t) -> *const ::std::os::raw::c_char;
+    pub fn ubrk_countAvailable() -> int32_t;
+    pub fn ubrk_isBoundary(bi: *mut UBreakIterator, offset: int32_t) -> UBool;
+    pub fn ubrk_getRuleStatus(bi: *mut UBreakIterator) -> int32_t;
+    pub fn ubrk_getRuleStatusVec(bi: *mut UBreakIterator,
+                                 fillInVec: *mut int32_t, capacity: int32_t,
+                                 status: *mut UErrorCode) -> int32_t;
+    pub fn ubrk_getLocaleByType(bi: *const UBreakIterator,
+                                type_: ULocDataLocaleType,
+                                status: *mut UErrorCode)
      -> *const ::std::os::raw::c_char;
-    pub fn ubrk_countAvailable_57() -> int32_t;
-    pub fn ubrk_isBoundary_57(bi: *mut UBreakIterator, offset: int32_t)
-     -> UBool;
-    pub fn ubrk_getRuleStatus_57(bi: *mut UBreakIterator) -> int32_t;
-    pub fn ubrk_getRuleStatusVec_57(bi: *mut UBreakIterator,
-                                    fillInVec: *mut int32_t,
-                                    capacity: int32_t,
-                                    status: *mut UErrorCode) -> int32_t;
-    pub fn ubrk_getLocaleByType_57(bi: *const UBreakIterator,
-                                   type_: ULocDataLocaleType,
-                                   status: *mut UErrorCode)
-     -> *const ::std::os::raw::c_char;
-    pub fn ubrk_refreshUText_57(bi: *mut UBreakIterator, text: *mut UText,
-                                status: *mut UErrorCode);
+    pub fn ubrk_refreshUText(bi: *mut UBreakIterator, text: *mut UText,
+                             status: *mut UErrorCode);
 }

@@ -67,198 +67,186 @@ pub type URegexFindProgressCallback =
     ::std::option::Option<unsafe extern "C" fn(context:
                                                    *const ::std::os::raw::c_void,
                                                matchIndex: int64_t) -> UBool>;
-#[link(name = "icuuc", kind = "dylib")]
-#[link(name = "icudata", kind = "dylib")]
+#[link(name = "icuuc", kind = "static")]
+#[link(name = "icudata", kind = "static")]
 extern "C" {
-    pub fn uregex_open_57(pattern: *const UChar, patternLength: int32_t,
-                          flags: uint32_t, pe: *mut UParseError,
-                          status: *mut UErrorCode) -> *mut URegularExpression;
-    pub fn uregex_openUText_57(pattern: *mut UText, flags: uint32_t,
-                               pe: *mut UParseError, status: *mut UErrorCode)
+    pub fn uregex_open(pattern: *const UChar, patternLength: int32_t,
+                       flags: uint32_t, pe: *mut UParseError,
+                       status: *mut UErrorCode) -> *mut URegularExpression;
+    pub fn uregex_openUText(pattern: *mut UText, flags: uint32_t,
+                            pe: *mut UParseError, status: *mut UErrorCode)
      -> *mut URegularExpression;
-    pub fn uregex_openC_57(pattern: *const ::std::os::raw::c_char,
-                           flags: uint32_t, pe: *mut UParseError,
-                           status: *mut UErrorCode)
-     -> *mut URegularExpression;
-    pub fn uregex_close_57(regexp: *mut URegularExpression);
-    pub fn uregex_clone_57(regexp: *const URegularExpression,
-                           status: *mut UErrorCode)
-     -> *mut URegularExpression;
-    pub fn uregex_pattern_57(regexp: *const URegularExpression,
-                             patLength: *mut int32_t, status: *mut UErrorCode)
+    pub fn uregex_openC(pattern: *const ::std::os::raw::c_char,
+                        flags: uint32_t, pe: *mut UParseError,
+                        status: *mut UErrorCode) -> *mut URegularExpression;
+    pub fn uregex_close(regexp: *mut URegularExpression);
+    pub fn uregex_clone(regexp: *const URegularExpression,
+                        status: *mut UErrorCode) -> *mut URegularExpression;
+    pub fn uregex_pattern(regexp: *const URegularExpression,
+                          patLength: *mut int32_t, status: *mut UErrorCode)
      -> *const UChar;
-    pub fn uregex_patternUText_57(regexp: *const URegularExpression,
-                                  status: *mut UErrorCode) -> *mut UText;
-    pub fn uregex_flags_57(regexp: *const URegularExpression,
-                           status: *mut UErrorCode) -> int32_t;
-    pub fn uregex_setText_57(regexp: *mut URegularExpression,
-                             text: *const UChar, textLength: int32_t,
-                             status: *mut UErrorCode);
-    pub fn uregex_setUText_57(regexp: *mut URegularExpression,
-                              text: *mut UText, status: *mut UErrorCode);
-    pub fn uregex_getText_57(regexp: *mut URegularExpression,
-                             textLength: *mut int32_t,
-                             status: *mut UErrorCode) -> *const UChar;
-    pub fn uregex_getUText_57(regexp: *mut URegularExpression,
-                              dest: *mut UText, status: *mut UErrorCode)
-     -> *mut UText;
-    pub fn uregex_refreshUText_57(regexp: *mut URegularExpression,
-                                  text: *mut UText, status: *mut UErrorCode);
-    pub fn uregex_matches_57(regexp: *mut URegularExpression,
-                             startIndex: int32_t, status: *mut UErrorCode)
-     -> UBool;
-    pub fn uregex_matches64_57(regexp: *mut URegularExpression,
-                               startIndex: int64_t, status: *mut UErrorCode)
-     -> UBool;
-    pub fn uregex_lookingAt_57(regexp: *mut URegularExpression,
-                               startIndex: int32_t, status: *mut UErrorCode)
-     -> UBool;
-    pub fn uregex_lookingAt64_57(regexp: *mut URegularExpression,
-                                 startIndex: int64_t, status: *mut UErrorCode)
-     -> UBool;
-    pub fn uregex_find_57(regexp: *mut URegularExpression,
+    pub fn uregex_patternUText(regexp: *const URegularExpression,
+                               status: *mut UErrorCode) -> *mut UText;
+    pub fn uregex_flags(regexp: *const URegularExpression,
+                        status: *mut UErrorCode) -> int32_t;
+    pub fn uregex_setText(regexp: *mut URegularExpression, text: *const UChar,
+                          textLength: int32_t, status: *mut UErrorCode);
+    pub fn uregex_setUText(regexp: *mut URegularExpression, text: *mut UText,
+                           status: *mut UErrorCode);
+    pub fn uregex_getText(regexp: *mut URegularExpression,
+                          textLength: *mut int32_t, status: *mut UErrorCode)
+     -> *const UChar;
+    pub fn uregex_getUText(regexp: *mut URegularExpression, dest: *mut UText,
+                           status: *mut UErrorCode) -> *mut UText;
+    pub fn uregex_refreshUText(regexp: *mut URegularExpression,
+                               text: *mut UText, status: *mut UErrorCode);
+    pub fn uregex_matches(regexp: *mut URegularExpression,
                           startIndex: int32_t, status: *mut UErrorCode)
      -> UBool;
-    pub fn uregex_find64_57(regexp: *mut URegularExpression,
+    pub fn uregex_matches64(regexp: *mut URegularExpression,
                             startIndex: int64_t, status: *mut UErrorCode)
      -> UBool;
-    pub fn uregex_findNext_57(regexp: *mut URegularExpression,
-                              status: *mut UErrorCode) -> UBool;
-    pub fn uregex_groupCount_57(regexp: *mut URegularExpression,
-                                status: *mut UErrorCode) -> int32_t;
-    pub fn uregex_groupNumberFromName_57(regexp: *mut URegularExpression,
-                                         groupName: *const UChar,
-                                         nameLength: int32_t,
-                                         status: *mut UErrorCode) -> int32_t;
-    pub fn uregex_groupNumberFromCName_57(regexp: *mut URegularExpression,
-                                          groupName:
-                                              *const ::std::os::raw::c_char,
-                                          nameLength: int32_t,
-                                          status: *mut UErrorCode) -> int32_t;
-    pub fn uregex_group_57(regexp: *mut URegularExpression, groupNum: int32_t,
-                           dest: *mut UChar, destCapacity: int32_t,
-                           status: *mut UErrorCode) -> int32_t;
-    pub fn uregex_groupUText_57(regexp: *mut URegularExpression,
-                                groupNum: int32_t, dest: *mut UText,
-                                groupLength: *mut int64_t,
-                                status: *mut UErrorCode) -> *mut UText;
-    pub fn uregex_start_57(regexp: *mut URegularExpression, groupNum: int32_t,
-                           status: *mut UErrorCode) -> int32_t;
-    pub fn uregex_start64_57(regexp: *mut URegularExpression,
-                             groupNum: int32_t, status: *mut UErrorCode)
-     -> int64_t;
-    pub fn uregex_end_57(regexp: *mut URegularExpression, groupNum: int32_t,
-                         status: *mut UErrorCode) -> int32_t;
-    pub fn uregex_end64_57(regexp: *mut URegularExpression, groupNum: int32_t,
-                           status: *mut UErrorCode) -> int64_t;
-    pub fn uregex_reset_57(regexp: *mut URegularExpression, index: int32_t,
-                           status: *mut UErrorCode);
-    pub fn uregex_reset64_57(regexp: *mut URegularExpression, index: int64_t,
-                             status: *mut UErrorCode);
-    pub fn uregex_setRegion_57(regexp: *mut URegularExpression,
-                               regionStart: int32_t, regionLimit: int32_t,
-                               status: *mut UErrorCode);
-    pub fn uregex_setRegion64_57(regexp: *mut URegularExpression,
-                                 regionStart: int64_t, regionLimit: int64_t,
-                                 status: *mut UErrorCode);
-    pub fn uregex_setRegionAndStart_57(regexp: *mut URegularExpression,
-                                       regionStart: int64_t,
-                                       regionLimit: int64_t,
-                                       startIndex: int64_t,
-                                       status: *mut UErrorCode);
-    pub fn uregex_regionStart_57(regexp: *const URegularExpression,
-                                 status: *mut UErrorCode) -> int32_t;
-    pub fn uregex_regionStart64_57(regexp: *const URegularExpression,
-                                   status: *mut UErrorCode) -> int64_t;
-    pub fn uregex_regionEnd_57(regexp: *const URegularExpression,
-                               status: *mut UErrorCode) -> int32_t;
-    pub fn uregex_regionEnd64_57(regexp: *const URegularExpression,
-                                 status: *mut UErrorCode) -> int64_t;
-    pub fn uregex_hasTransparentBounds_57(regexp: *const URegularExpression,
-                                          status: *mut UErrorCode) -> UBool;
-    pub fn uregex_useTransparentBounds_57(regexp: *mut URegularExpression,
-                                          b: UBool, status: *mut UErrorCode);
-    pub fn uregex_hasAnchoringBounds_57(regexp: *const URegularExpression,
-                                        status: *mut UErrorCode) -> UBool;
-    pub fn uregex_useAnchoringBounds_57(regexp: *mut URegularExpression,
-                                        b: UBool, status: *mut UErrorCode);
-    pub fn uregex_hitEnd_57(regexp: *const URegularExpression,
-                            status: *mut UErrorCode) -> UBool;
-    pub fn uregex_requireEnd_57(regexp: *const URegularExpression,
-                                status: *mut UErrorCode) -> UBool;
-    pub fn uregex_replaceAll_57(regexp: *mut URegularExpression,
-                                replacementText: *const UChar,
-                                replacementLength: int32_t,
-                                destBuf: *mut UChar, destCapacity: int32_t,
-                                status: *mut UErrorCode) -> int32_t;
-    pub fn uregex_replaceAllUText_57(regexp: *mut URegularExpression,
-                                     replacement: *mut UText,
-                                     dest: *mut UText,
-                                     status: *mut UErrorCode) -> *mut UText;
-    pub fn uregex_replaceFirst_57(regexp: *mut URegularExpression,
-                                  replacementText: *const UChar,
-                                  replacementLength: int32_t,
-                                  destBuf: *mut UChar, destCapacity: int32_t,
-                                  status: *mut UErrorCode) -> int32_t;
-    pub fn uregex_replaceFirstUText_57(regexp: *mut URegularExpression,
-                                       replacement: *mut UText,
-                                       dest: *mut UText,
-                                       status: *mut UErrorCode) -> *mut UText;
-    pub fn uregex_appendReplacement_57(regexp: *mut URegularExpression,
-                                       replacementText: *const UChar,
-                                       replacementLength: int32_t,
-                                       destBuf: *mut *mut UChar,
-                                       destCapacity: *mut int32_t,
+    pub fn uregex_lookingAt(regexp: *mut URegularExpression,
+                            startIndex: int32_t, status: *mut UErrorCode)
+     -> UBool;
+    pub fn uregex_lookingAt64(regexp: *mut URegularExpression,
+                              startIndex: int64_t, status: *mut UErrorCode)
+     -> UBool;
+    pub fn uregex_find(regexp: *mut URegularExpression, startIndex: int32_t,
+                       status: *mut UErrorCode) -> UBool;
+    pub fn uregex_find64(regexp: *mut URegularExpression, startIndex: int64_t,
+                         status: *mut UErrorCode) -> UBool;
+    pub fn uregex_findNext(regexp: *mut URegularExpression,
+                           status: *mut UErrorCode) -> UBool;
+    pub fn uregex_groupCount(regexp: *mut URegularExpression,
+                             status: *mut UErrorCode) -> int32_t;
+    pub fn uregex_groupNumberFromName(regexp: *mut URegularExpression,
+                                      groupName: *const UChar,
+                                      nameLength: int32_t,
+                                      status: *mut UErrorCode) -> int32_t;
+    pub fn uregex_groupNumberFromCName(regexp: *mut URegularExpression,
+                                       groupName:
+                                           *const ::std::os::raw::c_char,
+                                       nameLength: int32_t,
                                        status: *mut UErrorCode) -> int32_t;
-    pub fn uregex_appendReplacementUText_57(regexp: *mut URegularExpression,
-                                            replacementText: *mut UText,
-                                            dest: *mut UText,
-                                            status: *mut UErrorCode);
-    pub fn uregex_appendTail_57(regexp: *mut URegularExpression,
-                                destBuf: *mut *mut UChar,
-                                destCapacity: *mut int32_t,
+    pub fn uregex_group(regexp: *mut URegularExpression, groupNum: int32_t,
+                        dest: *mut UChar, destCapacity: int32_t,
+                        status: *mut UErrorCode) -> int32_t;
+    pub fn uregex_groupUText(regexp: *mut URegularExpression,
+                             groupNum: int32_t, dest: *mut UText,
+                             groupLength: *mut int64_t,
+                             status: *mut UErrorCode) -> *mut UText;
+    pub fn uregex_start(regexp: *mut URegularExpression, groupNum: int32_t,
+                        status: *mut UErrorCode) -> int32_t;
+    pub fn uregex_start64(regexp: *mut URegularExpression, groupNum: int32_t,
+                          status: *mut UErrorCode) -> int64_t;
+    pub fn uregex_end(regexp: *mut URegularExpression, groupNum: int32_t,
+                      status: *mut UErrorCode) -> int32_t;
+    pub fn uregex_end64(regexp: *mut URegularExpression, groupNum: int32_t,
+                        status: *mut UErrorCode) -> int64_t;
+    pub fn uregex_reset(regexp: *mut URegularExpression, index: int32_t,
+                        status: *mut UErrorCode);
+    pub fn uregex_reset64(regexp: *mut URegularExpression, index: int64_t,
+                          status: *mut UErrorCode);
+    pub fn uregex_setRegion(regexp: *mut URegularExpression,
+                            regionStart: int32_t, regionLimit: int32_t,
+                            status: *mut UErrorCode);
+    pub fn uregex_setRegion64(regexp: *mut URegularExpression,
+                              regionStart: int64_t, regionLimit: int64_t,
+                              status: *mut UErrorCode);
+    pub fn uregex_setRegionAndStart(regexp: *mut URegularExpression,
+                                    regionStart: int64_t,
+                                    regionLimit: int64_t, startIndex: int64_t,
+                                    status: *mut UErrorCode);
+    pub fn uregex_regionStart(regexp: *const URegularExpression,
+                              status: *mut UErrorCode) -> int32_t;
+    pub fn uregex_regionStart64(regexp: *const URegularExpression,
+                                status: *mut UErrorCode) -> int64_t;
+    pub fn uregex_regionEnd(regexp: *const URegularExpression,
+                            status: *mut UErrorCode) -> int32_t;
+    pub fn uregex_regionEnd64(regexp: *const URegularExpression,
+                              status: *mut UErrorCode) -> int64_t;
+    pub fn uregex_hasTransparentBounds(regexp: *const URegularExpression,
+                                       status: *mut UErrorCode) -> UBool;
+    pub fn uregex_useTransparentBounds(regexp: *mut URegularExpression,
+                                       b: UBool, status: *mut UErrorCode);
+    pub fn uregex_hasAnchoringBounds(regexp: *const URegularExpression,
+                                     status: *mut UErrorCode) -> UBool;
+    pub fn uregex_useAnchoringBounds(regexp: *mut URegularExpression,
+                                     b: UBool, status: *mut UErrorCode);
+    pub fn uregex_hitEnd(regexp: *const URegularExpression,
+                         status: *mut UErrorCode) -> UBool;
+    pub fn uregex_requireEnd(regexp: *const URegularExpression,
+                             status: *mut UErrorCode) -> UBool;
+    pub fn uregex_replaceAll(regexp: *mut URegularExpression,
+                             replacementText: *const UChar,
+                             replacementLength: int32_t, destBuf: *mut UChar,
+                             destCapacity: int32_t, status: *mut UErrorCode)
+     -> int32_t;
+    pub fn uregex_replaceAllUText(regexp: *mut URegularExpression,
+                                  replacement: *mut UText, dest: *mut UText,
+                                  status: *mut UErrorCode) -> *mut UText;
+    pub fn uregex_replaceFirst(regexp: *mut URegularExpression,
+                               replacementText: *const UChar,
+                               replacementLength: int32_t,
+                               destBuf: *mut UChar, destCapacity: int32_t,
+                               status: *mut UErrorCode) -> int32_t;
+    pub fn uregex_replaceFirstUText(regexp: *mut URegularExpression,
+                                    replacement: *mut UText, dest: *mut UText,
+                                    status: *mut UErrorCode) -> *mut UText;
+    pub fn uregex_appendReplacement(regexp: *mut URegularExpression,
+                                    replacementText: *const UChar,
+                                    replacementLength: int32_t,
+                                    destBuf: *mut *mut UChar,
+                                    destCapacity: *mut int32_t,
+                                    status: *mut UErrorCode) -> int32_t;
+    pub fn uregex_appendReplacementUText(regexp: *mut URegularExpression,
+                                         replacementText: *mut UText,
+                                         dest: *mut UText,
+                                         status: *mut UErrorCode);
+    pub fn uregex_appendTail(regexp: *mut URegularExpression,
+                             destBuf: *mut *mut UChar,
+                             destCapacity: *mut int32_t,
+                             status: *mut UErrorCode) -> int32_t;
+    pub fn uregex_appendTailUText(regexp: *mut URegularExpression,
+                                  dest: *mut UText, status: *mut UErrorCode)
+     -> *mut UText;
+    pub fn uregex_split(regexp: *mut URegularExpression, destBuf: *mut UChar,
+                        destCapacity: int32_t, requiredCapacity: *mut int32_t,
+                        destFields: *mut *mut UChar,
+                        destFieldsCapacity: int32_t, status: *mut UErrorCode)
+     -> int32_t;
+    pub fn uregex_splitUText(regexp: *mut URegularExpression,
+                             destFields: *mut *mut UText,
+                             destFieldsCapacity: int32_t,
+                             status: *mut UErrorCode) -> int32_t;
+    pub fn uregex_setTimeLimit(regexp: *mut URegularExpression,
+                               limit: int32_t, status: *mut UErrorCode);
+    pub fn uregex_getTimeLimit(regexp: *const URegularExpression,
+                               status: *mut UErrorCode) -> int32_t;
+    pub fn uregex_setStackLimit(regexp: *mut URegularExpression,
+                                limit: int32_t, status: *mut UErrorCode);
+    pub fn uregex_getStackLimit(regexp: *const URegularExpression,
                                 status: *mut UErrorCode) -> int32_t;
-    pub fn uregex_appendTailUText_57(regexp: *mut URegularExpression,
-                                     dest: *mut UText,
-                                     status: *mut UErrorCode) -> *mut UText;
-    pub fn uregex_split_57(regexp: *mut URegularExpression,
-                           destBuf: *mut UChar, destCapacity: int32_t,
-                           requiredCapacity: *mut int32_t,
-                           destFields: *mut *mut UChar,
-                           destFieldsCapacity: int32_t,
-                           status: *mut UErrorCode) -> int32_t;
-    pub fn uregex_splitUText_57(regexp: *mut URegularExpression,
-                                destFields: *mut *mut UText,
-                                destFieldsCapacity: int32_t,
-                                status: *mut UErrorCode) -> int32_t;
-    pub fn uregex_setTimeLimit_57(regexp: *mut URegularExpression,
-                                  limit: int32_t, status: *mut UErrorCode);
-    pub fn uregex_getTimeLimit_57(regexp: *const URegularExpression,
-                                  status: *mut UErrorCode) -> int32_t;
-    pub fn uregex_setStackLimit_57(regexp: *mut URegularExpression,
-                                   limit: int32_t, status: *mut UErrorCode);
-    pub fn uregex_getStackLimit_57(regexp: *const URegularExpression,
-                                   status: *mut UErrorCode) -> int32_t;
-    pub fn uregex_setMatchCallback_57(regexp: *mut URegularExpression,
-                                      callback: URegexMatchCallback,
-                                      context: *const ::std::os::raw::c_void,
-                                      status: *mut UErrorCode);
-    pub fn uregex_getMatchCallback_57(regexp: *const URegularExpression,
-                                      callback: *mut URegexMatchCallback,
-                                      context:
-                                          *mut *const ::std::os::raw::c_void,
-                                      status: *mut UErrorCode);
-    pub fn uregex_setFindProgressCallback_57(regexp: *mut URegularExpression,
-                                             callback:
-                                                 URegexFindProgressCallback,
-                                             context:
-                                                 *const ::std::os::raw::c_void,
-                                             status: *mut UErrorCode);
-    pub fn uregex_getFindProgressCallback_57(regexp:
-                                                 *const URegularExpression,
-                                             callback:
-                                                 *mut URegexFindProgressCallback,
-                                             context:
-                                                 *mut *const ::std::os::raw::c_void,
-                                             status: *mut UErrorCode);
+    pub fn uregex_setMatchCallback(regexp: *mut URegularExpression,
+                                   callback: URegexMatchCallback,
+                                   context: *const ::std::os::raw::c_void,
+                                   status: *mut UErrorCode);
+    pub fn uregex_getMatchCallback(regexp: *const URegularExpression,
+                                   callback: *mut URegexMatchCallback,
+                                   context:
+                                       *mut *const ::std::os::raw::c_void,
+                                   status: *mut UErrorCode);
+    pub fn uregex_setFindProgressCallback(regexp: *mut URegularExpression,
+                                          callback:
+                                              URegexFindProgressCallback,
+                                          context:
+                                              *const ::std::os::raw::c_void,
+                                          status: *mut UErrorCode);
+    pub fn uregex_getFindProgressCallback(regexp: *const URegularExpression,
+                                          callback:
+                                              *mut URegexFindProgressCallback,
+                                          context:
+                                              *mut *const ::std::os::raw::c_void,
+                                          status: *mut UErrorCode);
 }

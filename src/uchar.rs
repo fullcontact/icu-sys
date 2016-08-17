@@ -113,11 +113,7 @@ pub enum UProperty {
     UCHAR_CHANGES_WHEN_CASEFOLDED = 54,
     UCHAR_CHANGES_WHEN_CASEMAPPED = 55,
     UCHAR_CHANGES_WHEN_NFKC_CASEFOLDED = 56,
-    UCHAR_EMOJI = 57,
-    UCHAR_EMOJI_PRESENTATION = 58,
-    UCHAR_EMOJI_MODIFIER = 59,
-    UCHAR_EMOJI_MODIFIER_BASE = 60,
-    UCHAR_BINARY_LIMIT = 61,
+    UCHAR_BINARY_LIMIT = 57,
     UCHAR_BIDI_CLASS = 4096,
     UCHAR_BLOCK = 4097,
     UCHAR_CANONICAL_COMBINING_CLASS = 4098,
@@ -500,17 +496,7 @@ pub enum UBlockCode {
     UBLOCK_SUPPLEMENTAL_ARROWS_C = 250,
     UBLOCK_TIRHUTA = 251,
     UBLOCK_WARANG_CITI = 252,
-    UBLOCK_AHOM = 253,
-    UBLOCK_ANATOLIAN_HIEROGLYPHS = 254,
-    UBLOCK_CHEROKEE_SUPPLEMENT = 255,
-    UBLOCK_CJK_UNIFIED_IDEOGRAPHS_EXTENSION_E = 256,
-    UBLOCK_EARLY_DYNASTIC_CUNEIFORM = 257,
-    UBLOCK_HATRAN = 258,
-    UBLOCK_MULTANI = 259,
-    UBLOCK_OLD_HUNGARIAN = 260,
-    UBLOCK_SUPPLEMENTAL_SYMBOLS_AND_PICTOGRAPHS = 261,
-    UBLOCK_SUTTON_SIGNWRITING = 262,
-    UBLOCK_COUNT = 263,
+    UBLOCK_COUNT = 253,
     UBLOCK_INVALID_CODE = -1,
 }
 #[derive(Copy, Clone)]
@@ -819,86 +805,86 @@ pub type UEnumCharNamesFn =
                                                name:
                                                    *const ::std::os::raw::c_char,
                                                length: int32_t) -> UBool>;
-#[link(name = "icuuc", kind = "dylib")]
-#[link(name = "icudata", kind = "dylib")]
+#[link(name = "icuuc", kind = "static")]
+#[link(name = "icudata", kind = "static")]
 extern "C" {
-    pub fn u_hasBinaryProperty_57(c: UChar32, which: UProperty) -> UBool;
-    pub fn u_isUAlphabetic_57(c: UChar32) -> UBool;
-    pub fn u_isULowercase_57(c: UChar32) -> UBool;
-    pub fn u_isUUppercase_57(c: UChar32) -> UBool;
-    pub fn u_isUWhiteSpace_57(c: UChar32) -> UBool;
-    pub fn u_getIntPropertyValue_57(c: UChar32, which: UProperty) -> int32_t;
-    pub fn u_getIntPropertyMinValue_57(which: UProperty) -> int32_t;
-    pub fn u_getIntPropertyMaxValue_57(which: UProperty) -> int32_t;
-    pub fn u_getNumericValue_57(c: UChar32) -> f64;
-    pub fn u_islower_57(c: UChar32) -> UBool;
-    pub fn u_isupper_57(c: UChar32) -> UBool;
-    pub fn u_istitle_57(c: UChar32) -> UBool;
-    pub fn u_isdigit_57(c: UChar32) -> UBool;
-    pub fn u_isalpha_57(c: UChar32) -> UBool;
-    pub fn u_isalnum_57(c: UChar32) -> UBool;
-    pub fn u_isxdigit_57(c: UChar32) -> UBool;
-    pub fn u_ispunct_57(c: UChar32) -> UBool;
-    pub fn u_isgraph_57(c: UChar32) -> UBool;
-    pub fn u_isblank_57(c: UChar32) -> UBool;
-    pub fn u_isdefined_57(c: UChar32) -> UBool;
-    pub fn u_isspace_57(c: UChar32) -> UBool;
-    pub fn u_isJavaSpaceChar_57(c: UChar32) -> UBool;
-    pub fn u_isWhitespace_57(c: UChar32) -> UBool;
-    pub fn u_iscntrl_57(c: UChar32) -> UBool;
-    pub fn u_isISOControl_57(c: UChar32) -> UBool;
-    pub fn u_isprint_57(c: UChar32) -> UBool;
-    pub fn u_isbase_57(c: UChar32) -> UBool;
-    pub fn u_charDirection_57(c: UChar32) -> UCharDirection;
-    pub fn u_isMirrored_57(c: UChar32) -> UBool;
-    pub fn u_charMirror_57(c: UChar32) -> UChar32;
-    pub fn u_getBidiPairedBracket_57(c: UChar32) -> UChar32;
-    pub fn u_charType_57(c: UChar32) -> int8_t;
-    pub fn u_enumCharTypes_57(enumRange: UCharEnumTypeRange,
-                              context: *const ::std::os::raw::c_void);
-    pub fn u_getCombiningClass_57(c: UChar32) -> uint8_t;
-    pub fn u_charDigitValue_57(c: UChar32) -> int32_t;
-    pub fn ublock_getCode_57(c: UChar32) -> UBlockCode;
-    pub fn u_charName_57(code: UChar32, nameChoice: UCharNameChoice,
-                         buffer: *mut ::std::os::raw::c_char,
-                         bufferLength: int32_t, pErrorCode: *mut UErrorCode)
+    pub fn u_hasBinaryProperty(c: UChar32, which: UProperty) -> UBool;
+    pub fn u_isUAlphabetic(c: UChar32) -> UBool;
+    pub fn u_isULowercase(c: UChar32) -> UBool;
+    pub fn u_isUUppercase(c: UChar32) -> UBool;
+    pub fn u_isUWhiteSpace(c: UChar32) -> UBool;
+    pub fn u_getIntPropertyValue(c: UChar32, which: UProperty) -> int32_t;
+    pub fn u_getIntPropertyMinValue(which: UProperty) -> int32_t;
+    pub fn u_getIntPropertyMaxValue(which: UProperty) -> int32_t;
+    pub fn u_getNumericValue(c: UChar32) -> f64;
+    pub fn u_islower(c: UChar32) -> UBool;
+    pub fn u_isupper(c: UChar32) -> UBool;
+    pub fn u_istitle(c: UChar32) -> UBool;
+    pub fn u_isdigit(c: UChar32) -> UBool;
+    pub fn u_isalpha(c: UChar32) -> UBool;
+    pub fn u_isalnum(c: UChar32) -> UBool;
+    pub fn u_isxdigit(c: UChar32) -> UBool;
+    pub fn u_ispunct(c: UChar32) -> UBool;
+    pub fn u_isgraph(c: UChar32) -> UBool;
+    pub fn u_isblank(c: UChar32) -> UBool;
+    pub fn u_isdefined(c: UChar32) -> UBool;
+    pub fn u_isspace(c: UChar32) -> UBool;
+    pub fn u_isJavaSpaceChar(c: UChar32) -> UBool;
+    pub fn u_isWhitespace(c: UChar32) -> UBool;
+    pub fn u_iscntrl(c: UChar32) -> UBool;
+    pub fn u_isISOControl(c: UChar32) -> UBool;
+    pub fn u_isprint(c: UChar32) -> UBool;
+    pub fn u_isbase(c: UChar32) -> UBool;
+    pub fn u_charDirection(c: UChar32) -> UCharDirection;
+    pub fn u_isMirrored(c: UChar32) -> UBool;
+    pub fn u_charMirror(c: UChar32) -> UChar32;
+    pub fn u_getBidiPairedBracket(c: UChar32) -> UChar32;
+    pub fn u_charType(c: UChar32) -> int8_t;
+    pub fn u_enumCharTypes(enumRange: UCharEnumTypeRange,
+                           context: *const ::std::os::raw::c_void);
+    pub fn u_getCombiningClass(c: UChar32) -> uint8_t;
+    pub fn u_charDigitValue(c: UChar32) -> int32_t;
+    pub fn ublock_getCode(c: UChar32) -> UBlockCode;
+    pub fn u_charName(code: UChar32, nameChoice: UCharNameChoice,
+                      buffer: *mut ::std::os::raw::c_char,
+                      bufferLength: int32_t, pErrorCode: *mut UErrorCode)
      -> int32_t;
-    pub fn u_getISOComment_57(c: UChar32, dest: *mut ::std::os::raw::c_char,
-                              destCapacity: int32_t,
-                              pErrorCode: *mut UErrorCode) -> int32_t;
-    pub fn u_charFromName_57(nameChoice: UCharNameChoice,
-                             name: *const ::std::os::raw::c_char,
-                             pErrorCode: *mut UErrorCode) -> UChar32;
-    pub fn u_enumCharNames_57(start: UChar32, limit: UChar32,
-                              fn_: UEnumCharNamesFn,
-                              context: *mut ::std::os::raw::c_void,
-                              nameChoice: UCharNameChoice,
-                              pErrorCode: *mut UErrorCode);
-    pub fn u_getPropertyName_57(property: UProperty,
-                                nameChoice: UPropertyNameChoice)
+    pub fn u_getISOComment(c: UChar32, dest: *mut ::std::os::raw::c_char,
+                           destCapacity: int32_t, pErrorCode: *mut UErrorCode)
+     -> int32_t;
+    pub fn u_charFromName(nameChoice: UCharNameChoice,
+                          name: *const ::std::os::raw::c_char,
+                          pErrorCode: *mut UErrorCode) -> UChar32;
+    pub fn u_enumCharNames(start: UChar32, limit: UChar32,
+                           fn_: UEnumCharNamesFn,
+                           context: *mut ::std::os::raw::c_void,
+                           nameChoice: UCharNameChoice,
+                           pErrorCode: *mut UErrorCode);
+    pub fn u_getPropertyName(property: UProperty,
+                             nameChoice: UPropertyNameChoice)
      -> *const ::std::os::raw::c_char;
-    pub fn u_getPropertyEnum_57(alias: *const ::std::os::raw::c_char)
+    pub fn u_getPropertyEnum(alias: *const ::std::os::raw::c_char)
      -> UProperty;
-    pub fn u_getPropertyValueName_57(property: UProperty, value: int32_t,
-                                     nameChoice: UPropertyNameChoice)
+    pub fn u_getPropertyValueName(property: UProperty, value: int32_t,
+                                  nameChoice: UPropertyNameChoice)
      -> *const ::std::os::raw::c_char;
-    pub fn u_getPropertyValueEnum_57(property: UProperty,
-                                     alias: *const ::std::os::raw::c_char)
+    pub fn u_getPropertyValueEnum(property: UProperty,
+                                  alias: *const ::std::os::raw::c_char)
      -> int32_t;
-    pub fn u_isIDStart_57(c: UChar32) -> UBool;
-    pub fn u_isIDPart_57(c: UChar32) -> UBool;
-    pub fn u_isIDIgnorable_57(c: UChar32) -> UBool;
-    pub fn u_isJavaIDStart_57(c: UChar32) -> UBool;
-    pub fn u_isJavaIDPart_57(c: UChar32) -> UBool;
-    pub fn u_tolower_57(c: UChar32) -> UChar32;
-    pub fn u_toupper_57(c: UChar32) -> UChar32;
-    pub fn u_totitle_57(c: UChar32) -> UChar32;
-    pub fn u_foldCase_57(c: UChar32, options: uint32_t) -> UChar32;
-    pub fn u_digit_57(ch: UChar32, radix: int8_t) -> int32_t;
-    pub fn u_forDigit_57(digit: int32_t, radix: int8_t) -> UChar32;
-    pub fn u_charAge_57(c: UChar32, versionArray: UVersionInfo);
-    pub fn u_getUnicodeVersion_57(versionArray: UVersionInfo);
-    pub fn u_getFC_NFKC_Closure_57(c: UChar32, dest: *mut UChar,
-                                   destCapacity: int32_t,
-                                   pErrorCode: *mut UErrorCode) -> int32_t;
+    pub fn u_isIDStart(c: UChar32) -> UBool;
+    pub fn u_isIDPart(c: UChar32) -> UBool;
+    pub fn u_isIDIgnorable(c: UChar32) -> UBool;
+    pub fn u_isJavaIDStart(c: UChar32) -> UBool;
+    pub fn u_isJavaIDPart(c: UChar32) -> UBool;
+    pub fn u_tolower(c: UChar32) -> UChar32;
+    pub fn u_toupper(c: UChar32) -> UChar32;
+    pub fn u_totitle(c: UChar32) -> UChar32;
+    pub fn u_foldCase(c: UChar32, options: uint32_t) -> UChar32;
+    pub fn u_digit(ch: UChar32, radix: int8_t) -> int32_t;
+    pub fn u_forDigit(digit: int32_t, radix: int8_t) -> UChar32;
+    pub fn u_charAge(c: UChar32, versionArray: UVersionInfo);
+    pub fn u_getUnicodeVersion(versionArray: UVersionInfo);
+    pub fn u_getFC_NFKC_Closure(c: UChar32, dest: *mut UChar,
+                                destCapacity: int32_t,
+                                pErrorCode: *mut UErrorCode) -> int32_t;
 }

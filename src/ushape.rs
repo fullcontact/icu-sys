@@ -44,11 +44,11 @@ use umisc::*;
 use ufieldpositer::*;
 use ucnv_err::*;
 
-#[link(name = "icuuc", kind = "dylib")]
-#[link(name = "icudata", kind = "dylib")]
+#[link(name = "icuuc", kind = "static")]
+#[link(name = "icudata", kind = "static")]
 extern "C" {
-    pub fn u_shapeArabic_57(source: *const UChar, sourceLength: int32_t,
-                            dest: *mut UChar, destSize: int32_t,
-                            options: uint32_t, pErrorCode: *mut UErrorCode)
+    pub fn u_shapeArabic(source: *const UChar, sourceLength: int32_t,
+                         dest: *mut UChar, destSize: int32_t,
+                         options: uint32_t, pErrorCode: *mut UErrorCode)
      -> int32_t;
 }

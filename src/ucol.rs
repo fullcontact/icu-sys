@@ -124,180 +124,166 @@ pub enum UColBoundMode {
     UCOL_BOUND_UPPER_LONG = 2,
     UCOL_BOUND_VALUE_COUNT = 3,
 }
-#[link(name = "icuuc", kind = "dylib")]
-#[link(name = "icudata", kind = "dylib")]
+#[link(name = "icuuc", kind = "static")]
+#[link(name = "icudata", kind = "static")]
 extern "C" {
-    pub fn ucol_open_57(loc: *const ::std::os::raw::c_char,
-                        status: *mut UErrorCode) -> *mut UCollator;
-    pub fn ucol_openRules_57(rules: *const UChar, rulesLength: int32_t,
-                             normalizationMode: UColAttributeValue,
-                             strength: UCollationStrength,
-                             parseError: *mut UParseError,
-                             status: *mut UErrorCode) -> *mut UCollator;
-    pub fn ucol_openFromShortString_57(definition:
+    pub fn ucol_open(loc: *const ::std::os::raw::c_char,
+                     status: *mut UErrorCode) -> *mut UCollator;
+    pub fn ucol_openRules(rules: *const UChar, rulesLength: int32_t,
+                          normalizationMode: UColAttributeValue,
+                          strength: UCollationStrength,
+                          parseError: *mut UParseError,
+                          status: *mut UErrorCode) -> *mut UCollator;
+    pub fn ucol_openFromShortString(definition: *const ::std::os::raw::c_char,
+                                    forceDefaults: UBool,
+                                    parseError: *mut UParseError,
+                                    status: *mut UErrorCode)
+     -> *mut UCollator;
+    pub fn ucol_getContractions(coll: *const UCollator, conts: *mut USet,
+                                status: *mut UErrorCode) -> int32_t;
+    pub fn ucol_getContractionsAndExpansions(coll: *const UCollator,
+                                             contractions: *mut USet,
+                                             expansions: *mut USet,
+                                             addPrefixes: UBool,
+                                             status: *mut UErrorCode);
+    pub fn ucol_close(coll: *mut UCollator);
+    pub fn ucol_strcoll(coll: *const UCollator, source: *const UChar,
+                        sourceLength: int32_t, target: *const UChar,
+                        targetLength: int32_t) -> UCollationResult;
+    pub fn ucol_strcollUTF8(coll: *const UCollator,
+                            source: *const ::std::os::raw::c_char,
+                            sourceLength: int32_t,
+                            target: *const ::std::os::raw::c_char,
+                            targetLength: int32_t, status: *mut UErrorCode)
+     -> UCollationResult;
+    pub fn ucol_greater(coll: *const UCollator, source: *const UChar,
+                        sourceLength: int32_t, target: *const UChar,
+                        targetLength: int32_t) -> UBool;
+    pub fn ucol_greaterOrEqual(coll: *const UCollator, source: *const UChar,
+                               sourceLength: int32_t, target: *const UChar,
+                               targetLength: int32_t) -> UBool;
+    pub fn ucol_equal(coll: *const UCollator, source: *const UChar,
+                      sourceLength: int32_t, target: *const UChar,
+                      targetLength: int32_t) -> UBool;
+    pub fn ucol_strcollIter(coll: *const UCollator, sIter: *mut UCharIterator,
+                            tIter: *mut UCharIterator,
+                            status: *mut UErrorCode) -> UCollationResult;
+    pub fn ucol_getStrength(coll: *const UCollator) -> UCollationStrength;
+    pub fn ucol_setStrength(coll: *mut UCollator,
+                            strength: UCollationStrength);
+    pub fn ucol_getReorderCodes(coll: *const UCollator, dest: *mut int32_t,
+                                destCapacity: int32_t,
+                                pErrorCode: *mut UErrorCode) -> int32_t;
+    pub fn ucol_setReorderCodes(coll: *mut UCollator,
+                                reorderCodes: *const int32_t,
+                                reorderCodesLength: int32_t,
+                                pErrorCode: *mut UErrorCode);
+    pub fn ucol_getEquivalentReorderCodes(reorderCode: int32_t,
+                                          dest: *mut int32_t,
+                                          destCapacity: int32_t,
+                                          pErrorCode: *mut UErrorCode)
+     -> int32_t;
+    pub fn ucol_getDisplayName(objLoc: *const ::std::os::raw::c_char,
+                               dispLoc: *const ::std::os::raw::c_char,
+                               result: *mut UChar, resultLength: int32_t,
+                               status: *mut UErrorCode) -> int32_t;
+    pub fn ucol_getAvailable(localeIndex: int32_t)
+     -> *const ::std::os::raw::c_char;
+    pub fn ucol_countAvailable() -> int32_t;
+    pub fn ucol_openAvailableLocales(status: *mut UErrorCode)
+     -> *mut UEnumeration;
+    pub fn ucol_getKeywords(status: *mut UErrorCode) -> *mut UEnumeration;
+    pub fn ucol_getKeywordValues(keyword: *const ::std::os::raw::c_char,
+                                 status: *mut UErrorCode)
+     -> *mut UEnumeration;
+    pub fn ucol_getKeywordValuesForLocale(key: *const ::std::os::raw::c_char,
+                                          locale:
+                                              *const ::std::os::raw::c_char,
+                                          commonlyUsed: UBool,
+                                          status: *mut UErrorCode)
+     -> *mut UEnumeration;
+    pub fn ucol_getFunctionalEquivalent(result: *mut ::std::os::raw::c_char,
+                                        resultCapacity: int32_t,
+                                        keyword:
+                                            *const ::std::os::raw::c_char,
+                                        locale: *const ::std::os::raw::c_char,
+                                        isAvailable: *mut UBool,
+                                        status: *mut UErrorCode) -> int32_t;
+    pub fn ucol_getRules(coll: *const UCollator, length: *mut int32_t)
+     -> *const UChar;
+    pub fn ucol_getShortDefinitionString(coll: *const UCollator,
+                                         locale:
+                                             *const ::std::os::raw::c_char,
+                                         buffer: *mut ::std::os::raw::c_char,
+                                         capacity: int32_t,
+                                         status: *mut UErrorCode) -> int32_t;
+    pub fn ucol_normalizeShortDefinitionString(source:
+                                                   *const ::std::os::raw::c_char,
+                                               destination:
+                                                   *mut ::std::os::raw::c_char,
+                                               capacity: int32_t,
+                                               parseError: *mut UParseError,
+                                               status: *mut UErrorCode)
+     -> int32_t;
+    pub fn ucol_getSortKey(coll: *const UCollator, source: *const UChar,
+                           sourceLength: int32_t, result: *mut uint8_t,
+                           resultLength: int32_t) -> int32_t;
+    pub fn ucol_nextSortKeyPart(coll: *const UCollator,
+                                iter: *mut UCharIterator,
+                                state: *mut uint32_t, dest: *mut uint8_t,
+                                count: int32_t, status: *mut UErrorCode)
+     -> int32_t;
+    pub fn ucol_getBound(source: *const uint8_t, sourceLength: int32_t,
+                         boundType: UColBoundMode, noOfLevels: uint32_t,
+                         result: *mut uint8_t, resultLength: int32_t,
+                         status: *mut UErrorCode) -> int32_t;
+    pub fn ucol_getVersion(coll: *const UCollator, info: UVersionInfo);
+    pub fn ucol_getUCAVersion(coll: *const UCollator, info: UVersionInfo);
+    pub fn ucol_mergeSortkeys(src1: *const uint8_t, src1Length: int32_t,
+                              src2: *const uint8_t, src2Length: int32_t,
+                              dest: *mut uint8_t, destCapacity: int32_t)
+     -> int32_t;
+    pub fn ucol_setAttribute(coll: *mut UCollator, attr: UColAttribute,
+                             value: UColAttributeValue,
+                             status: *mut UErrorCode);
+    pub fn ucol_getAttribute(coll: *const UCollator, attr: UColAttribute,
+                             status: *mut UErrorCode) -> UColAttributeValue;
+    pub fn ucol_setMaxVariable(coll: *mut UCollator, group: UColReorderCode,
+                               pErrorCode: *mut UErrorCode);
+    pub fn ucol_getMaxVariable(coll: *const UCollator) -> UColReorderCode;
+    pub fn ucol_setVariableTop(coll: *mut UCollator, varTop: *const UChar,
+                               len: int32_t, status: *mut UErrorCode)
+     -> uint32_t;
+    pub fn ucol_getVariableTop(coll: *const UCollator,
+                               status: *mut UErrorCode) -> uint32_t;
+    pub fn ucol_restoreVariableTop(coll: *mut UCollator, varTop: uint32_t,
+                                   status: *mut UErrorCode);
+    pub fn ucol_safeClone(coll: *const UCollator,
+                          stackBuffer: *mut ::std::os::raw::c_void,
+                          pBufferSize: *mut int32_t, status: *mut UErrorCode)
+     -> *mut UCollator;
+    pub fn ucol_getRulesEx(coll: *const UCollator, delta: UColRuleOption,
+                           buffer: *mut UChar, bufferLen: int32_t) -> int32_t;
+    pub fn ucol_getLocale(coll: *const UCollator, type_: ULocDataLocaleType,
+                          status: *mut UErrorCode)
+     -> *const ::std::os::raw::c_char;
+    pub fn ucol_getLocaleByType(coll: *const UCollator,
+                                type_: ULocDataLocaleType,
+                                status: *mut UErrorCode)
+     -> *const ::std::os::raw::c_char;
+    pub fn ucol_getTailoredSet(coll: *const UCollator,
+                               status: *mut UErrorCode) -> *mut USet;
+    pub fn ucol_getUnsafeSet(coll: *const UCollator, unsafe_: *mut USet,
+                             status: *mut UErrorCode) -> int32_t;
+    pub fn ucol_prepareShortStringOpen(definition:
                                            *const ::std::os::raw::c_char,
                                        forceDefaults: UBool,
                                        parseError: *mut UParseError,
-                                       status: *mut UErrorCode)
-     -> *mut UCollator;
-    pub fn ucol_getContractions_57(coll: *const UCollator, conts: *mut USet,
-                                   status: *mut UErrorCode) -> int32_t;
-    pub fn ucol_getContractionsAndExpansions_57(coll: *const UCollator,
-                                                contractions: *mut USet,
-                                                expansions: *mut USet,
-                                                addPrefixes: UBool,
-                                                status: *mut UErrorCode);
-    pub fn ucol_close_57(coll: *mut UCollator);
-    pub fn ucol_strcoll_57(coll: *const UCollator, source: *const UChar,
-                           sourceLength: int32_t, target: *const UChar,
-                           targetLength: int32_t) -> UCollationResult;
-    pub fn ucol_strcollUTF8_57(coll: *const UCollator,
-                               source: *const ::std::os::raw::c_char,
-                               sourceLength: int32_t,
-                               target: *const ::std::os::raw::c_char,
-                               targetLength: int32_t, status: *mut UErrorCode)
-     -> UCollationResult;
-    pub fn ucol_greater_57(coll: *const UCollator, source: *const UChar,
-                           sourceLength: int32_t, target: *const UChar,
-                           targetLength: int32_t) -> UBool;
-    pub fn ucol_greaterOrEqual_57(coll: *const UCollator,
-                                  source: *const UChar, sourceLength: int32_t,
-                                  target: *const UChar, targetLength: int32_t)
-     -> UBool;
-    pub fn ucol_equal_57(coll: *const UCollator, source: *const UChar,
-                         sourceLength: int32_t, target: *const UChar,
-                         targetLength: int32_t) -> UBool;
-    pub fn ucol_strcollIter_57(coll: *const UCollator,
-                               sIter: *mut UCharIterator,
-                               tIter: *mut UCharIterator,
-                               status: *mut UErrorCode) -> UCollationResult;
-    pub fn ucol_getStrength_57(coll: *const UCollator) -> UCollationStrength;
-    pub fn ucol_setStrength_57(coll: *mut UCollator,
-                               strength: UCollationStrength);
-    pub fn ucol_getReorderCodes_57(coll: *const UCollator, dest: *mut int32_t,
-                                   destCapacity: int32_t,
-                                   pErrorCode: *mut UErrorCode) -> int32_t;
-    pub fn ucol_setReorderCodes_57(coll: *mut UCollator,
-                                   reorderCodes: *const int32_t,
-                                   reorderCodesLength: int32_t,
-                                   pErrorCode: *mut UErrorCode);
-    pub fn ucol_getEquivalentReorderCodes_57(reorderCode: int32_t,
-                                             dest: *mut int32_t,
-                                             destCapacity: int32_t,
-                                             pErrorCode: *mut UErrorCode)
+                                       status: *mut UErrorCode);
+    pub fn ucol_cloneBinary(coll: *const UCollator, buffer: *mut uint8_t,
+                            capacity: int32_t, status: *mut UErrorCode)
      -> int32_t;
-    pub fn ucol_getDisplayName_57(objLoc: *const ::std::os::raw::c_char,
-                                  dispLoc: *const ::std::os::raw::c_char,
-                                  result: *mut UChar, resultLength: int32_t,
-                                  status: *mut UErrorCode) -> int32_t;
-    pub fn ucol_getAvailable_57(localeIndex: int32_t)
-     -> *const ::std::os::raw::c_char;
-    pub fn ucol_countAvailable_57() -> int32_t;
-    pub fn ucol_openAvailableLocales_57(status: *mut UErrorCode)
-     -> *mut UEnumeration;
-    pub fn ucol_getKeywords_57(status: *mut UErrorCode) -> *mut UEnumeration;
-    pub fn ucol_getKeywordValues_57(keyword: *const ::std::os::raw::c_char,
-                                    status: *mut UErrorCode)
-     -> *mut UEnumeration;
-    pub fn ucol_getKeywordValuesForLocale_57(key:
-                                                 *const ::std::os::raw::c_char,
-                                             locale:
-                                                 *const ::std::os::raw::c_char,
-                                             commonlyUsed: UBool,
-                                             status: *mut UErrorCode)
-     -> *mut UEnumeration;
-    pub fn ucol_getFunctionalEquivalent_57(result:
-                                               *mut ::std::os::raw::c_char,
-                                           resultCapacity: int32_t,
-                                           keyword:
-                                               *const ::std::os::raw::c_char,
-                                           locale:
-                                               *const ::std::os::raw::c_char,
-                                           isAvailable: *mut UBool,
-                                           status: *mut UErrorCode)
-     -> int32_t;
-    pub fn ucol_getRules_57(coll: *const UCollator, length: *mut int32_t)
-     -> *const UChar;
-    pub fn ucol_getShortDefinitionString_57(coll: *const UCollator,
-                                            locale:
-                                                *const ::std::os::raw::c_char,
-                                            buffer:
-                                                *mut ::std::os::raw::c_char,
-                                            capacity: int32_t,
-                                            status: *mut UErrorCode)
-     -> int32_t;
-    pub fn ucol_normalizeShortDefinitionString_57(source:
-                                                      *const ::std::os::raw::c_char,
-                                                  destination:
-                                                      *mut ::std::os::raw::c_char,
-                                                  capacity: int32_t,
-                                                  parseError:
-                                                      *mut UParseError,
-                                                  status: *mut UErrorCode)
-     -> int32_t;
-    pub fn ucol_getSortKey_57(coll: *const UCollator, source: *const UChar,
-                              sourceLength: int32_t, result: *mut uint8_t,
-                              resultLength: int32_t) -> int32_t;
-    pub fn ucol_nextSortKeyPart_57(coll: *const UCollator,
-                                   iter: *mut UCharIterator,
-                                   state: *mut uint32_t, dest: *mut uint8_t,
-                                   count: int32_t, status: *mut UErrorCode)
-     -> int32_t;
-    pub fn ucol_getBound_57(source: *const uint8_t, sourceLength: int32_t,
-                            boundType: UColBoundMode, noOfLevels: uint32_t,
-                            result: *mut uint8_t, resultLength: int32_t,
-                            status: *mut UErrorCode) -> int32_t;
-    pub fn ucol_getVersion_57(coll: *const UCollator, info: UVersionInfo);
-    pub fn ucol_getUCAVersion_57(coll: *const UCollator, info: UVersionInfo);
-    pub fn ucol_mergeSortkeys_57(src1: *const uint8_t, src1Length: int32_t,
-                                 src2: *const uint8_t, src2Length: int32_t,
-                                 dest: *mut uint8_t, destCapacity: int32_t)
-     -> int32_t;
-    pub fn ucol_setAttribute_57(coll: *mut UCollator, attr: UColAttribute,
-                                value: UColAttributeValue,
-                                status: *mut UErrorCode);
-    pub fn ucol_getAttribute_57(coll: *const UCollator, attr: UColAttribute,
-                                status: *mut UErrorCode)
-     -> UColAttributeValue;
-    pub fn ucol_setMaxVariable_57(coll: *mut UCollator,
-                                  group: UColReorderCode,
-                                  pErrorCode: *mut UErrorCode);
-    pub fn ucol_getMaxVariable_57(coll: *const UCollator) -> UColReorderCode;
-    pub fn ucol_setVariableTop_57(coll: *mut UCollator, varTop: *const UChar,
-                                  len: int32_t, status: *mut UErrorCode)
-     -> uint32_t;
-    pub fn ucol_getVariableTop_57(coll: *const UCollator,
-                                  status: *mut UErrorCode) -> uint32_t;
-    pub fn ucol_restoreVariableTop_57(coll: *mut UCollator, varTop: uint32_t,
-                                      status: *mut UErrorCode);
-    pub fn ucol_safeClone_57(coll: *const UCollator,
-                             stackBuffer: *mut ::std::os::raw::c_void,
-                             pBufferSize: *mut int32_t,
-                             status: *mut UErrorCode) -> *mut UCollator;
-    pub fn ucol_getRulesEx_57(coll: *const UCollator, delta: UColRuleOption,
-                              buffer: *mut UChar, bufferLen: int32_t)
-     -> int32_t;
-    pub fn ucol_getLocale_57(coll: *const UCollator,
-                             type_: ULocDataLocaleType,
-                             status: *mut UErrorCode)
-     -> *const ::std::os::raw::c_char;
-    pub fn ucol_getLocaleByType_57(coll: *const UCollator,
-                                   type_: ULocDataLocaleType,
-                                   status: *mut UErrorCode)
-     -> *const ::std::os::raw::c_char;
-    pub fn ucol_getTailoredSet_57(coll: *const UCollator,
-                                  status: *mut UErrorCode) -> *mut USet;
-    pub fn ucol_getUnsafeSet_57(coll: *const UCollator, unsafe_: *mut USet,
-                                status: *mut UErrorCode) -> int32_t;
-    pub fn ucol_prepareShortStringOpen_57(definition:
-                                              *const ::std::os::raw::c_char,
-                                          forceDefaults: UBool,
-                                          parseError: *mut UParseError,
-                                          status: *mut UErrorCode);
-    pub fn ucol_cloneBinary_57(coll: *const UCollator, buffer: *mut uint8_t,
-                               capacity: int32_t, status: *mut UErrorCode)
-     -> int32_t;
-    pub fn ucol_openBinary_57(bin: *const uint8_t, length: int32_t,
-                              base: *const UCollator, status: *mut UErrorCode)
+    pub fn ucol_openBinary(bin: *const uint8_t, length: int32_t,
+                           base: *const UCollator, status: *mut UErrorCode)
      -> *mut UCollator;
 }

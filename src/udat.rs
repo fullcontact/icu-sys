@@ -103,10 +103,8 @@ pub enum UDateFormatField {
     UDAT_TIMEZONE_ISO_FIELD = 32,
     UDAT_TIMEZONE_ISO_LOCAL_FIELD = 33,
     UDAT_RELATED_YEAR_FIELD = 34,
-    UDAT_AM_PM_MIDNIGHT_NOON_FIELD = 35,
-    UDAT_FLEXIBLE_DAY_PERIOD_FIELD = 36,
-    UDAT_TIME_SEPARATOR_FIELD = 37,
-    UDAT_FIELD_COUNT = 38,
+    UDAT_TIME_SEPARATOR_FIELD = 35,
+    UDAT_FIELD_COUNT = 36,
 }
 #[derive(Copy, Clone)]
 #[repr(u32)]
@@ -114,7 +112,7 @@ pub enum UDateFormatField {
 pub enum UDateFormatBooleanAttribute {
     UDAT_PARSE_ALLOW_WHITESPACE = 0,
     UDAT_PARSE_ALLOW_NUMERIC = 1,
-    UDAT_PARSE_PARTIAL_LITERAL_MATCH = 2,
+    UDAT_PARSE_PARTIAL_MATCH = 2,
     UDAT_PARSE_MULTIPLE_PATTERNS_FOR_MATCH = 3,
     UDAT_BOOLEAN_ATTRIBUTE_COUNT = 4,
 }
@@ -163,125 +161,117 @@ pub type UDateFormatOpener =
                                                patternLength: int32_t,
                                                status: *mut UErrorCode)
                               -> *mut UDateFormat>;
-#[link(name = "icuuc", kind = "dylib")]
-#[link(name = "icudata", kind = "dylib")]
+#[link(name = "icuuc", kind = "static")]
+#[link(name = "icudata", kind = "static")]
 extern "C" {
-    pub fn udat_toCalendarDateField_57(field: UDateFormatField)
+    pub fn udat_toCalendarDateField(field: UDateFormatField)
      -> UCalendarDateFields;
-    pub fn udat_open_57(timeStyle: UDateFormatStyle,
-                        dateStyle: UDateFormatStyle,
-                        locale: *const ::std::os::raw::c_char,
-                        tzID: *const UChar, tzIDLength: int32_t,
-                        pattern: *const UChar, patternLength: int32_t,
-                        status: *mut UErrorCode) -> *mut UDateFormat;
-    pub fn udat_close_57(format: *mut UDateFormat);
-    pub fn udat_getBooleanAttribute_57(fmt: *const UDateFormat,
-                                       attr: UDateFormatBooleanAttribute,
-                                       status: *mut UErrorCode) -> UBool;
-    pub fn udat_setBooleanAttribute_57(fmt: *mut UDateFormat,
-                                       attr: UDateFormatBooleanAttribute,
-                                       newValue: UBool,
-                                       status: *mut UErrorCode);
-    pub fn udat_clone_57(fmt: *const UDateFormat, status: *mut UErrorCode)
+    pub fn udat_open(timeStyle: UDateFormatStyle, dateStyle: UDateFormatStyle,
+                     locale: *const ::std::os::raw::c_char,
+                     tzID: *const UChar, tzIDLength: int32_t,
+                     pattern: *const UChar, patternLength: int32_t,
+                     status: *mut UErrorCode) -> *mut UDateFormat;
+    pub fn udat_close(format: *mut UDateFormat);
+    pub fn udat_getBooleanAttribute(fmt: *const UDateFormat,
+                                    attr: UDateFormatBooleanAttribute,
+                                    status: *mut UErrorCode) -> UBool;
+    pub fn udat_setBooleanAttribute(fmt: *mut UDateFormat,
+                                    attr: UDateFormatBooleanAttribute,
+                                    newValue: UBool, status: *mut UErrorCode);
+    pub fn udat_clone(fmt: *const UDateFormat, status: *mut UErrorCode)
      -> *mut UDateFormat;
-    pub fn udat_format_57(format: *const UDateFormat, dateToFormat: UDate,
-                          result: *mut UChar, resultLength: int32_t,
-                          position: *mut UFieldPosition,
-                          status: *mut UErrorCode) -> int32_t;
-    pub fn udat_formatCalendar_57(format: *const UDateFormat,
-                                  calendar: *mut UCalendar,
-                                  result: *mut UChar, capacity: int32_t,
-                                  position: *mut UFieldPosition,
-                                  status: *mut UErrorCode) -> int32_t;
-    pub fn udat_formatForFields_57(format: *const UDateFormat,
-                                   dateToFormat: UDate, result: *mut UChar,
-                                   resultLength: int32_t,
-                                   fpositer: *mut UFieldPositionIterator,
-                                   status: *mut UErrorCode) -> int32_t;
-    pub fn udat_formatCalendarForFields_57(format: *const UDateFormat,
-                                           calendar: *mut UCalendar,
-                                           result: *mut UChar,
-                                           capacity: int32_t,
-                                           fpositer:
-                                               *mut UFieldPositionIterator,
-                                           status: *mut UErrorCode)
+    pub fn udat_format(format: *const UDateFormat, dateToFormat: UDate,
+                       result: *mut UChar, resultLength: int32_t,
+                       position: *mut UFieldPosition, status: *mut UErrorCode)
      -> int32_t;
-    pub fn udat_parse_57(format: *const UDateFormat, text: *const UChar,
-                         textLength: int32_t, parsePos: *mut int32_t,
-                         status: *mut UErrorCode) -> UDate;
-    pub fn udat_parseCalendar_57(format: *const UDateFormat,
-                                 calendar: *mut UCalendar, text: *const UChar,
-                                 textLength: int32_t, parsePos: *mut int32_t,
-                                 status: *mut UErrorCode);
-    pub fn udat_isLenient_57(fmt: *const UDateFormat) -> UBool;
-    pub fn udat_setLenient_57(fmt: *mut UDateFormat, isLenient: UBool);
-    pub fn udat_getCalendar_57(fmt: *const UDateFormat) -> *const UCalendar;
-    pub fn udat_setCalendar_57(fmt: *mut UDateFormat,
-                               calendarToSet: *const UCalendar);
-    pub fn udat_getNumberFormat_57(fmt: *const UDateFormat)
-     -> *const UNumberFormat;
-    pub fn udat_getNumberFormatForField_57(fmt: *const UDateFormat,
-                                           field: UChar)
-     -> *const UNumberFormat;
-    pub fn udat_adoptNumberFormatForFields_57(fmt: *mut UDateFormat,
-                                              fields: *const UChar,
-                                              numberFormatToSet:
-                                                  *mut UNumberFormat,
-                                              status: *mut UErrorCode);
-    pub fn udat_setNumberFormat_57(fmt: *mut UDateFormat,
-                                   numberFormatToSet: *const UNumberFormat);
-    pub fn udat_adoptNumberFormat_57(fmt: *mut UDateFormat,
-                                     numberFormatToAdopt: *mut UNumberFormat);
-    pub fn udat_getAvailable_57(localeIndex: int32_t)
-     -> *const ::std::os::raw::c_char;
-    pub fn udat_countAvailable_57() -> int32_t;
-    pub fn udat_get2DigitYearStart_57(fmt: *const UDateFormat,
-                                      status: *mut UErrorCode) -> UDate;
-    pub fn udat_set2DigitYearStart_57(fmt: *mut UDateFormat, d: UDate,
-                                      status: *mut UErrorCode);
-    pub fn udat_toPattern_57(fmt: *const UDateFormat, localized: UBool,
-                             result: *mut UChar, resultLength: int32_t,
-                             status: *mut UErrorCode) -> int32_t;
-    pub fn udat_applyPattern_57(format: *mut UDateFormat, localized: UBool,
-                                pattern: *const UChar,
-                                patternLength: int32_t);
-    pub fn udat_getSymbols_57(fmt: *const UDateFormat,
-                              type_: UDateFormatSymbolType,
-                              symbolIndex: int32_t, result: *mut UChar,
-                              resultLength: int32_t, status: *mut UErrorCode)
-     -> int32_t;
-    pub fn udat_countSymbols_57(fmt: *const UDateFormat,
-                                type_: UDateFormatSymbolType) -> int32_t;
-    pub fn udat_setSymbols_57(format: *mut UDateFormat,
-                              type_: UDateFormatSymbolType,
-                              symbolIndex: int32_t, value: *mut UChar,
-                              valueLength: int32_t, status: *mut UErrorCode);
-    pub fn udat_getLocaleByType_57(fmt: *const UDateFormat,
-                                   type_: ULocDataLocaleType,
-                                   status: *mut UErrorCode)
-     -> *const ::std::os::raw::c_char;
-    pub fn udat_setContext_57(fmt: *mut UDateFormat, value: UDisplayContext,
+    pub fn udat_formatCalendar(format: *const UDateFormat,
+                               calendar: *mut UCalendar, result: *mut UChar,
+                               capacity: int32_t,
+                               position: *mut UFieldPosition,
+                               status: *mut UErrorCode) -> int32_t;
+    pub fn udat_formatForFields(format: *const UDateFormat,
+                                dateToFormat: UDate, result: *mut UChar,
+                                resultLength: int32_t,
+                                fpositer: *mut UFieldPositionIterator,
+                                status: *mut UErrorCode) -> int32_t;
+    pub fn udat_formatCalendarForFields(format: *const UDateFormat,
+                                        calendar: *mut UCalendar,
+                                        result: *mut UChar, capacity: int32_t,
+                                        fpositer: *mut UFieldPositionIterator,
+                                        status: *mut UErrorCode) -> int32_t;
+    pub fn udat_parse(format: *const UDateFormat, text: *const UChar,
+                      textLength: int32_t, parsePos: *mut int32_t,
+                      status: *mut UErrorCode) -> UDate;
+    pub fn udat_parseCalendar(format: *const UDateFormat,
+                              calendar: *mut UCalendar, text: *const UChar,
+                              textLength: int32_t, parsePos: *mut int32_t,
                               status: *mut UErrorCode);
-    pub fn udat_getContext_57(fmt: *const UDateFormat,
-                              type_: UDisplayContextType,
-                              status: *mut UErrorCode) -> UDisplayContext;
-    pub fn udat_toPatternRelativeDate_57(fmt: *const UDateFormat,
-                                         result: *mut UChar,
-                                         resultLength: int32_t,
-                                         status: *mut UErrorCode) -> int32_t;
-    pub fn udat_toPatternRelativeTime_57(fmt: *const UDateFormat,
-                                         result: *mut UChar,
-                                         resultLength: int32_t,
-                                         status: *mut UErrorCode) -> int32_t;
-    pub fn udat_applyPatternRelative_57(format: *mut UDateFormat,
-                                        datePattern: *const UChar,
-                                        datePatternLength: int32_t,
-                                        timePattern: *const UChar,
-                                        timePatternLength: int32_t,
-                                        status: *mut UErrorCode);
-    pub fn udat_registerOpener_57(opener: UDateFormatOpener,
-                                  status: *mut UErrorCode);
-    pub fn udat_unregisterOpener_57(opener: UDateFormatOpener,
-                                    status: *mut UErrorCode)
+    pub fn udat_isLenient(fmt: *const UDateFormat) -> UBool;
+    pub fn udat_setLenient(fmt: *mut UDateFormat, isLenient: UBool);
+    pub fn udat_getCalendar(fmt: *const UDateFormat) -> *const UCalendar;
+    pub fn udat_setCalendar(fmt: *mut UDateFormat,
+                            calendarToSet: *const UCalendar);
+    pub fn udat_getNumberFormat(fmt: *const UDateFormat)
+     -> *const UNumberFormat;
+    pub fn udat_getNumberFormatForField(fmt: *const UDateFormat, field: UChar)
+     -> *const UNumberFormat;
+    pub fn udat_adoptNumberFormatForFields(fmt: *mut UDateFormat,
+                                           fields: *const UChar,
+                                           numberFormatToSet:
+                                               *mut UNumberFormat,
+                                           status: *mut UErrorCode);
+    pub fn udat_setNumberFormat(fmt: *mut UDateFormat,
+                                numberFormatToSet: *const UNumberFormat);
+    pub fn udat_adoptNumberFormat(fmt: *mut UDateFormat,
+                                  numberFormatToAdopt: *mut UNumberFormat);
+    pub fn udat_getAvailable(localeIndex: int32_t)
+     -> *const ::std::os::raw::c_char;
+    pub fn udat_countAvailable() -> int32_t;
+    pub fn udat_get2DigitYearStart(fmt: *const UDateFormat,
+                                   status: *mut UErrorCode) -> UDate;
+    pub fn udat_set2DigitYearStart(fmt: *mut UDateFormat, d: UDate,
+                                   status: *mut UErrorCode);
+    pub fn udat_toPattern(fmt: *const UDateFormat, localized: UBool,
+                          result: *mut UChar, resultLength: int32_t,
+                          status: *mut UErrorCode) -> int32_t;
+    pub fn udat_applyPattern(format: *mut UDateFormat, localized: UBool,
+                             pattern: *const UChar, patternLength: int32_t);
+    pub fn udat_getSymbols(fmt: *const UDateFormat,
+                           type_: UDateFormatSymbolType, symbolIndex: int32_t,
+                           result: *mut UChar, resultLength: int32_t,
+                           status: *mut UErrorCode) -> int32_t;
+    pub fn udat_countSymbols(fmt: *const UDateFormat,
+                             type_: UDateFormatSymbolType) -> int32_t;
+    pub fn udat_setSymbols(format: *mut UDateFormat,
+                           type_: UDateFormatSymbolType, symbolIndex: int32_t,
+                           value: *mut UChar, valueLength: int32_t,
+                           status: *mut UErrorCode);
+    pub fn udat_getLocaleByType(fmt: *const UDateFormat,
+                                type_: ULocDataLocaleType,
+                                status: *mut UErrorCode)
+     -> *const ::std::os::raw::c_char;
+    pub fn udat_setContext(fmt: *mut UDateFormat, value: UDisplayContext,
+                           status: *mut UErrorCode);
+    pub fn udat_getContext(fmt: *const UDateFormat,
+                           type_: UDisplayContextType,
+                           status: *mut UErrorCode) -> UDisplayContext;
+    pub fn udat_toPatternRelativeDate(fmt: *const UDateFormat,
+                                      result: *mut UChar,
+                                      resultLength: int32_t,
+                                      status: *mut UErrorCode) -> int32_t;
+    pub fn udat_toPatternRelativeTime(fmt: *const UDateFormat,
+                                      result: *mut UChar,
+                                      resultLength: int32_t,
+                                      status: *mut UErrorCode) -> int32_t;
+    pub fn udat_applyPatternRelative(format: *mut UDateFormat,
+                                     datePattern: *const UChar,
+                                     datePatternLength: int32_t,
+                                     timePattern: *const UChar,
+                                     timePatternLength: int32_t,
+                                     status: *mut UErrorCode);
+    pub fn udat_registerOpener(opener: UDateFormatOpener,
+                               status: *mut UErrorCode);
+    pub fn udat_unregisterOpener(opener: UDateFormatOpener,
+                                 status: *mut UErrorCode)
      -> UDateFormatOpener;
 }

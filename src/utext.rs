@@ -156,49 +156,46 @@ impl ::std::default::Default for UText {
 #[repr(u32)]
 #[derive(Debug)]
 pub enum Enum_utext2 { UTEXT_MAGIC = 878368812, }
-#[link(name = "icuuc", kind = "dylib")]
-#[link(name = "icudata", kind = "dylib")]
+#[link(name = "icuuc", kind = "static")]
+#[link(name = "icudata", kind = "static")]
 extern "C" {
-    pub fn utext_close_57(ut: *mut UText) -> *mut UText;
-    pub fn utext_openUTF8_57(ut: *mut UText, s: *const ::std::os::raw::c_char,
-                             length: int64_t, status: *mut UErrorCode)
+    pub fn utext_close(ut: *mut UText) -> *mut UText;
+    pub fn utext_openUTF8(ut: *mut UText, s: *const ::std::os::raw::c_char,
+                          length: int64_t, status: *mut UErrorCode)
      -> *mut UText;
-    pub fn utext_openUChars_57(ut: *mut UText, s: *const UChar,
-                               length: int64_t, status: *mut UErrorCode)
+    pub fn utext_openUChars(ut: *mut UText, s: *const UChar, length: int64_t,
+                            status: *mut UErrorCode) -> *mut UText;
+    pub fn utext_clone(dest: *mut UText, src: *const UText, deep: UBool,
+                       readOnly: UBool, status: *mut UErrorCode)
      -> *mut UText;
-    pub fn utext_clone_57(dest: *mut UText, src: *const UText, deep: UBool,
-                          readOnly: UBool, status: *mut UErrorCode)
-     -> *mut UText;
-    pub fn utext_equals_57(a: *const UText, b: *const UText) -> UBool;
-    pub fn utext_nativeLength_57(ut: *mut UText) -> int64_t;
-    pub fn utext_isLengthExpensive_57(ut: *const UText) -> UBool;
-    pub fn utext_char32At_57(ut: *mut UText, nativeIndex: int64_t) -> UChar32;
-    pub fn utext_current32_57(ut: *mut UText) -> UChar32;
-    pub fn utext_next32_57(ut: *mut UText) -> UChar32;
-    pub fn utext_previous32_57(ut: *mut UText) -> UChar32;
-    pub fn utext_next32From_57(ut: *mut UText, nativeIndex: int64_t)
+    pub fn utext_equals(a: *const UText, b: *const UText) -> UBool;
+    pub fn utext_nativeLength(ut: *mut UText) -> int64_t;
+    pub fn utext_isLengthExpensive(ut: *const UText) -> UBool;
+    pub fn utext_char32At(ut: *mut UText, nativeIndex: int64_t) -> UChar32;
+    pub fn utext_current32(ut: *mut UText) -> UChar32;
+    pub fn utext_next32(ut: *mut UText) -> UChar32;
+    pub fn utext_previous32(ut: *mut UText) -> UChar32;
+    pub fn utext_next32From(ut: *mut UText, nativeIndex: int64_t) -> UChar32;
+    pub fn utext_previous32From(ut: *mut UText, nativeIndex: int64_t)
      -> UChar32;
-    pub fn utext_previous32From_57(ut: *mut UText, nativeIndex: int64_t)
-     -> UChar32;
-    pub fn utext_getNativeIndex_57(ut: *const UText) -> int64_t;
-    pub fn utext_setNativeIndex_57(ut: *mut UText, nativeIndex: int64_t);
-    pub fn utext_moveIndex32_57(ut: *mut UText, delta: int32_t) -> UBool;
-    pub fn utext_getPreviousNativeIndex_57(ut: *mut UText) -> int64_t;
-    pub fn utext_extract_57(ut: *mut UText, nativeStart: int64_t,
-                            nativeLimit: int64_t, dest: *mut UChar,
-                            destCapacity: int32_t, status: *mut UErrorCode)
+    pub fn utext_getNativeIndex(ut: *const UText) -> int64_t;
+    pub fn utext_setNativeIndex(ut: *mut UText, nativeIndex: int64_t);
+    pub fn utext_moveIndex32(ut: *mut UText, delta: int32_t) -> UBool;
+    pub fn utext_getPreviousNativeIndex(ut: *mut UText) -> int64_t;
+    pub fn utext_extract(ut: *mut UText, nativeStart: int64_t,
+                         nativeLimit: int64_t, dest: *mut UChar,
+                         destCapacity: int32_t, status: *mut UErrorCode)
      -> int32_t;
-    pub fn utext_isWritable_57(ut: *const UText) -> UBool;
-    pub fn utext_hasMetaData_57(ut: *const UText) -> UBool;
-    pub fn utext_replace_57(ut: *mut UText, nativeStart: int64_t,
-                            nativeLimit: int64_t,
-                            replacementText: *const UChar,
-                            replacementLength: int32_t,
-                            status: *mut UErrorCode) -> int32_t;
-    pub fn utext_copy_57(ut: *mut UText, nativeStart: int64_t,
-                         nativeLimit: int64_t, destIndex: int64_t,
-                         move_: UBool, status: *mut UErrorCode);
-    pub fn utext_freeze_57(ut: *mut UText);
-    pub fn utext_setup_57(ut: *mut UText, extraSpace: int32_t,
-                          status: *mut UErrorCode) -> *mut UText;
+    pub fn utext_isWritable(ut: *const UText) -> UBool;
+    pub fn utext_hasMetaData(ut: *const UText) -> UBool;
+    pub fn utext_replace(ut: *mut UText, nativeStart: int64_t,
+                         nativeLimit: int64_t, replacementText: *const UChar,
+                         replacementLength: int32_t, status: *mut UErrorCode)
+     -> int32_t;
+    pub fn utext_copy(ut: *mut UText, nativeStart: int64_t,
+                      nativeLimit: int64_t, destIndex: int64_t, move_: UBool,
+                      status: *mut UErrorCode);
+    pub fn utext_freeze(ut: *mut UText);
+    pub fn utext_setup(ut: *mut UText, extraSpace: int32_t,
+                       status: *mut UErrorCode) -> *mut UText;
 }

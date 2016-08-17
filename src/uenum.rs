@@ -45,25 +45,25 @@ use ufieldpositer::*;
 use ucnv_err::*;
 
 pub enum UEnumeration { }
-#[link(name = "icuuc", kind = "dylib")]
-#[link(name = "icudata", kind = "dylib")]
+#[link(name = "icuuc", kind = "static")]
+#[link(name = "icudata", kind = "static")]
 extern "C" {
-    pub fn uenum_close_57(en: *mut UEnumeration);
-    pub fn uenum_count_57(en: *mut UEnumeration, status: *mut UErrorCode)
+    pub fn uenum_close(en: *mut UEnumeration);
+    pub fn uenum_count(en: *mut UEnumeration, status: *mut UErrorCode)
      -> int32_t;
-    pub fn uenum_unext_57(en: *mut UEnumeration, resultLength: *mut int32_t,
-                          status: *mut UErrorCode) -> *const UChar;
-    pub fn uenum_next_57(en: *mut UEnumeration, resultLength: *mut int32_t,
-                         status: *mut UErrorCode)
+    pub fn uenum_unext(en: *mut UEnumeration, resultLength: *mut int32_t,
+                       status: *mut UErrorCode) -> *const UChar;
+    pub fn uenum_next(en: *mut UEnumeration, resultLength: *mut int32_t,
+                      status: *mut UErrorCode)
      -> *const ::std::os::raw::c_char;
-    pub fn uenum_reset_57(en: *mut UEnumeration, status: *mut UErrorCode);
-    pub fn uenum_openUCharStringsEnumeration_57(strings: *mut *const UChar,
-                                                count: int32_t,
-                                                ec: *mut UErrorCode)
+    pub fn uenum_reset(en: *mut UEnumeration, status: *mut UErrorCode);
+    pub fn uenum_openUCharStringsEnumeration(strings: *mut *const UChar,
+                                             count: int32_t,
+                                             ec: *mut UErrorCode)
      -> *mut UEnumeration;
-    pub fn uenum_openCharStringsEnumeration_57(strings:
-                                                   *mut *const ::std::os::raw::c_char,
-                                               count: int32_t,
-                                               ec: *mut UErrorCode)
+    pub fn uenum_openCharStringsEnumeration(strings:
+                                                *mut *const ::std::os::raw::c_char,
+                                            count: int32_t,
+                                            ec: *mut UErrorCode)
      -> *mut UEnumeration;
 }
