@@ -46,7 +46,8 @@ use ucnv_err::*;
 
 pub type UVersionInfo = [uint8_t; 4usize];
 #[link(name = "icuuc", kind = "static")]
-#[link(name = "icudata", kind = "static")]
+#[link(name = "icudata", kind = "static")] 
+#[link(name = "icui18n", kind = "static")]
 extern "C" {
     pub fn u_versionFromString(versionArray: UVersionInfo,
                                versionString: *const ::std::os::raw::c_char);

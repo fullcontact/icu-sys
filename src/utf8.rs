@@ -45,12 +45,14 @@ use ufieldpositer::*;
 use ucnv_err::*;
 
 #[link(name = "icuuc", kind = "static")]
-#[link(name = "icudata", kind = "static")]
+#[link(name = "icudata", kind = "static")] 
+#[link(name = "icui18n", kind = "static")]
 extern "C" {
     pub static mut utf8_countTrailBytes: [uint8_t; 256usize];
 }
 #[link(name = "icuuc", kind = "static")]
-#[link(name = "icudata", kind = "static")]
+#[link(name = "icudata", kind = "static")] 
+#[link(name = "icui18n", kind = "static")]
 extern "C" {
     pub fn utf8_nextCharSafeBody(s: *const uint8_t, pi: *mut int32_t,
                                  length: int32_t, c: UChar32, strict: UBool)

@@ -125,7 +125,8 @@ pub enum UColBoundMode {
     UCOL_BOUND_VALUE_COUNT = 3,
 }
 #[link(name = "icuuc", kind = "static")]
-#[link(name = "icudata", kind = "static")]
+#[link(name = "icudata", kind = "static")] 
+#[link(name = "icui18n", kind = "static")]
 extern "C" {
     pub fn ucol_open(loc: *const ::std::os::raw::c_char,
                      status: *mut UErrorCode) -> *mut UCollator;

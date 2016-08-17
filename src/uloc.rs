@@ -72,7 +72,8 @@ pub enum UAcceptResult {
     ULOC_ACCEPT_FALLBACK = 2,
 }
 #[link(name = "icuuc", kind = "static")]
-#[link(name = "icudata", kind = "static")]
+#[link(name = "icudata", kind = "static")] 
+#[link(name = "icui18n", kind = "static")]
 extern "C" {
     pub fn uloc_getDefault() -> *const ::std::os::raw::c_char;
     pub fn uloc_setDefault(localeID: *const ::std::os::raw::c_char,

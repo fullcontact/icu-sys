@@ -82,7 +82,8 @@ pub type UBiDiClassCallback =
                                                    *const ::std::os::raw::c_void,
                                                c: UChar32) -> UCharDirection>;
 #[link(name = "icuuc", kind = "static")]
-#[link(name = "icudata", kind = "static")]
+#[link(name = "icudata", kind = "static")] 
+#[link(name = "icui18n", kind = "static")]
 extern "C" {
     pub fn ubidi_open() -> *mut UBiDi;
     pub fn ubidi_openSized(maxLength: int32_t, maxRunCount: int32_t,

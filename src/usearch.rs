@@ -67,7 +67,8 @@ pub enum USearchAttributeValue {
     USEARCH_ATTRIBUTE_VALUE_COUNT = 5,
 }
 #[link(name = "icuuc", kind = "static")]
-#[link(name = "icudata", kind = "static")]
+#[link(name = "icudata", kind = "static")] 
+#[link(name = "icui18n", kind = "static")]
 extern "C" {
     pub fn usearch_open(pattern: *const UChar, patternlength: int32_t,
                         text: *const UChar, textlength: int32_t,

@@ -31,9 +31,10 @@ for module in $MODULES; do
       -- $FLAGS
     (
         # bindgen doesn't allow passing --link more than once, but we need to
-        # link against both icuuc and icudata.
+        # link against all three libraries.
         echo '/#\\[link/a \\
-#[link(name = "icudata", kind = "static")]
+#[link(name = "icudata", kind = "static")] \
+#[link(name = "icui18n", kind = "static")]
 ;'
         echo "8i \\"
         # Erase the rust namespacing

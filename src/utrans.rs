@@ -62,7 +62,8 @@ impl ::std::default::Default for UTransPosition {
     fn default() -> Self { unsafe { ::std::mem::zeroed() } }
 }
 #[link(name = "icuuc", kind = "static")]
-#[link(name = "icudata", kind = "static")]
+#[link(name = "icudata", kind = "static")] 
+#[link(name = "icui18n", kind = "static")]
 extern "C" {
     pub fn utrans_openU(id: *const UChar, idLength: int32_t,
                         dir: UTransDirection, rules: *const UChar,

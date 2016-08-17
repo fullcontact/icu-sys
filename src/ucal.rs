@@ -180,7 +180,8 @@ pub enum UTimeZoneTransitionType {
     UCAL_TZ_TRANSITION_PREVIOUS_INCLUSIVE = 3,
 }
 #[link(name = "icuuc", kind = "static")]
-#[link(name = "icudata", kind = "static")]
+#[link(name = "icudata", kind = "static")] 
+#[link(name = "icui18n", kind = "static")]
 extern "C" {
     pub fn ucal_openTimeZoneIDEnumeration(zoneType: USystemTimeZoneType,
                                           region:

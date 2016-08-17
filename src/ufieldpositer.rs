@@ -46,7 +46,8 @@ use ucnv_err::*;
 
 pub enum UFieldPositionIterator { }
 #[link(name = "icuuc", kind = "static")]
-#[link(name = "icudata", kind = "static")]
+#[link(name = "icudata", kind = "static")] 
+#[link(name = "icui18n", kind = "static")]
 extern "C" {
     pub fn ufieldpositer_open(status: *mut UErrorCode)
      -> *mut UFieldPositionIterator;

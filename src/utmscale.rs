@@ -78,7 +78,8 @@ pub enum UTimeScaleValue {
     UTSV_MAX_SCALE_VALUE = 11,
 }
 #[link(name = "icuuc", kind = "static")]
-#[link(name = "icudata", kind = "static")]
+#[link(name = "icudata", kind = "static")] 
+#[link(name = "icui18n", kind = "static")]
 extern "C" {
     pub fn utmscale_getTimeScaleValue(timeScale: UDateTimeScale,
                                       value: UTimeScaleValue,

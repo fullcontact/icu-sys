@@ -91,7 +91,8 @@ pub enum USentenceBreakTag {
     UBRK_SENTENCE_SEP_LIMIT = 200,
 }
 #[link(name = "icuuc", kind = "static")]
-#[link(name = "icudata", kind = "static")]
+#[link(name = "icudata", kind = "static")] 
+#[link(name = "icui18n", kind = "static")]
 extern "C" {
     pub fn ubrk_open(type_: UBreakIteratorType,
                      locale: *const ::std::os::raw::c_char,

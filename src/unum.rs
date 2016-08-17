@@ -212,7 +212,8 @@ pub enum UNumberFormatSymbol {
     UNUM_FORMAT_SYMBOL_COUNT = 28,
 }
 #[link(name = "icuuc", kind = "static")]
-#[link(name = "icudata", kind = "static")]
+#[link(name = "icudata", kind = "static")] 
+#[link(name = "icui18n", kind = "static")]
 extern "C" {
     pub fn unum_open(style: UNumberFormatStyle, pattern: *const UChar,
                      patternLength: int32_t,

@@ -89,7 +89,8 @@ impl ::std::default::Default for UConverterToUnicodeArgs {
     fn default() -> Self { unsafe { ::std::mem::zeroed() } }
 }
 #[link(name = "icuuc", kind = "static")]
-#[link(name = "icudata", kind = "static")]
+#[link(name = "icudata", kind = "static")] 
+#[link(name = "icui18n", kind = "static")]
 extern "C" {
     pub fn UCNV_FROM_U_CALLBACK_STOP(context: *const ::std::os::raw::c_void,
                                      fromUArgs:

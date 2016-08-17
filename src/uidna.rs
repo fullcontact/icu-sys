@@ -93,7 +93,8 @@ pub enum Enum_uidna2 {
     UIDNA_ERROR_CONTEXTO_DIGITS = 16384,
 }
 #[link(name = "icuuc", kind = "static")]
-#[link(name = "icudata", kind = "static")]
+#[link(name = "icudata", kind = "static")] 
+#[link(name = "icui18n", kind = "static")]
 extern "C" {
     pub fn uidna_openUTS46(options: uint32_t, pErrorCode: *mut UErrorCode)
      -> *mut UIDNA;

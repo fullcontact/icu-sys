@@ -69,7 +69,8 @@ pub enum UResType {
     URES_LIMIT = 16,
 }
 #[link(name = "icuuc", kind = "static")]
-#[link(name = "icudata", kind = "static")]
+#[link(name = "icudata", kind = "static")] 
+#[link(name = "icui18n", kind = "static")]
 extern "C" {
     pub fn ures_open(packageName: *const ::std::os::raw::c_char,
                      locale: *const ::std::os::raw::c_char,

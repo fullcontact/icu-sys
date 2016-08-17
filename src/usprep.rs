@@ -65,7 +65,8 @@ pub enum UStringPrepProfileType {
     USPREP_RFC4518_LDAP_CI = 13,
 }
 #[link(name = "icuuc", kind = "static")]
-#[link(name = "icudata", kind = "static")]
+#[link(name = "icudata", kind = "static")] 
+#[link(name = "icui18n", kind = "static")]
 extern "C" {
     pub fn usprep_open(path: *const ::std::os::raw::c_char,
                        fileName: *const ::std::os::raw::c_char,

@@ -220,7 +220,8 @@ pub enum UErrorCode {
     U_PLUGIN_ERROR_LIMIT = 66818,
 }
 #[link(name = "icuuc", kind = "static")]
-#[link(name = "icudata", kind = "static")]
+#[link(name = "icudata", kind = "static")] 
+#[link(name = "icui18n", kind = "static")]
 extern "C" {
     pub fn u_errorName(code: UErrorCode) -> *const ::std::os::raw::c_char;
 }

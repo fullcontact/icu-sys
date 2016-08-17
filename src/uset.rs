@@ -79,7 +79,8 @@ impl ::std::default::Default for USerializedSet {
     fn default() -> Self { unsafe { ::std::mem::zeroed() } }
 }
 #[link(name = "icuuc", kind = "static")]
-#[link(name = "icudata", kind = "static")]
+#[link(name = "icudata", kind = "static")] 
+#[link(name = "icui18n", kind = "static")]
 extern "C" {
     pub fn uset_openEmpty() -> *mut USet;
     pub fn uset_open(start: UChar32, end: UChar32) -> *mut USet;

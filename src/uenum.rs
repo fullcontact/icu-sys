@@ -46,7 +46,8 @@ use ucnv_err::*;
 
 pub enum UEnumeration { }
 #[link(name = "icuuc", kind = "static")]
-#[link(name = "icudata", kind = "static")]
+#[link(name = "icudata", kind = "static")] 
+#[link(name = "icui18n", kind = "static")]
 extern "C" {
     pub fn uenum_close(en: *mut UEnumeration);
     pub fn uenum_count(en: *mut UEnumeration, status: *mut UErrorCode)

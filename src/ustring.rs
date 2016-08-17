@@ -50,7 +50,8 @@ pub type UNESCAPE_CHAR_AT =
                                                    *mut ::std::os::raw::c_void)
                               -> UChar>;
 #[link(name = "icuuc", kind = "static")]
-#[link(name = "icudata", kind = "static")]
+#[link(name = "icudata", kind = "static")] 
+#[link(name = "icui18n", kind = "static")]
 extern "C" {
     pub fn u_strlen(s: *const UChar) -> int32_t;
     pub fn u_countChar32(s: *const UChar, length: int32_t) -> int32_t;

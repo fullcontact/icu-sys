@@ -121,7 +121,8 @@ pub enum UConverterUnicodeSet {
     UCNV_SET_COUNT = 2,
 }
 #[link(name = "icuuc", kind = "static")]
-#[link(name = "icudata", kind = "static")]
+#[link(name = "icudata", kind = "static")] 
+#[link(name = "icui18n", kind = "static")]
 extern "C" {
     pub fn ucnv_compareNames(name1: *const ::std::os::raw::c_char,
                              name2: *const ::std::os::raw::c_char)
