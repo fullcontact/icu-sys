@@ -1,0 +1,13 @@
+[package]
+name = "icu-sys"
+version = "0.0.1"
+authors = ["FullContact, Inc"]
+license = "MIT/Apache-2.0"
+readme = "README.md"
+# TODO: Links
+description = """
+Native bindings to the ICU C API.
+"""
+
+[dependencies]
+libc = "0.2.14"
