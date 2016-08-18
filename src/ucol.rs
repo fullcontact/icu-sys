@@ -136,14 +136,14 @@ pub enum UColBoundMode {
 #[link(name = "icui18n", kind = "static")] 
 #[link(name = "stdc++", kind = "dylib")]
 extern "C" {
-    pub fn ucol_open(loc: *const ::std::os::raw::c_char,
-                     status: *mut UErrorCode) -> *mut UCollator;
+    pub fn ucol_open(loc: *const ::libc::c_char, status: *mut UErrorCode)
+     -> *mut UCollator;
     pub fn ucol_openRules(rules: *const UChar, rulesLength: int32_t,
                           normalizationMode: UColAttributeValue,
                           strength: UCollationStrength,
                           parseError: *mut UParseError,
                           status: *mut UErrorCode) -> *mut UCollator;
-    pub fn ucol_openFromShortString(definition: *const ::std::os::raw::c_char,
+    pub fn ucol_openFromShortString(definition: *const ::libc::c_char,
                                     forceDefaults: UBool,
                                     parseError: *mut UParseError,
                                     status: *mut UErrorCode)
@@ -160,9 +160,9 @@ extern "C" {
                         sourceLength: int32_t, target: *const UChar,
                         targetLength: int32_t) -> UCollationResult;
     pub fn ucol_strcollUTF8(coll: *const UCollator,
-                            source: *const ::std::os::raw::c_char,
+                            source: *const ::libc::c_char,
                             sourceLength: int32_t,
-                            target: *const ::std::os::raw::c_char,
+                            target: *const ::libc::c_char,
                             targetLength: int32_t, status: *mut UErrorCode)
      -> UCollationResult;
     pub fn ucol_greater(coll: *const UCollator, source: *const UChar,
@@ -192,44 +192,39 @@ extern "C" {
                                           destCapacity: int32_t,
                                           pErrorCode: *mut UErrorCode)
      -> int32_t;
-    pub fn ucol_getDisplayName(objLoc: *const ::std::os::raw::c_char,
-                               dispLoc: *const ::std::os::raw::c_char,
+    pub fn ucol_getDisplayName(objLoc: *const ::libc::c_char,
+                               dispLoc: *const ::libc::c_char,
                                result: *mut UChar, resultLength: int32_t,
                                status: *mut UErrorCode) -> int32_t;
-    pub fn ucol_getAvailable(localeIndex: int32_t)
-     -> *const ::std::os::raw::c_char;
+    pub fn ucol_getAvailable(localeIndex: int32_t) -> *const ::libc::c_char;
     pub fn ucol_countAvailable() -> int32_t;
     pub fn ucol_openAvailableLocales(status: *mut UErrorCode)
      -> *mut UEnumeration;
     pub fn ucol_getKeywords(status: *mut UErrorCode) -> *mut UEnumeration;
-    pub fn ucol_getKeywordValues(keyword: *const ::std::os::raw::c_char,
+    pub fn ucol_getKeywordValues(keyword: *const ::libc::c_char,
                                  status: *mut UErrorCode)
      -> *mut UEnumeration;
-    pub fn ucol_getKeywordValuesForLocale(key: *const ::std::os::raw::c_char,
-                                          locale:
-                                              *const ::std::os::raw::c_char,
+    pub fn ucol_getKeywordValuesForLocale(key: *const ::libc::c_char,
+                                          locale: *const ::libc::c_char,
                                           commonlyUsed: UBool,
                                           status: *mut UErrorCode)
      -> *mut UEnumeration;
-    pub fn ucol_getFunctionalEquivalent(result: *mut ::std::os::raw::c_char,
+    pub fn ucol_getFunctionalEquivalent(result: *mut ::libc::c_char,
                                         resultCapacity: int32_t,
-                                        keyword:
-                                            *const ::std::os::raw::c_char,
-                                        locale: *const ::std::os::raw::c_char,
+                                        keyword: *const ::libc::c_char,
+                                        locale: *const ::libc::c_char,
                                         isAvailable: *mut UBool,
                                         status: *mut UErrorCode) -> int32_t;
     pub fn ucol_getRules(coll: *const UCollator, length: *mut int32_t)
      -> *const UChar;
     pub fn ucol_getShortDefinitionString(coll: *const UCollator,
-                                         locale:
-                                             *const ::std::os::raw::c_char,
-                                         buffer: *mut ::std::os::raw::c_char,
+                                         locale: *const ::libc::c_char,
+                                         buffer: *mut ::libc::c_char,
                                          capacity: int32_t,
                                          status: *mut UErrorCode) -> int32_t;
-    pub fn ucol_normalizeShortDefinitionString(source:
-                                                   *const ::std::os::raw::c_char,
+    pub fn ucol_normalizeShortDefinitionString(source: *const ::libc::c_char,
                                                destination:
-                                                   *mut ::std::os::raw::c_char,
+                                                   *mut ::libc::c_char,
                                                capacity: int32_t,
                                                parseError: *mut UParseError,
                                                status: *mut UErrorCode)
@@ -268,24 +263,22 @@ extern "C" {
     pub fn ucol_restoreVariableTop(coll: *mut UCollator, varTop: uint32_t,
                                    status: *mut UErrorCode);
     pub fn ucol_safeClone(coll: *const UCollator,
-                          stackBuffer: *mut ::std::os::raw::c_void,
+                          stackBuffer: *mut ::libc::c_void,
                           pBufferSize: *mut int32_t, status: *mut UErrorCode)
      -> *mut UCollator;
     pub fn ucol_getRulesEx(coll: *const UCollator, delta: UColRuleOption,
                            buffer: *mut UChar, bufferLen: int32_t) -> int32_t;
     pub fn ucol_getLocale(coll: *const UCollator, type_: ULocDataLocaleType,
-                          status: *mut UErrorCode)
-     -> *const ::std::os::raw::c_char;
+                          status: *mut UErrorCode) -> *const ::libc::c_char;
     pub fn ucol_getLocaleByType(coll: *const UCollator,
                                 type_: ULocDataLocaleType,
                                 status: *mut UErrorCode)
-     -> *const ::std::os::raw::c_char;
+     -> *const ::libc::c_char;
     pub fn ucol_getTailoredSet(coll: *const UCollator,
                                status: *mut UErrorCode) -> *mut USet;
     pub fn ucol_getUnsafeSet(coll: *const UCollator, unsafe_: *mut USet,
                              status: *mut UErrorCode) -> int32_t;
-    pub fn ucol_prepareShortStringOpen(definition:
-                                           *const ::std::os::raw::c_char,
+    pub fn ucol_prepareShortStringOpen(definition: *const ::libc::c_char,
                                        forceDefaults: UBool,
                                        parseError: *mut UParseError,
                                        status: *mut UErrorCode);

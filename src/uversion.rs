@@ -53,10 +53,10 @@ pub type UVersionInfo = [uint8_t; 4usize];
 #[link(name = "stdc++", kind = "dylib")]
 extern "C" {
     pub fn u_versionFromString(versionArray: UVersionInfo,
-                               versionString: *const ::std::os::raw::c_char);
+                               versionString: *const ::libc::c_char);
     pub fn u_versionFromUString(versionArray: UVersionInfo,
                                 versionString: *const UChar);
     pub fn u_versionToString(versionArray: UVersionInfo,
-                             versionString: *mut ::std::os::raw::c_char);
+                             versionString: *mut ::libc::c_char);
     pub fn u_getVersion(versionArray: UVersionInfo);
 }

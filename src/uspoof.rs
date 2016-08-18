@@ -84,15 +84,15 @@ pub enum URestrictionLevel {
 #[link(name = "stdc++", kind = "dylib")]
 extern "C" {
     pub fn uspoof_open(status: *mut UErrorCode) -> *mut USpoofChecker;
-    pub fn uspoof_openFromSerialized(data: *const ::std::os::raw::c_void,
+    pub fn uspoof_openFromSerialized(data: *const ::libc::c_void,
                                      length: int32_t,
                                      pActualLength: *mut int32_t,
                                      pErrorCode: *mut UErrorCode)
      -> *mut USpoofChecker;
-    pub fn uspoof_openFromSource(confusables: *const ::std::os::raw::c_char,
+    pub fn uspoof_openFromSource(confusables: *const ::libc::c_char,
                                  confusablesLen: int32_t,
                                  confusablesWholeScript:
-                                     *const ::std::os::raw::c_char,
+                                     *const ::libc::c_char,
                                  confusablesWholeScriptLen: int32_t,
                                  errType: *mut int32_t, pe: *mut UParseError,
                                  status: *mut UErrorCode)
@@ -109,12 +109,11 @@ extern "C" {
     pub fn uspoof_getRestrictionLevel(sc: *const USpoofChecker)
      -> URestrictionLevel;
     pub fn uspoof_setAllowedLocales(sc: *mut USpoofChecker,
-                                    localesList:
-                                        *const ::std::os::raw::c_char,
+                                    localesList: *const ::libc::c_char,
                                     status: *mut UErrorCode);
     pub fn uspoof_getAllowedLocales(sc: *mut USpoofChecker,
                                     status: *mut UErrorCode)
-     -> *const ::std::os::raw::c_char;
+     -> *const ::libc::c_char;
     pub fn uspoof_setAllowedChars(sc: *mut USpoofChecker, chars: *const USet,
                                   status: *mut UErrorCode);
     pub fn uspoof_getAllowedChars(sc: *const USpoofChecker,
@@ -123,17 +122,17 @@ extern "C" {
                         length: int32_t, position: *mut int32_t,
                         status: *mut UErrorCode) -> int32_t;
     pub fn uspoof_checkUTF8(sc: *const USpoofChecker,
-                            id: *const ::std::os::raw::c_char,
-                            length: int32_t, position: *mut int32_t,
-                            status: *mut UErrorCode) -> int32_t;
+                            id: *const ::libc::c_char, length: int32_t,
+                            position: *mut int32_t, status: *mut UErrorCode)
+     -> int32_t;
     pub fn uspoof_areConfusable(sc: *const USpoofChecker, id1: *const UChar,
                                 length1: int32_t, id2: *const UChar,
                                 length2: int32_t, status: *mut UErrorCode)
      -> int32_t;
     pub fn uspoof_areConfusableUTF8(sc: *const USpoofChecker,
-                                    id1: *const ::std::os::raw::c_char,
+                                    id1: *const ::libc::c_char,
                                     length1: int32_t,
-                                    id2: *const ::std::os::raw::c_char,
+                                    id2: *const ::libc::c_char,
                                     length2: int32_t, status: *mut UErrorCode)
      -> int32_t;
     pub fn uspoof_getSkeleton(sc: *const USpoofChecker, type_: uint32_t,
@@ -141,15 +140,13 @@ extern "C" {
                               dest: *mut UChar, destCapacity: int32_t,
                               status: *mut UErrorCode) -> int32_t;
     pub fn uspoof_getSkeletonUTF8(sc: *const USpoofChecker, type_: uint32_t,
-                                  id: *const ::std::os::raw::c_char,
-                                  length: int32_t,
-                                  dest: *mut ::std::os::raw::c_char,
+                                  id: *const ::libc::c_char, length: int32_t,
+                                  dest: *mut ::libc::c_char,
                                   destCapacity: int32_t,
                                   status: *mut UErrorCode) -> int32_t;
     pub fn uspoof_getInclusionSet(status: *mut UErrorCode) -> *const USet;
     pub fn uspoof_getRecommendedSet(status: *mut UErrorCode) -> *const USet;
-    pub fn uspoof_serialize(sc: *mut USpoofChecker,
-                            data: *mut ::std::os::raw::c_void,
+    pub fn uspoof_serialize(sc: *mut USpoofChecker, data: *mut ::libc::c_void,
                             capacity: int32_t, status: *mut UErrorCode)
      -> int32_t;
 }

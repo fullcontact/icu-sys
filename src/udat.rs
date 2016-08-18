@@ -46,7 +46,7 @@ use ucnv_err::*;
 use ucasemap::*;
 use udata::*;
 
-pub type UDateFormat = *mut ::std::os::raw::c_void;
+pub type UDateFormat = *mut ::libc::c_void;
 pub const UDAT_DEFAULT: UDateFormatStyle = UDateFormatStyle::UDAT_MEDIUM;
 pub const UDAT_FULL_RELATIVE: UDateFormatStyle =
     UDateFormatStyle::UDAT_RELATIVE;
@@ -159,8 +159,7 @@ pub enum UDateFormatSymbols { }
 pub type UDateFormatOpener =
     ::std::option::Option<unsafe extern "C" fn(timeStyle: UDateFormatStyle,
                                                dateStyle: UDateFormatStyle,
-                                               locale:
-                                                   *const ::std::os::raw::c_char,
+                                               locale: *const ::libc::c_char,
                                                tzID: *const UChar,
                                                tzIDLength: int32_t,
                                                pattern: *const UChar,
@@ -175,10 +174,10 @@ extern "C" {
     pub fn udat_toCalendarDateField(field: UDateFormatField)
      -> UCalendarDateFields;
     pub fn udat_open(timeStyle: UDateFormatStyle, dateStyle: UDateFormatStyle,
-                     locale: *const ::std::os::raw::c_char,
-                     tzID: *const UChar, tzIDLength: int32_t,
-                     pattern: *const UChar, patternLength: int32_t,
-                     status: *mut UErrorCode) -> *mut UDateFormat;
+                     locale: *const ::libc::c_char, tzID: *const UChar,
+                     tzIDLength: int32_t, pattern: *const UChar,
+                     patternLength: int32_t, status: *mut UErrorCode)
+     -> *mut UDateFormat;
     pub fn udat_close(format: *mut UDateFormat);
     pub fn udat_getBooleanAttribute(fmt: *const UDateFormat,
                                     attr: UDateFormatBooleanAttribute,
@@ -232,8 +231,7 @@ extern "C" {
                                 numberFormatToSet: *const UNumberFormat);
     pub fn udat_adoptNumberFormat(fmt: *mut UDateFormat,
                                   numberFormatToAdopt: *mut UNumberFormat);
-    pub fn udat_getAvailable(localeIndex: int32_t)
-     -> *const ::std::os::raw::c_char;
+    pub fn udat_getAvailable(localeIndex: int32_t) -> *const ::libc::c_char;
     pub fn udat_countAvailable() -> int32_t;
     pub fn udat_get2DigitYearStart(fmt: *const UDateFormat,
                                    status: *mut UErrorCode) -> UDate;
@@ -257,7 +255,7 @@ extern "C" {
     pub fn udat_getLocaleByType(fmt: *const UDateFormat,
                                 type_: ULocDataLocaleType,
                                 status: *mut UErrorCode)
-     -> *const ::std::os::raw::c_char;
+     -> *const ::libc::c_char;
     pub fn udat_setContext(fmt: *mut UDateFormat, value: UDisplayContext,
                            status: *mut UErrorCode);
     pub fn udat_getContext(fmt: *const UDateFormat,

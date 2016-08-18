@@ -81,152 +81,141 @@ pub enum UAcceptResult {
 #[link(name = "icui18n", kind = "static")] 
 #[link(name = "stdc++", kind = "dylib")]
 extern "C" {
-    pub fn uloc_getDefault() -> *const ::std::os::raw::c_char;
-    pub fn uloc_setDefault(localeID: *const ::std::os::raw::c_char,
+    pub fn uloc_getDefault() -> *const ::libc::c_char;
+    pub fn uloc_setDefault(localeID: *const ::libc::c_char,
                            status: *mut UErrorCode);
-    pub fn uloc_getLanguage(localeID: *const ::std::os::raw::c_char,
-                            language: *mut ::std::os::raw::c_char,
+    pub fn uloc_getLanguage(localeID: *const ::libc::c_char,
+                            language: *mut ::libc::c_char,
                             languageCapacity: int32_t, err: *mut UErrorCode)
      -> int32_t;
-    pub fn uloc_getScript(localeID: *const ::std::os::raw::c_char,
-                          script: *mut ::std::os::raw::c_char,
+    pub fn uloc_getScript(localeID: *const ::libc::c_char,
+                          script: *mut ::libc::c_char,
                           scriptCapacity: int32_t, err: *mut UErrorCode)
      -> int32_t;
-    pub fn uloc_getCountry(localeID: *const ::std::os::raw::c_char,
-                           country: *mut ::std::os::raw::c_char,
+    pub fn uloc_getCountry(localeID: *const ::libc::c_char,
+                           country: *mut ::libc::c_char,
                            countryCapacity: int32_t, err: *mut UErrorCode)
      -> int32_t;
-    pub fn uloc_getVariant(localeID: *const ::std::os::raw::c_char,
-                           variant: *mut ::std::os::raw::c_char,
+    pub fn uloc_getVariant(localeID: *const ::libc::c_char,
+                           variant: *mut ::libc::c_char,
                            variantCapacity: int32_t, err: *mut UErrorCode)
      -> int32_t;
-    pub fn uloc_getName(localeID: *const ::std::os::raw::c_char,
-                        name: *mut ::std::os::raw::c_char,
-                        nameCapacity: int32_t, err: *mut UErrorCode)
-     -> int32_t;
-    pub fn uloc_canonicalize(localeID: *const ::std::os::raw::c_char,
-                             name: *mut ::std::os::raw::c_char,
-                             nameCapacity: int32_t, err: *mut UErrorCode)
-     -> int32_t;
-    pub fn uloc_getISO3Language(localeID: *const ::std::os::raw::c_char)
-     -> *const ::std::os::raw::c_char;
-    pub fn uloc_getISO3Country(localeID: *const ::std::os::raw::c_char)
-     -> *const ::std::os::raw::c_char;
-    pub fn uloc_getLCID(localeID: *const ::std::os::raw::c_char) -> uint32_t;
-    pub fn uloc_getDisplayLanguage(locale: *const ::std::os::raw::c_char,
-                                   displayLocale:
-                                       *const ::std::os::raw::c_char,
+    pub fn uloc_getName(localeID: *const ::libc::c_char,
+                        name: *mut ::libc::c_char, nameCapacity: int32_t,
+                        err: *mut UErrorCode) -> int32_t;
+    pub fn uloc_canonicalize(localeID: *const ::libc::c_char,
+                             name: *mut ::libc::c_char, nameCapacity: int32_t,
+                             err: *mut UErrorCode) -> int32_t;
+    pub fn uloc_getISO3Language(localeID: *const ::libc::c_char)
+     -> *const ::libc::c_char;
+    pub fn uloc_getISO3Country(localeID: *const ::libc::c_char)
+     -> *const ::libc::c_char;
+    pub fn uloc_getLCID(localeID: *const ::libc::c_char) -> uint32_t;
+    pub fn uloc_getDisplayLanguage(locale: *const ::libc::c_char,
+                                   displayLocale: *const ::libc::c_char,
                                    language: *mut UChar,
                                    languageCapacity: int32_t,
                                    status: *mut UErrorCode) -> int32_t;
-    pub fn uloc_getDisplayScript(locale: *const ::std::os::raw::c_char,
-                                 displayLocale: *const ::std::os::raw::c_char,
+    pub fn uloc_getDisplayScript(locale: *const ::libc::c_char,
+                                 displayLocale: *const ::libc::c_char,
                                  script: *mut UChar, scriptCapacity: int32_t,
                                  status: *mut UErrorCode) -> int32_t;
-    pub fn uloc_getDisplayCountry(locale: *const ::std::os::raw::c_char,
-                                  displayLocale:
-                                      *const ::std::os::raw::c_char,
+    pub fn uloc_getDisplayCountry(locale: *const ::libc::c_char,
+                                  displayLocale: *const ::libc::c_char,
                                   country: *mut UChar,
                                   countryCapacity: int32_t,
                                   status: *mut UErrorCode) -> int32_t;
-    pub fn uloc_getDisplayVariant(locale: *const ::std::os::raw::c_char,
-                                  displayLocale:
-                                      *const ::std::os::raw::c_char,
+    pub fn uloc_getDisplayVariant(locale: *const ::libc::c_char,
+                                  displayLocale: *const ::libc::c_char,
                                   variant: *mut UChar,
                                   variantCapacity: int32_t,
                                   status: *mut UErrorCode) -> int32_t;
-    pub fn uloc_getDisplayKeyword(keyword: *const ::std::os::raw::c_char,
-                                  displayLocale:
-                                      *const ::std::os::raw::c_char,
+    pub fn uloc_getDisplayKeyword(keyword: *const ::libc::c_char,
+                                  displayLocale: *const ::libc::c_char,
                                   dest: *mut UChar, destCapacity: int32_t,
                                   status: *mut UErrorCode) -> int32_t;
-    pub fn uloc_getDisplayKeywordValue(locale: *const ::std::os::raw::c_char,
-                                       keyword: *const ::std::os::raw::c_char,
-                                       displayLocale:
-                                           *const ::std::os::raw::c_char,
+    pub fn uloc_getDisplayKeywordValue(locale: *const ::libc::c_char,
+                                       keyword: *const ::libc::c_char,
+                                       displayLocale: *const ::libc::c_char,
                                        dest: *mut UChar,
                                        destCapacity: int32_t,
                                        status: *mut UErrorCode) -> int32_t;
-    pub fn uloc_getDisplayName(localeID: *const ::std::os::raw::c_char,
-                               inLocaleID: *const ::std::os::raw::c_char,
+    pub fn uloc_getDisplayName(localeID: *const ::libc::c_char,
+                               inLocaleID: *const ::libc::c_char,
                                result: *mut UChar, maxResultSize: int32_t,
                                err: *mut UErrorCode) -> int32_t;
-    pub fn uloc_getAvailable(n: int32_t) -> *const ::std::os::raw::c_char;
+    pub fn uloc_getAvailable(n: int32_t) -> *const ::libc::c_char;
     pub fn uloc_countAvailable() -> int32_t;
-    pub fn uloc_getISOLanguages() -> *const *const ::std::os::raw::c_char;
-    pub fn uloc_getISOCountries() -> *const *const ::std::os::raw::c_char;
-    pub fn uloc_getParent(localeID: *const ::std::os::raw::c_char,
-                          parent: *mut ::std::os::raw::c_char,
+    pub fn uloc_getISOLanguages() -> *const *const ::libc::c_char;
+    pub fn uloc_getISOCountries() -> *const *const ::libc::c_char;
+    pub fn uloc_getParent(localeID: *const ::libc::c_char,
+                          parent: *mut ::libc::c_char,
                           parentCapacity: int32_t, err: *mut UErrorCode)
      -> int32_t;
-    pub fn uloc_getBaseName(localeID: *const ::std::os::raw::c_char,
-                            name: *mut ::std::os::raw::c_char,
-                            nameCapacity: int32_t, err: *mut UErrorCode)
-     -> int32_t;
-    pub fn uloc_openKeywords(localeID: *const ::std::os::raw::c_char,
+    pub fn uloc_getBaseName(localeID: *const ::libc::c_char,
+                            name: *mut ::libc::c_char, nameCapacity: int32_t,
+                            err: *mut UErrorCode) -> int32_t;
+    pub fn uloc_openKeywords(localeID: *const ::libc::c_char,
                              status: *mut UErrorCode) -> *mut UEnumeration;
-    pub fn uloc_getKeywordValue(localeID: *const ::std::os::raw::c_char,
-                                keywordName: *const ::std::os::raw::c_char,
-                                buffer: *mut ::std::os::raw::c_char,
+    pub fn uloc_getKeywordValue(localeID: *const ::libc::c_char,
+                                keywordName: *const ::libc::c_char,
+                                buffer: *mut ::libc::c_char,
                                 bufferCapacity: int32_t,
                                 status: *mut UErrorCode) -> int32_t;
-    pub fn uloc_setKeywordValue(keywordName: *const ::std::os::raw::c_char,
-                                keywordValue: *const ::std::os::raw::c_char,
-                                buffer: *mut ::std::os::raw::c_char,
+    pub fn uloc_setKeywordValue(keywordName: *const ::libc::c_char,
+                                keywordValue: *const ::libc::c_char,
+                                buffer: *mut ::libc::c_char,
                                 bufferCapacity: int32_t,
                                 status: *mut UErrorCode) -> int32_t;
-    pub fn uloc_isRightToLeft(locale: *const ::std::os::raw::c_char) -> UBool;
-    pub fn uloc_getCharacterOrientation(localeId:
-                                            *const ::std::os::raw::c_char,
+    pub fn uloc_isRightToLeft(locale: *const ::libc::c_char) -> UBool;
+    pub fn uloc_getCharacterOrientation(localeId: *const ::libc::c_char,
                                         status: *mut UErrorCode)
      -> ULayoutType;
-    pub fn uloc_getLineOrientation(localeId: *const ::std::os::raw::c_char,
+    pub fn uloc_getLineOrientation(localeId: *const ::libc::c_char,
                                    status: *mut UErrorCode) -> ULayoutType;
-    pub fn uloc_acceptLanguageFromHTTP(result: *mut ::std::os::raw::c_char,
+    pub fn uloc_acceptLanguageFromHTTP(result: *mut ::libc::c_char,
                                        resultAvailable: int32_t,
                                        outResult: *mut UAcceptResult,
                                        httpAcceptLanguage:
-                                           *const ::std::os::raw::c_char,
+                                           *const ::libc::c_char,
                                        availableLocales: *mut UEnumeration,
                                        status: *mut UErrorCode) -> int32_t;
-    pub fn uloc_acceptLanguage(result: *mut ::std::os::raw::c_char,
+    pub fn uloc_acceptLanguage(result: *mut ::libc::c_char,
                                resultAvailable: int32_t,
                                outResult: *mut UAcceptResult,
-                               acceptList: *mut *const ::std::os::raw::c_char,
+                               acceptList: *mut *const ::libc::c_char,
                                acceptListCount: int32_t,
                                availableLocales: *mut UEnumeration,
                                status: *mut UErrorCode) -> int32_t;
     pub fn uloc_getLocaleForLCID(hostID: uint32_t,
-                                 locale: *mut ::std::os::raw::c_char,
+                                 locale: *mut ::libc::c_char,
                                  localeCapacity: int32_t,
                                  status: *mut UErrorCode) -> int32_t;
-    pub fn uloc_addLikelySubtags(localeID: *const ::std::os::raw::c_char,
-                                 maximizedLocaleID:
-                                     *mut ::std::os::raw::c_char,
+    pub fn uloc_addLikelySubtags(localeID: *const ::libc::c_char,
+                                 maximizedLocaleID: *mut ::libc::c_char,
                                  maximizedLocaleIDCapacity: int32_t,
                                  err: *mut UErrorCode) -> int32_t;
-    pub fn uloc_minimizeSubtags(localeID: *const ::std::os::raw::c_char,
-                                minimizedLocaleID:
-                                    *mut ::std::os::raw::c_char,
+    pub fn uloc_minimizeSubtags(localeID: *const ::libc::c_char,
+                                minimizedLocaleID: *mut ::libc::c_char,
                                 minimizedLocaleIDCapacity: int32_t,
                                 err: *mut UErrorCode) -> int32_t;
-    pub fn uloc_forLanguageTag(langtag: *const ::std::os::raw::c_char,
-                               localeID: *mut ::std::os::raw::c_char,
+    pub fn uloc_forLanguageTag(langtag: *const ::libc::c_char,
+                               localeID: *mut ::libc::c_char,
                                localeIDCapacity: int32_t,
                                parsedLength: *mut int32_t,
                                err: *mut UErrorCode) -> int32_t;
-    pub fn uloc_toLanguageTag(localeID: *const ::std::os::raw::c_char,
-                              langtag: *mut ::std::os::raw::c_char,
+    pub fn uloc_toLanguageTag(localeID: *const ::libc::c_char,
+                              langtag: *mut ::libc::c_char,
                               langtagCapacity: int32_t, strict: UBool,
                               err: *mut UErrorCode) -> int32_t;
-    pub fn uloc_toUnicodeLocaleKey(keyword: *const ::std::os::raw::c_char)
-     -> *const ::std::os::raw::c_char;
-    pub fn uloc_toUnicodeLocaleType(keyword: *const ::std::os::raw::c_char,
-                                    value: *const ::std::os::raw::c_char)
-     -> *const ::std::os::raw::c_char;
-    pub fn uloc_toLegacyKey(keyword: *const ::std::os::raw::c_char)
-     -> *const ::std::os::raw::c_char;
-    pub fn uloc_toLegacyType(keyword: *const ::std::os::raw::c_char,
-                             value: *const ::std::os::raw::c_char)
-     -> *const ::std::os::raw::c_char;
+    pub fn uloc_toUnicodeLocaleKey(keyword: *const ::libc::c_char)
+     -> *const ::libc::c_char;
+    pub fn uloc_toUnicodeLocaleType(keyword: *const ::libc::c_char,
+                                    value: *const ::libc::c_char)
+     -> *const ::libc::c_char;
+    pub fn uloc_toLegacyKey(keyword: *const ::libc::c_char)
+     -> *const ::libc::c_char;
+    pub fn uloc_toLegacyType(keyword: *const ::libc::c_char,
+                             value: *const ::libc::c_char)
+     -> *const ::libc::c_char;
 }

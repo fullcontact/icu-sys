@@ -48,8 +48,7 @@ use udata::*;
 
 pub type UNESCAPE_CHAR_AT =
     ::std::option::Option<unsafe extern "C" fn(offset: int32_t,
-                                               context:
-                                                   *mut ::std::os::raw::c_void)
+                                               context: *mut ::libc::c_void)
                               -> UChar>;
 #[link(name = "icuuc", kind = "static")]
 #[link(name = "icudata", kind = "static")] 
@@ -106,14 +105,14 @@ extern "C" {
     pub fn u_strcpy(dst: *mut UChar, src: *const UChar) -> *mut UChar;
     pub fn u_strncpy(dst: *mut UChar, src: *const UChar, n: int32_t)
      -> *mut UChar;
-    pub fn u_uastrcpy(dst: *mut UChar, src: *const ::std::os::raw::c_char)
+    pub fn u_uastrcpy(dst: *mut UChar, src: *const ::libc::c_char)
      -> *mut UChar;
-    pub fn u_uastrncpy(dst: *mut UChar, src: *const ::std::os::raw::c_char,
+    pub fn u_uastrncpy(dst: *mut UChar, src: *const ::libc::c_char,
                        n: int32_t) -> *mut UChar;
-    pub fn u_austrcpy(dst: *mut ::std::os::raw::c_char, src: *const UChar)
-     -> *mut ::std::os::raw::c_char;
-    pub fn u_austrncpy(dst: *mut ::std::os::raw::c_char, src: *const UChar,
-                       n: int32_t) -> *mut ::std::os::raw::c_char;
+    pub fn u_austrcpy(dst: *mut ::libc::c_char, src: *const UChar)
+     -> *mut ::libc::c_char;
+    pub fn u_austrncpy(dst: *mut ::libc::c_char, src: *const UChar,
+                       n: int32_t) -> *mut ::libc::c_char;
     pub fn u_memcpy(dest: *mut UChar, src: *const UChar, count: int32_t)
      -> *mut UChar;
     pub fn u_memmove(dest: *mut UChar, src: *const UChar, count: int32_t)
@@ -129,23 +128,23 @@ extern "C" {
     pub fn u_memrchr(s: *const UChar, c: UChar, count: int32_t) -> *mut UChar;
     pub fn u_memrchr32(s: *const UChar, c: UChar32, count: int32_t)
      -> *mut UChar;
-    pub fn u_unescape(src: *const ::std::os::raw::c_char, dest: *mut UChar,
+    pub fn u_unescape(src: *const ::libc::c_char, dest: *mut UChar,
                       destCapacity: int32_t) -> int32_t;
     pub fn u_unescapeAt(charAt: UNESCAPE_CHAR_AT, offset: *mut int32_t,
-                        length: int32_t, context: *mut ::std::os::raw::c_void)
+                        length: int32_t, context: *mut ::libc::c_void)
      -> UChar32;
     pub fn u_strToUpper(dest: *mut UChar, destCapacity: int32_t,
                         src: *const UChar, srcLength: int32_t,
-                        locale: *const ::std::os::raw::c_char,
+                        locale: *const ::libc::c_char,
                         pErrorCode: *mut UErrorCode) -> int32_t;
     pub fn u_strToLower(dest: *mut UChar, destCapacity: int32_t,
                         src: *const UChar, srcLength: int32_t,
-                        locale: *const ::std::os::raw::c_char,
+                        locale: *const ::libc::c_char,
                         pErrorCode: *mut UErrorCode) -> int32_t;
     pub fn u_strToTitle(dest: *mut UChar, destCapacity: int32_t,
                         src: *const UChar, srcLength: int32_t,
                         titleIter: *mut UBreakIterator,
-                        locale: *const ::std::os::raw::c_char,
+                        locale: *const ::libc::c_char,
                         pErrorCode: *mut UErrorCode) -> int32_t;
     pub fn u_strFoldCase(dest: *mut UChar, destCapacity: int32_t,
                          src: *const UChar, srcLength: int32_t,
@@ -159,32 +158,30 @@ extern "C" {
                         pDestLength: *mut int32_t, src: *const wchar_t,
                         srcLength: int32_t, pErrorCode: *mut UErrorCode)
      -> *mut UChar;
-    pub fn u_strToUTF8(dest: *mut ::std::os::raw::c_char,
-                       destCapacity: int32_t, pDestLength: *mut int32_t,
-                       src: *const UChar, srcLength: int32_t,
-                       pErrorCode: *mut UErrorCode)
-     -> *mut ::std::os::raw::c_char;
+    pub fn u_strToUTF8(dest: *mut ::libc::c_char, destCapacity: int32_t,
+                       pDestLength: *mut int32_t, src: *const UChar,
+                       srcLength: int32_t, pErrorCode: *mut UErrorCode)
+     -> *mut ::libc::c_char;
     pub fn u_strFromUTF8(dest: *mut UChar, destCapacity: int32_t,
                          pDestLength: *mut int32_t,
-                         src: *const ::std::os::raw::c_char,
-                         srcLength: int32_t, pErrorCode: *mut UErrorCode)
-     -> *mut UChar;
-    pub fn u_strToUTF8WithSub(dest: *mut ::std::os::raw::c_char,
+                         src: *const ::libc::c_char, srcLength: int32_t,
+                         pErrorCode: *mut UErrorCode) -> *mut UChar;
+    pub fn u_strToUTF8WithSub(dest: *mut ::libc::c_char,
                               destCapacity: int32_t,
                               pDestLength: *mut int32_t, src: *const UChar,
                               srcLength: int32_t, subchar: UChar32,
                               pNumSubstitutions: *mut int32_t,
                               pErrorCode: *mut UErrorCode)
-     -> *mut ::std::os::raw::c_char;
+     -> *mut ::libc::c_char;
     pub fn u_strFromUTF8WithSub(dest: *mut UChar, destCapacity: int32_t,
                                 pDestLength: *mut int32_t,
-                                src: *const ::std::os::raw::c_char,
+                                src: *const ::libc::c_char,
                                 srcLength: int32_t, subchar: UChar32,
                                 pNumSubstitutions: *mut int32_t,
                                 pErrorCode: *mut UErrorCode) -> *mut UChar;
     pub fn u_strFromUTF8Lenient(dest: *mut UChar, destCapacity: int32_t,
                                 pDestLength: *mut int32_t,
-                                src: *const ::std::os::raw::c_char,
+                                src: *const ::libc::c_char,
                                 srcLength: int32_t,
                                 pErrorCode: *mut UErrorCode) -> *mut UChar;
     pub fn u_strToUTF32(dest: *mut UChar32, destCapacity: int32_t,
@@ -206,17 +203,16 @@ extern "C" {
                                  subchar: UChar32,
                                  pNumSubstitutions: *mut int32_t,
                                  pErrorCode: *mut UErrorCode) -> *mut UChar;
-    pub fn u_strToJavaModifiedUTF8(dest: *mut ::std::os::raw::c_char,
+    pub fn u_strToJavaModifiedUTF8(dest: *mut ::libc::c_char,
                                    destCapacity: int32_t,
                                    pDestLength: *mut int32_t,
                                    src: *const UChar, srcLength: int32_t,
                                    pErrorCode: *mut UErrorCode)
-     -> *mut ::std::os::raw::c_char;
+     -> *mut ::libc::c_char;
     pub fn u_strFromJavaModifiedUTF8WithSub(dest: *mut UChar,
                                             destCapacity: int32_t,
                                             pDestLength: *mut int32_t,
-                                            src:
-                                                *const ::std::os::raw::c_char,
+                                            src: *const ::libc::c_char,
                                             srcLength: int32_t,
                                             subchar: UChar32,
                                             pNumSubstitutions: *mut int32_t,

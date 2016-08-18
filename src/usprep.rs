@@ -72,8 +72,8 @@ pub enum UStringPrepProfileType {
 #[link(name = "icui18n", kind = "static")] 
 #[link(name = "stdc++", kind = "dylib")]
 extern "C" {
-    pub fn usprep_open(path: *const ::std::os::raw::c_char,
-                       fileName: *const ::std::os::raw::c_char,
+    pub fn usprep_open(path: *const ::libc::c_char,
+                       fileName: *const ::libc::c_char,
                        status: *mut UErrorCode) -> *mut UStringPrepProfile;
     pub fn usprep_openByType(type_: UStringPrepProfileType,
                              status: *mut UErrorCode)

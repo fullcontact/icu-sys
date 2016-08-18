@@ -52,15 +52,13 @@ pub enum UCaseMap { }
 #[link(name = "icui18n", kind = "static")] 
 #[link(name = "stdc++", kind = "dylib")]
 extern "C" {
-    pub fn ucasemap_open(locale: *const ::std::os::raw::c_char,
-                         options: uint32_t, pErrorCode: *mut UErrorCode)
-     -> *mut UCaseMap;
+    pub fn ucasemap_open(locale: *const ::libc::c_char, options: uint32_t,
+                         pErrorCode: *mut UErrorCode) -> *mut UCaseMap;
     pub fn ucasemap_close(csm: *mut UCaseMap);
-    pub fn ucasemap_getLocale(csm: *const UCaseMap)
-     -> *const ::std::os::raw::c_char;
+    pub fn ucasemap_getLocale(csm: *const UCaseMap) -> *const ::libc::c_char;
     pub fn ucasemap_getOptions(csm: *const UCaseMap) -> uint32_t;
     pub fn ucasemap_setLocale(csm: *mut UCaseMap,
-                              locale: *const ::std::os::raw::c_char,
+                              locale: *const ::libc::c_char,
                               pErrorCode: *mut UErrorCode);
     pub fn ucasemap_setOptions(csm: *mut UCaseMap, options: uint32_t,
                                pErrorCode: *mut UErrorCode);
@@ -74,27 +72,26 @@ extern "C" {
                             srcLength: int32_t, pErrorCode: *mut UErrorCode)
      -> int32_t;
     pub fn ucasemap_utf8ToLower(csm: *const UCaseMap,
-                                dest: *mut ::std::os::raw::c_char,
+                                dest: *mut ::libc::c_char,
                                 destCapacity: int32_t,
-                                src: *const ::std::os::raw::c_char,
+                                src: *const ::libc::c_char,
                                 srcLength: int32_t,
                                 pErrorCode: *mut UErrorCode) -> int32_t;
     pub fn ucasemap_utf8ToUpper(csm: *const UCaseMap,
-                                dest: *mut ::std::os::raw::c_char,
+                                dest: *mut ::libc::c_char,
                                 destCapacity: int32_t,
-                                src: *const ::std::os::raw::c_char,
+                                src: *const ::libc::c_char,
                                 srcLength: int32_t,
                                 pErrorCode: *mut UErrorCode) -> int32_t;
-    pub fn ucasemap_utf8ToTitle(csm: *mut UCaseMap,
-                                dest: *mut ::std::os::raw::c_char,
+    pub fn ucasemap_utf8ToTitle(csm: *mut UCaseMap, dest: *mut ::libc::c_char,
                                 destCapacity: int32_t,
-                                src: *const ::std::os::raw::c_char,
+                                src: *const ::libc::c_char,
                                 srcLength: int32_t,
                                 pErrorCode: *mut UErrorCode) -> int32_t;
     pub fn ucasemap_utf8FoldCase(csm: *const UCaseMap,
-                                 dest: *mut ::std::os::raw::c_char,
+                                 dest: *mut ::libc::c_char,
                                  destCapacity: int32_t,
-                                 src: *const ::std::os::raw::c_char,
+                                 src: *const ::libc::c_char,
                                  srcLength: int32_t,
                                  pErrorCode: *mut UErrorCode) -> int32_t;
 }

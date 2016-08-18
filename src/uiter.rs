@@ -100,7 +100,7 @@ pub type UCharIteratorSetState =
 #[derive(Copy, Clone)]
 #[derive(Debug)]
 pub struct UCharIterator {
-    pub context: *const ::std::os::raw::c_void,
+    pub context: *const ::libc::c_void,
     pub length: int32_t,
     pub start: int32_t,
     pub index: int32_t,
@@ -134,8 +134,7 @@ extern "C" {
     pub fn uiter_setString(iter: *mut UCharIterator, s: *const UChar,
                            length: int32_t);
     pub fn uiter_setUTF16BE(iter: *mut UCharIterator,
-                            s: *const ::std::os::raw::c_char,
-                            length: int32_t);
-    pub fn uiter_setUTF8(iter: *mut UCharIterator,
-                         s: *const ::std::os::raw::c_char, length: int32_t);
+                            s: *const ::libc::c_char, length: int32_t);
+    pub fn uiter_setUTF8(iter: *mut UCharIterator, s: *const ::libc::c_char,
+                         length: int32_t);
 }

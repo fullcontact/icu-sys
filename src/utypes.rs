@@ -227,5 +227,5 @@ pub enum UErrorCode {
 #[link(name = "icui18n", kind = "static")] 
 #[link(name = "stdc++", kind = "dylib")]
 extern "C" {
-    pub fn u_errorName(code: UErrorCode) -> *const ::std::os::raw::c_char;
+    pub fn u_errorName(code: UErrorCode) -> *const ::libc::c_char;
 }

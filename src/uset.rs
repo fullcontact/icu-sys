@@ -156,11 +156,10 @@ extern "C" {
                      spanCondition: USetSpanCondition) -> int32_t;
     pub fn uset_spanBack(set: *const USet, s: *const UChar, length: int32_t,
                          spanCondition: USetSpanCondition) -> int32_t;
-    pub fn uset_spanUTF8(set: *const USet, s: *const ::std::os::raw::c_char,
+    pub fn uset_spanUTF8(set: *const USet, s: *const ::libc::c_char,
                          length: int32_t, spanCondition: USetSpanCondition)
      -> int32_t;
-    pub fn uset_spanBackUTF8(set: *const USet,
-                             s: *const ::std::os::raw::c_char,
+    pub fn uset_spanBackUTF8(set: *const USet, s: *const ::libc::c_char,
                              length: int32_t,
                              spanCondition: USetSpanCondition) -> int32_t;
     pub fn uset_equals(set1: *const USet, set2: *const USet) -> UBool;

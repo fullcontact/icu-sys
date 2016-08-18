@@ -247,13 +247,12 @@ pub enum UScriptUsage {
 #[link(name = "icui18n", kind = "static")] 
 #[link(name = "stdc++", kind = "dylib")]
 extern "C" {
-    pub fn uscript_getCode(nameOrAbbrOrLocale: *const ::std::os::raw::c_char,
+    pub fn uscript_getCode(nameOrAbbrOrLocale: *const ::libc::c_char,
                            fillIn: *mut UScriptCode, capacity: int32_t,
                            err: *mut UErrorCode) -> int32_t;
-    pub fn uscript_getName(scriptCode: UScriptCode)
-     -> *const ::std::os::raw::c_char;
+    pub fn uscript_getName(scriptCode: UScriptCode) -> *const ::libc::c_char;
     pub fn uscript_getShortName(scriptCode: UScriptCode)
-     -> *const ::std::os::raw::c_char;
+     -> *const ::libc::c_char;
     pub fn uscript_getScript(codepoint: UChar32, err: *mut UErrorCode)
      -> UScriptCode;
     pub fn uscript_hasScript(c: UChar32, sc: UScriptCode) -> UBool;

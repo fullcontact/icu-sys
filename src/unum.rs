@@ -46,7 +46,7 @@ use ucnv_err::*;
 use ucasemap::*;
 use udata::*;
 
-pub type UNumberFormat = *mut ::std::os::raw::c_void;
+pub type UNumberFormat = *mut ::libc::c_void;
 pub const UNUM_DEFAULT: UNumberFormatStyle = UNumberFormatStyle::UNUM_DECIMAL;
 pub const UNUM_IGNORE: UNumberFormatStyle =
     UNumberFormatStyle::UNUM_PATTERN_DECIMAL;
@@ -228,8 +228,7 @@ pub enum UNumberFormatSymbol {
 #[link(name = "stdc++", kind = "dylib")]
 extern "C" {
     pub fn unum_open(style: UNumberFormatStyle, pattern: *const UChar,
-                     patternLength: int32_t,
-                     locale: *const ::std::os::raw::c_char,
+                     patternLength: int32_t, locale: *const ::libc::c_char,
                      parseErr: *mut UParseError, status: *mut UErrorCode)
      -> *mut UNumberFormat;
     pub fn unum_close(fmt: *mut UNumberFormat);
@@ -248,9 +247,9 @@ extern "C" {
                              pos: *mut UFieldPosition,
                              status: *mut UErrorCode) -> int32_t;
     pub fn unum_formatDecimal(fmt: *const UNumberFormat,
-                              number: *const ::std::os::raw::c_char,
-                              length: int32_t, result: *mut UChar,
-                              resultLength: int32_t, pos: *mut UFieldPosition,
+                              number: *const ::libc::c_char, length: int32_t,
+                              result: *mut UChar, resultLength: int32_t,
+                              pos: *mut UFieldPosition,
                               status: *mut UErrorCode) -> int32_t;
     pub fn unum_formatDoubleCurrency(fmt: *const UNumberFormat, number: f64,
                                      currency: *mut UChar, result: *mut UChar,
@@ -273,7 +272,7 @@ extern "C" {
                             status: *mut UErrorCode) -> f64;
     pub fn unum_parseDecimal(fmt: *const UNumberFormat, text: *const UChar,
                              textLength: int32_t, parsePos: *mut int32_t,
-                             outBuf: *mut ::std::os::raw::c_char,
+                             outBuf: *mut ::libc::c_char,
                              outBufLength: int32_t, status: *mut UErrorCode)
      -> int32_t;
     pub fn unum_parseDoubleCurrency(fmt: *const UNumberFormat,
@@ -291,8 +290,7 @@ extern "C" {
                              pattern: *const UChar, patternLength: int32_t,
                              parseError: *mut UParseError,
                              status: *mut UErrorCode);
-    pub fn unum_getAvailable(localeIndex: int32_t)
-     -> *const ::std::os::raw::c_char;
+    pub fn unum_getAvailable(localeIndex: int32_t) -> *const ::libc::c_char;
     pub fn unum_countAvailable() -> int32_t;
     pub fn unum_getAttribute(fmt: *const UNumberFormat,
                              attr: UNumberFormatAttribute) -> int32_t;
@@ -325,7 +323,7 @@ extern "C" {
     pub fn unum_getLocaleByType(fmt: *const UNumberFormat,
                                 type_: ULocDataLocaleType,
                                 status: *mut UErrorCode)
-     -> *const ::std::os::raw::c_char;
+     -> *const ::libc::c_char;
     pub fn unum_setContext(fmt: *mut UNumberFormat, value: UDisplayContext,
                            status: *mut UErrorCode);
     pub fn unum_getContext(fmt: *const UNumberFormat,

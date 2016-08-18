@@ -46,7 +46,7 @@ use ucnv_err::*;
 use ucasemap::*;
 use udata::*;
 
-pub type UCalendar = *mut ::std::os::raw::c_void;
+pub type UCalendar = *mut ::libc::c_void;
 pub const UCAL_DEFAULT: UCalendarType = UCalendarType::UCAL_TRADITIONAL;
 #[derive(Copy, Clone)]
 #[repr(u32)]
@@ -197,13 +197,12 @@ pub enum UTimeZoneTransitionType {
 #[link(name = "stdc++", kind = "dylib")]
 extern "C" {
     pub fn ucal_openTimeZoneIDEnumeration(zoneType: USystemTimeZoneType,
-                                          region:
-                                              *const ::std::os::raw::c_char,
+                                          region: *const ::libc::c_char,
                                           rawOffset: *const int32_t,
                                           ec: *mut UErrorCode)
      -> *mut UEnumeration;
     pub fn ucal_openTimeZones(ec: *mut UErrorCode) -> *mut UEnumeration;
-    pub fn ucal_openCountryTimeZones(country: *const ::std::os::raw::c_char,
+    pub fn ucal_openCountryTimeZones(country: *const ::libc::c_char,
                                      ec: *mut UErrorCode)
      -> *mut UEnumeration;
     pub fn ucal_getDefaultTimeZone(result: *mut UChar,
@@ -214,9 +213,8 @@ extern "C" {
      -> int32_t;
     pub fn ucal_getNow() -> UDate;
     pub fn ucal_open(zoneID: *const UChar, len: int32_t,
-                     locale: *const ::std::os::raw::c_char,
-                     type_: UCalendarType, status: *mut UErrorCode)
-     -> *mut UCalendar;
+                     locale: *const ::libc::c_char, type_: UCalendarType,
+                     status: *mut UErrorCode) -> *mut UCalendar;
     pub fn ucal_close(cal: *mut UCalendar);
     pub fn ucal_clone(cal: *const UCalendar, status: *mut UErrorCode)
      -> *mut UCalendar;
@@ -227,7 +225,7 @@ extern "C" {
      -> int32_t;
     pub fn ucal_getTimeZoneDisplayName(cal: *const UCalendar,
                                        type_: UCalendarDisplayNameType,
-                                       locale: *const ::std::os::raw::c_char,
+                                       locale: *const ::libc::c_char,
                                        result: *mut UChar,
                                        resultLength: int32_t,
                                        status: *mut UErrorCode) -> int32_t;
@@ -241,8 +239,7 @@ extern "C" {
      -> int32_t;
     pub fn ucal_setAttribute(cal: *mut UCalendar, attr: UCalendarAttribute,
                              newValue: int32_t);
-    pub fn ucal_getAvailable(localeIndex: int32_t)
-     -> *const ::std::os::raw::c_char;
+    pub fn ucal_getAvailable(localeIndex: int32_t) -> *const ::libc::c_char;
     pub fn ucal_countAvailable() -> int32_t;
     pub fn ucal_getMillis(cal: *const UCalendar, status: *mut UErrorCode)
      -> UDate;
@@ -274,19 +271,18 @@ extern "C" {
     pub fn ucal_getLocaleByType(cal: *const UCalendar,
                                 type_: ULocDataLocaleType,
                                 status: *mut UErrorCode)
-     -> *const ::std::os::raw::c_char;
+     -> *const ::libc::c_char;
     pub fn ucal_getTZDataVersion(status: *mut UErrorCode)
-     -> *const ::std::os::raw::c_char;
+     -> *const ::libc::c_char;
     pub fn ucal_getCanonicalTimeZoneID(id: *const UChar, len: int32_t,
                                        result: *mut UChar,
                                        resultCapacity: int32_t,
                                        isSystemID: *mut UBool,
                                        status: *mut UErrorCode) -> int32_t;
     pub fn ucal_getType(cal: *const UCalendar, status: *mut UErrorCode)
-     -> *const ::std::os::raw::c_char;
-    pub fn ucal_getKeywordValuesForLocale(key: *const ::std::os::raw::c_char,
-                                          locale:
-                                              *const ::std::os::raw::c_char,
+     -> *const ::libc::c_char;
+    pub fn ucal_getKeywordValuesForLocale(key: *const ::libc::c_char,
+                                          locale: *const ::libc::c_char,
                                           commonlyUsed: UBool,
                                           status: *mut UErrorCode)
      -> *mut UEnumeration;
@@ -311,8 +307,7 @@ extern "C" {
                                      winidCapacity: int32_t,
                                      status: *mut UErrorCode) -> int32_t;
     pub fn ucal_getTimeZoneIDForWindowsID(winid: *const UChar, len: int32_t,
-                                          region:
-                                              *const ::std::os::raw::c_char,
+                                          region: *const ::libc::c_char,
                                           id: *mut UChar, idCapacity: int32_t,
                                           status: *mut UErrorCode) -> int32_t;
 }

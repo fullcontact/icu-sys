@@ -47,5 +47,5 @@ use ucasemap::*;
 use udata::*;
 
 pub type UBool = int8_t;
-pub type UChar = ::std::os::raw::c_ushort;
+pub type UChar = ::libc::c_ushort;
 pub type UChar32 = int32_t;

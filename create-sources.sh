@@ -8,7 +8,7 @@
 # reliably (which it doesn't if you have lots of clang versions installed).
 
 BASE="$1"
-LINK="--link static=icuuc"
+LINK="--link static=icuuc --ctypes-prefix=libc"
 FLAGS="-DU_DISABLE_RENAMING=1"
 MODULES="utypes ustring utf8 utf16 uchar uscript
          uset ucnv uloc ures unorm2 ucal udat

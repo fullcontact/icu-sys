@@ -811,18 +811,15 @@ pub enum UHangulSyllableType {
     U_HST_COUNT = 6,
 }
 pub type UCharEnumTypeRange =
-    ::std::option::Option<unsafe extern "C" fn(context:
-                                                   *const ::std::os::raw::c_void,
+    ::std::option::Option<unsafe extern "C" fn(context: *const ::libc::c_void,
                                                start: UChar32, limit: UChar32,
                                                type_: UCharCategory)
                               -> UBool>;
 pub type UEnumCharNamesFn =
-    ::std::option::Option<unsafe extern "C" fn(context:
-                                                   *mut ::std::os::raw::c_void,
+    ::std::option::Option<unsafe extern "C" fn(context: *mut ::libc::c_void,
                                                code: UChar32,
                                                nameChoice: UCharNameChoice,
-                                               name:
-                                                   *const ::std::os::raw::c_char,
+                                               name: *const ::libc::c_char,
                                                length: int32_t) -> UBool>;
 #[link(name = "icuuc", kind = "static")]
 #[link(name = "icudata", kind = "static")] 
@@ -862,36 +859,33 @@ extern "C" {
     pub fn u_getBidiPairedBracket(c: UChar32) -> UChar32;
     pub fn u_charType(c: UChar32) -> int8_t;
     pub fn u_enumCharTypes(enumRange: UCharEnumTypeRange,
-                           context: *const ::std::os::raw::c_void);
+                           context: *const ::libc::c_void);
     pub fn u_getCombiningClass(c: UChar32) -> uint8_t;
     pub fn u_charDigitValue(c: UChar32) -> int32_t;
     pub fn ublock_getCode(c: UChar32) -> UBlockCode;
     pub fn u_charName(code: UChar32, nameChoice: UCharNameChoice,
-                      buffer: *mut ::std::os::raw::c_char,
-                      bufferLength: int32_t, pErrorCode: *mut UErrorCode)
-     -> int32_t;
-    pub fn u_getISOComment(c: UChar32, dest: *mut ::std::os::raw::c_char,
+                      buffer: *mut ::libc::c_char, bufferLength: int32_t,
+                      pErrorCode: *mut UErrorCode) -> int32_t;
+    pub fn u_getISOComment(c: UChar32, dest: *mut ::libc::c_char,
                            destCapacity: int32_t, pErrorCode: *mut UErrorCode)
      -> int32_t;
     pub fn u_charFromName(nameChoice: UCharNameChoice,
-                          name: *const ::std::os::raw::c_char,
+                          name: *const ::libc::c_char,
                           pErrorCode: *mut UErrorCode) -> UChar32;
     pub fn u_enumCharNames(start: UChar32, limit: UChar32,
                            fn_: UEnumCharNamesFn,
-                           context: *mut ::std::os::raw::c_void,
+                           context: *mut ::libc::c_void,
                            nameChoice: UCharNameChoice,
                            pErrorCode: *mut UErrorCode);
     pub fn u_getPropertyName(property: UProperty,
                              nameChoice: UPropertyNameChoice)
-     -> *const ::std::os::raw::c_char;
-    pub fn u_getPropertyEnum(alias: *const ::std::os::raw::c_char)
-     -> UProperty;
+     -> *const ::libc::c_char;
+    pub fn u_getPropertyEnum(alias: *const ::libc::c_char) -> UProperty;
     pub fn u_getPropertyValueName(property: UProperty, value: int32_t,
                                   nameChoice: UPropertyNameChoice)
-     -> *const ::std::os::raw::c_char;
+     -> *const ::libc::c_char;
     pub fn u_getPropertyValueEnum(property: UProperty,
-                                  alias: *const ::std::os::raw::c_char)
-     -> int32_t;
+                                  alias: *const ::libc::c_char) -> int32_t;
     pub fn u_isIDStart(c: UChar32) -> UBool;
     pub fn u_isIDPart(c: UChar32) -> UBool;
     pub fn u_isIDIgnorable(c: UChar32) -> UBool;

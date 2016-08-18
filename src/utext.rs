@@ -139,12 +139,12 @@ pub struct UText {
     pub chunkLength: int32_t,
     pub chunkContents: *const UChar,
     pub pFuncs: *const UTextFuncs,
-    pub pExtra: *mut ::std::os::raw::c_void,
-    pub context: *const ::std::os::raw::c_void,
-    pub p: *const ::std::os::raw::c_void,
-    pub q: *const ::std::os::raw::c_void,
-    pub r: *const ::std::os::raw::c_void,
-    pub privP: *mut ::std::os::raw::c_void,
+    pub pExtra: *mut ::libc::c_void,
+    pub context: *const ::libc::c_void,
+    pub p: *const ::libc::c_void,
+    pub q: *const ::libc::c_void,
+    pub r: *const ::libc::c_void,
+    pub privP: *mut ::libc::c_void,
     pub a: int64_t,
     pub b: int32_t,
     pub c: int32_t,
@@ -165,7 +165,7 @@ pub enum Enum_utext2 { UTEXT_MAGIC = 878368812, }
 #[link(name = "stdc++", kind = "dylib")]
 extern "C" {
     pub fn utext_close(ut: *mut UText) -> *mut UText;
-    pub fn utext_openUTF8(ut: *mut UText, s: *const ::std::os::raw::c_char,
+    pub fn utext_openUTF8(ut: *mut UText, s: *const ::libc::c_char,
                           length: int64_t, status: *mut UErrorCode)
      -> *mut UText;
     pub fn utext_openUChars(ut: *mut UText, s: *const UChar, length: int64_t,

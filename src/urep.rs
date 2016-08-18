@@ -46,7 +46,7 @@ use ucnv_err::*;
 use ucasemap::*;
 use udata::*;
 
-pub type UReplaceable = *mut ::std::os::raw::c_void;
+pub type UReplaceable = *mut ::libc::c_void;
 #[repr(C)]
 #[derive(Copy, Clone)]
 #[derive(Debug)]

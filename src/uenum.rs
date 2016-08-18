@@ -58,15 +58,14 @@ extern "C" {
     pub fn uenum_unext(en: *mut UEnumeration, resultLength: *mut int32_t,
                        status: *mut UErrorCode) -> *const UChar;
     pub fn uenum_next(en: *mut UEnumeration, resultLength: *mut int32_t,
-                      status: *mut UErrorCode)
-     -> *const ::std::os::raw::c_char;
+                      status: *mut UErrorCode) -> *const ::libc::c_char;
     pub fn uenum_reset(en: *mut UEnumeration, status: *mut UErrorCode);
     pub fn uenum_openUCharStringsEnumeration(strings: *mut *const UChar,
                                              count: int32_t,
                                              ec: *mut UErrorCode)
      -> *mut UEnumeration;
     pub fn uenum_openCharStringsEnumeration(strings:
-                                                *mut *const ::std::os::raw::c_char,
+                                                *mut *const ::libc::c_char,
                                             count: int32_t,
                                             ec: *mut UErrorCode)
      -> *mut UEnumeration;

@@ -46,7 +46,7 @@ use ucnv_err::*;
 use ucasemap::*;
 use udata::*;
 
-pub type UTransliterator = *mut ::std::os::raw::c_void;
+pub type UTransliterator = *mut ::libc::c_void;
 #[derive(Copy, Clone)]
 #[repr(u32)]
 #[derive(Debug)]
@@ -114,15 +114,14 @@ extern "C" {
     pub fn utrans_getSourceSet(trans: *const UTransliterator,
                                ignoreFilter: UBool, fillIn: *mut USet,
                                status: *mut UErrorCode) -> *mut USet;
-    pub fn utrans_open(id: *const ::std::os::raw::c_char,
-                       dir: UTransDirection, rules: *const UChar,
-                       rulesLength: int32_t, parseError: *mut UParseError,
-                       status: *mut UErrorCode) -> *mut UTransliterator;
+    pub fn utrans_open(id: *const ::libc::c_char, dir: UTransDirection,
+                       rules: *const UChar, rulesLength: int32_t,
+                       parseError: *mut UParseError, status: *mut UErrorCode)
+     -> *mut UTransliterator;
     pub fn utrans_getID(trans: *const UTransliterator,
-                        buf: *mut ::std::os::raw::c_char,
-                        bufCapacity: int32_t) -> int32_t;
-    pub fn utrans_unregister(id: *const ::std::os::raw::c_char);
-    pub fn utrans_getAvailableID(index: int32_t,
-                                 buf: *mut ::std::os::raw::c_char,
+                        buf: *mut ::libc::c_char, bufCapacity: int32_t)
+     -> int32_t;
+    pub fn utrans_unregister(id: *const ::libc::c_char);
+    pub fn utrans_getAvailableID(index: int32_t, buf: *mut ::libc::c_char,
                                  bufCapacity: int32_t) -> int32_t;
 }

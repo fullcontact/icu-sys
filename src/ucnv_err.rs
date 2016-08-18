@@ -68,8 +68,8 @@ pub struct UConverterFromUnicodeArgs {
     pub converter: *mut UConverter,
     pub source: *const UChar,
     pub sourceLimit: *const UChar,
-    pub target: *mut ::std::os::raw::c_char,
-    pub targetLimit: *const ::std::os::raw::c_char,
+    pub target: *mut ::libc::c_char,
+    pub targetLimit: *const ::libc::c_char,
     pub offsets: *mut int32_t,
 }
 impl ::std::default::Default for UConverterFromUnicodeArgs {
@@ -82,8 +82,8 @@ pub struct UConverterToUnicodeArgs {
     pub size: uint16_t,
     pub flush: UBool,
     pub converter: *mut UConverter,
-    pub source: *const ::std::os::raw::c_char,
-    pub sourceLimit: *const ::std::os::raw::c_char,
+    pub source: *const ::libc::c_char,
+    pub sourceLimit: *const ::libc::c_char,
     pub target: *mut UChar,
     pub targetLimit: *const UChar,
     pub offsets: *mut int32_t,
@@ -96,28 +96,27 @@ impl ::std::default::Default for UConverterToUnicodeArgs {
 #[link(name = "icui18n", kind = "static")] 
 #[link(name = "stdc++", kind = "dylib")]
 extern "C" {
-    pub fn UCNV_FROM_U_CALLBACK_STOP(context: *const ::std::os::raw::c_void,
+    pub fn UCNV_FROM_U_CALLBACK_STOP(context: *const ::libc::c_void,
                                      fromUArgs:
                                          *mut UConverterFromUnicodeArgs,
                                      codeUnits: *const UChar, length: int32_t,
                                      codePoint: UChar32,
                                      reason: UConverterCallbackReason,
                                      err: *mut UErrorCode);
-    pub fn UCNV_TO_U_CALLBACK_STOP(context: *const ::std::os::raw::c_void,
+    pub fn UCNV_TO_U_CALLBACK_STOP(context: *const ::libc::c_void,
                                    toUArgs: *mut UConverterToUnicodeArgs,
-                                   codeUnits: *const ::std::os::raw::c_char,
+                                   codeUnits: *const ::libc::c_char,
                                    length: int32_t,
                                    reason: UConverterCallbackReason,
                                    err: *mut UErrorCode);
-    pub fn UCNV_FROM_U_CALLBACK_SKIP(context: *const ::std::os::raw::c_void,
+    pub fn UCNV_FROM_U_CALLBACK_SKIP(context: *const ::libc::c_void,
                                      fromUArgs:
                                          *mut UConverterFromUnicodeArgs,
                                      codeUnits: *const UChar, length: int32_t,
                                      codePoint: UChar32,
                                      reason: UConverterCallbackReason,
                                      err: *mut UErrorCode);
-    pub fn UCNV_FROM_U_CALLBACK_SUBSTITUTE(context:
-                                               *const ::std::os::raw::c_void,
+    pub fn UCNV_FROM_U_CALLBACK_SUBSTITUTE(context: *const ::libc::c_void,
                                            fromUArgs:
                                                *mut UConverterFromUnicodeArgs,
                                            codeUnits: *const UChar,
@@ -125,31 +124,29 @@ extern "C" {
                                            codePoint: UChar32,
                                            reason: UConverterCallbackReason,
                                            err: *mut UErrorCode);
-    pub fn UCNV_FROM_U_CALLBACK_ESCAPE(context: *const ::std::os::raw::c_void,
+    pub fn UCNV_FROM_U_CALLBACK_ESCAPE(context: *const ::libc::c_void,
                                        fromUArgs:
                                            *mut UConverterFromUnicodeArgs,
                                        codeUnits: *const UChar,
                                        length: int32_t, codePoint: UChar32,
                                        reason: UConverterCallbackReason,
                                        err: *mut UErrorCode);
-    pub fn UCNV_TO_U_CALLBACK_SKIP(context: *const ::std::os::raw::c_void,
+    pub fn UCNV_TO_U_CALLBACK_SKIP(context: *const ::libc::c_void,
                                    toUArgs: *mut UConverterToUnicodeArgs,
-                                   codeUnits: *const ::std::os::raw::c_char,
+                                   codeUnits: *const ::libc::c_char,
                                    length: int32_t,
                                    reason: UConverterCallbackReason,
                                    err: *mut UErrorCode);
-    pub fn UCNV_TO_U_CALLBACK_SUBSTITUTE(context:
-                                             *const ::std::os::raw::c_void,
+    pub fn UCNV_TO_U_CALLBACK_SUBSTITUTE(context: *const ::libc::c_void,
                                          toUArgs:
                                              *mut UConverterToUnicodeArgs,
-                                         codeUnits:
-                                             *const ::std::os::raw::c_char,
+                                         codeUnits: *const ::libc::c_char,
                                          length: int32_t,
                                          reason: UConverterCallbackReason,
                                          err: *mut UErrorCode);
-    pub fn UCNV_TO_U_CALLBACK_ESCAPE(context: *const ::std::os::raw::c_void,
+    pub fn UCNV_TO_U_CALLBACK_ESCAPE(context: *const ::libc::c_void,
                                      toUArgs: *mut UConverterToUnicodeArgs,
-                                     codeUnits: *const ::std::os::raw::c_char,
+                                     codeUnits: *const ::libc::c_char,
                                      length: int32_t,
                                      reason: UConverterCallbackReason,
                                      err: *mut UErrorCode);

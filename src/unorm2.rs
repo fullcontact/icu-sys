@@ -81,8 +81,8 @@ extern "C" {
      -> *const UNormalizer2;
     pub fn unorm2_getNFKCCasefoldInstance(pErrorCode: *mut UErrorCode)
      -> *const UNormalizer2;
-    pub fn unorm2_getInstance(packageName: *const ::std::os::raw::c_char,
-                              name: *const ::std::os::raw::c_char,
+    pub fn unorm2_getInstance(packageName: *const ::libc::c_char,
+                              name: *const ::libc::c_char,
                               mode: UNormalization2Mode,
                               pErrorCode: *mut UErrorCode)
      -> *const UNormalizer2;

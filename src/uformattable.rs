@@ -60,7 +60,7 @@ pub enum UFormattableType {
     UFMT_OBJECT = 6,
     UFMT_COUNT = 7,
 }
-pub type UFormattable = *mut ::std::os::raw::c_void;
+pub type UFormattable = *mut ::libc::c_void;
 #[link(name = "icuuc", kind = "static")]
 #[link(name = "icudata", kind = "static")] 
 #[link(name = "icui18n", kind = "static")] 
@@ -80,7 +80,7 @@ extern "C" {
     pub fn ufmt_getInt64(fmt: *mut UFormattable, status: *mut UErrorCode)
      -> int64_t;
     pub fn ufmt_getObject(fmt: *const UFormattable, status: *mut UErrorCode)
-     -> *const ::std::os::raw::c_void;
+     -> *const ::libc::c_void;
     pub fn ufmt_getUChars(fmt: *mut UFormattable, len: *mut int32_t,
                           status: *mut UErrorCode) -> *const UChar;
     pub fn ufmt_getArrayLength(fmt: *const UFormattable,
@@ -90,5 +90,5 @@ extern "C" {
      -> *mut UFormattable;
     pub fn ufmt_getDecNumChars(fmt: *mut UFormattable, len: *mut int32_t,
                                status: *mut UErrorCode)
-     -> *const ::std::os::raw::c_char;
+     -> *const ::libc::c_char;
 }

@@ -94,19 +94,17 @@ pub enum UConverterType {
 #[derive(Debug)]
 pub enum UConverterPlatform { UCNV_UNKNOWN = -1, UCNV_IBM = 0, }
 pub type UConverterToUCallback =
-    ::std::option::Option<unsafe extern "C" fn(context:
-                                                   *const ::std::os::raw::c_void,
+    ::std::option::Option<unsafe extern "C" fn(context: *const ::libc::c_void,
                                                args:
                                                    *mut UConverterToUnicodeArgs,
                                                codeUnits:
-                                                   *const ::std::os::raw::c_char,
+                                                   *const ::libc::c_char,
                                                length: int32_t,
                                                reason:
                                                    UConverterCallbackReason,
                                                pErrorCode: *mut UErrorCode)>;
 pub type UConverterFromUCallback =
-    ::std::option::Option<unsafe extern "C" fn(context:
-                                                   *const ::std::os::raw::c_void,
+    ::std::option::Option<unsafe extern "C" fn(context: *const ::libc::c_void,
                                                args:
                                                    *mut UConverterFromUnicodeArgs,
                                                codeUnits: *const UChar,
@@ -129,33 +127,32 @@ pub enum UConverterUnicodeSet {
 #[link(name = "icui18n", kind = "static")] 
 #[link(name = "stdc++", kind = "dylib")]
 extern "C" {
-    pub fn ucnv_compareNames(name1: *const ::std::os::raw::c_char,
-                             name2: *const ::std::os::raw::c_char)
-     -> ::std::os::raw::c_int;
-    pub fn ucnv_open(converterName: *const ::std::os::raw::c_char,
+    pub fn ucnv_compareNames(name1: *const ::libc::c_char,
+                             name2: *const ::libc::c_char) -> ::libc::c_int;
+    pub fn ucnv_open(converterName: *const ::libc::c_char,
                      err: *mut UErrorCode) -> *mut UConverter;
     pub fn ucnv_openU(name: *const UChar, err: *mut UErrorCode)
      -> *mut UConverter;
     pub fn ucnv_openCCSID(codepage: int32_t, platform: UConverterPlatform,
                           err: *mut UErrorCode) -> *mut UConverter;
-    pub fn ucnv_openPackage(packageName: *const ::std::os::raw::c_char,
-                            converterName: *const ::std::os::raw::c_char,
+    pub fn ucnv_openPackage(packageName: *const ::libc::c_char,
+                            converterName: *const ::libc::c_char,
                             err: *mut UErrorCode) -> *mut UConverter;
     pub fn ucnv_safeClone(cnv: *const UConverter,
-                          stackBuffer: *mut ::std::os::raw::c_void,
+                          stackBuffer: *mut ::libc::c_void,
                           pBufferSize: *mut int32_t, status: *mut UErrorCode)
      -> *mut UConverter;
     pub fn ucnv_close(converter: *mut UConverter);
     pub fn ucnv_getSubstChars(converter: *const UConverter,
-                              subChars: *mut ::std::os::raw::c_char,
-                              len: *mut int8_t, err: *mut UErrorCode);
+                              subChars: *mut ::libc::c_char, len: *mut int8_t,
+                              err: *mut UErrorCode);
     pub fn ucnv_setSubstChars(converter: *mut UConverter,
-                              subChars: *const ::std::os::raw::c_char,
-                              len: int8_t, err: *mut UErrorCode);
+                              subChars: *const ::libc::c_char, len: int8_t,
+                              err: *mut UErrorCode);
     pub fn ucnv_setSubstString(cnv: *mut UConverter, s: *const UChar,
                                length: int32_t, err: *mut UErrorCode);
     pub fn ucnv_getInvalidChars(converter: *const UConverter,
-                                errBytes: *mut ::std::os::raw::c_char,
+                                errBytes: *mut ::libc::c_char,
                                 len: *mut int8_t, err: *mut UErrorCode);
     pub fn ucnv_getInvalidUChars(converter: *const UConverter,
                                  errUChars: *mut UChar, len: *mut int8_t,
@@ -166,12 +163,12 @@ extern "C" {
     pub fn ucnv_getMaxCharSize(converter: *const UConverter) -> int8_t;
     pub fn ucnv_getMinCharSize(converter: *const UConverter) -> int8_t;
     pub fn ucnv_getDisplayName(converter: *const UConverter,
-                               displayLocale: *const ::std::os::raw::c_char,
+                               displayLocale: *const ::libc::c_char,
                                displayName: *mut UChar,
                                displayNameCapacity: int32_t,
                                err: *mut UErrorCode) -> int32_t;
     pub fn ucnv_getName(converter: *const UConverter, err: *mut UErrorCode)
-     -> *const ::std::os::raw::c_char;
+     -> *const ::libc::c_char;
     pub fn ucnv_getCCSID(converter: *const UConverter, err: *mut UErrorCode)
      -> int32_t;
     pub fn ucnv_getPlatform(converter: *const UConverter,
@@ -184,121 +181,116 @@ extern "C" {
                               pErrorCode: *mut UErrorCode);
     pub fn ucnv_getToUCallBack(converter: *const UConverter,
                                action: *mut UConverterToUCallback,
-                               context: *mut *const ::std::os::raw::c_void);
+                               context: *mut *const ::libc::c_void);
     pub fn ucnv_getFromUCallBack(converter: *const UConverter,
                                  action: *mut UConverterFromUCallback,
-                                 context: *mut *const ::std::os::raw::c_void);
+                                 context: *mut *const ::libc::c_void);
     pub fn ucnv_setToUCallBack(converter: *mut UConverter,
                                newAction: UConverterToUCallback,
-                               newContext: *const ::std::os::raw::c_void,
+                               newContext: *const ::libc::c_void,
                                oldAction: *mut UConverterToUCallback,
-                               oldContext: *mut *const ::std::os::raw::c_void,
+                               oldContext: *mut *const ::libc::c_void,
                                err: *mut UErrorCode);
     pub fn ucnv_setFromUCallBack(converter: *mut UConverter,
                                  newAction: UConverterFromUCallback,
-                                 newContext: *const ::std::os::raw::c_void,
+                                 newContext: *const ::libc::c_void,
                                  oldAction: *mut UConverterFromUCallback,
-                                 oldContext:
-                                     *mut *const ::std::os::raw::c_void,
+                                 oldContext: *mut *const ::libc::c_void,
                                  err: *mut UErrorCode);
     pub fn ucnv_fromUnicode(converter: *mut UConverter,
-                            target: *mut *mut ::std::os::raw::c_char,
-                            targetLimit: *const ::std::os::raw::c_char,
+                            target: *mut *mut ::libc::c_char,
+                            targetLimit: *const ::libc::c_char,
                             source: *mut *const UChar,
                             sourceLimit: *const UChar, offsets: *mut int32_t,
                             flush: UBool, err: *mut UErrorCode);
     pub fn ucnv_toUnicode(converter: *mut UConverter, target: *mut *mut UChar,
                           targetLimit: *const UChar,
-                          source: *mut *const ::std::os::raw::c_char,
-                          sourceLimit: *const ::std::os::raw::c_char,
+                          source: *mut *const ::libc::c_char,
+                          sourceLimit: *const ::libc::c_char,
                           offsets: *mut int32_t, flush: UBool,
                           err: *mut UErrorCode);
-    pub fn ucnv_fromUChars(cnv: *mut UConverter,
-                           dest: *mut ::std::os::raw::c_char,
+    pub fn ucnv_fromUChars(cnv: *mut UConverter, dest: *mut ::libc::c_char,
                            destCapacity: int32_t, src: *const UChar,
                            srcLength: int32_t, pErrorCode: *mut UErrorCode)
      -> int32_t;
     pub fn ucnv_toUChars(cnv: *mut UConverter, dest: *mut UChar,
-                         destCapacity: int32_t,
-                         src: *const ::std::os::raw::c_char,
+                         destCapacity: int32_t, src: *const ::libc::c_char,
                          srcLength: int32_t, pErrorCode: *mut UErrorCode)
      -> int32_t;
     pub fn ucnv_getNextUChar(converter: *mut UConverter,
-                             source: *mut *const ::std::os::raw::c_char,
-                             sourceLimit: *const ::std::os::raw::c_char,
+                             source: *mut *const ::libc::c_char,
+                             sourceLimit: *const ::libc::c_char,
                              err: *mut UErrorCode) -> UChar32;
     pub fn ucnv_convertEx(targetCnv: *mut UConverter,
                           sourceCnv: *mut UConverter,
-                          target: *mut *mut ::std::os::raw::c_char,
-                          targetLimit: *const ::std::os::raw::c_char,
-                          source: *mut *const ::std::os::raw::c_char,
-                          sourceLimit: *const ::std::os::raw::c_char,
+                          target: *mut *mut ::libc::c_char,
+                          targetLimit: *const ::libc::c_char,
+                          source: *mut *const ::libc::c_char,
+                          sourceLimit: *const ::libc::c_char,
                           pivotStart: *mut UChar,
                           pivotSource: *mut *mut UChar,
                           pivotTarget: *mut *mut UChar,
                           pivotLimit: *const UChar, reset: UBool,
                           flush: UBool, pErrorCode: *mut UErrorCode);
-    pub fn ucnv_convert(toConverterName: *const ::std::os::raw::c_char,
-                        fromConverterName: *const ::std::os::raw::c_char,
-                        target: *mut ::std::os::raw::c_char,
-                        targetCapacity: int32_t,
-                        source: *const ::std::os::raw::c_char,
-                        sourceLength: int32_t, pErrorCode: *mut UErrorCode)
-     -> int32_t;
+    pub fn ucnv_convert(toConverterName: *const ::libc::c_char,
+                        fromConverterName: *const ::libc::c_char,
+                        target: *mut ::libc::c_char, targetCapacity: int32_t,
+                        source: *const ::libc::c_char, sourceLength: int32_t,
+                        pErrorCode: *mut UErrorCode) -> int32_t;
     pub fn ucnv_toAlgorithmic(algorithmicType: UConverterType,
                               cnv: *mut UConverter,
-                              target: *mut ::std::os::raw::c_char,
+                              target: *mut ::libc::c_char,
                               targetCapacity: int32_t,
-                              source: *const ::std::os::raw::c_char,
+                              source: *const ::libc::c_char,
                               sourceLength: int32_t,
                               pErrorCode: *mut UErrorCode) -> int32_t;
     pub fn ucnv_fromAlgorithmic(cnv: *mut UConverter,
                                 algorithmicType: UConverterType,
-                                target: *mut ::std::os::raw::c_char,
+                                target: *mut ::libc::c_char,
                                 targetCapacity: int32_t,
-                                source: *const ::std::os::raw::c_char,
+                                source: *const ::libc::c_char,
                                 sourceLength: int32_t,
                                 pErrorCode: *mut UErrorCode) -> int32_t;
     pub fn ucnv_flushCache() -> int32_t;
     pub fn ucnv_countAvailable() -> int32_t;
-    pub fn ucnv_getAvailableName(n: int32_t) -> *const ::std::os::raw::c_char;
+    pub fn ucnv_getAvailableName(n: int32_t) -> *const ::libc::c_char;
     pub fn ucnv_openAllNames(pErrorCode: *mut UErrorCode)
      -> *mut UEnumeration;
-    pub fn ucnv_countAliases(alias: *const ::std::os::raw::c_char,
+    pub fn ucnv_countAliases(alias: *const ::libc::c_char,
                              pErrorCode: *mut UErrorCode) -> uint16_t;
-    pub fn ucnv_getAlias(alias: *const ::std::os::raw::c_char, n: uint16_t,
+    pub fn ucnv_getAlias(alias: *const ::libc::c_char, n: uint16_t,
                          pErrorCode: *mut UErrorCode)
-     -> *const ::std::os::raw::c_char;
-    pub fn ucnv_getAliases(alias: *const ::std::os::raw::c_char,
-                           aliases: *mut *const ::std::os::raw::c_char,
+     -> *const ::libc::c_char;
+    pub fn ucnv_getAliases(alias: *const ::libc::c_char,
+                           aliases: *mut *const ::libc::c_char,
                            pErrorCode: *mut UErrorCode);
-    pub fn ucnv_openStandardNames(convName: *const ::std::os::raw::c_char,
-                                  standard: *const ::std::os::raw::c_char,
+    pub fn ucnv_openStandardNames(convName: *const ::libc::c_char,
+                                  standard: *const ::libc::c_char,
                                   pErrorCode: *mut UErrorCode)
      -> *mut UEnumeration;
     pub fn ucnv_countStandards() -> uint16_t;
     pub fn ucnv_getStandard(n: uint16_t, pErrorCode: *mut UErrorCode)
-     -> *const ::std::os::raw::c_char;
-    pub fn ucnv_getStandardName(name: *const ::std::os::raw::c_char,
-                                standard: *const ::std::os::raw::c_char,
+     -> *const ::libc::c_char;
+    pub fn ucnv_getStandardName(name: *const ::libc::c_char,
+                                standard: *const ::libc::c_char,
                                 pErrorCode: *mut UErrorCode)
-     -> *const ::std::os::raw::c_char;
-    pub fn ucnv_getCanonicalName(alias: *const ::std::os::raw::c_char,
-                                 standard: *const ::std::os::raw::c_char,
+     -> *const ::libc::c_char;
+    pub fn ucnv_getCanonicalName(alias: *const ::libc::c_char,
+                                 standard: *const ::libc::c_char,
                                  pErrorCode: *mut UErrorCode)
-     -> *const ::std::os::raw::c_char;
-    pub fn ucnv_getDefaultName() -> *const ::std::os::raw::c_char;
-    pub fn ucnv_setDefaultName(name: *const ::std::os::raw::c_char);
+     -> *const ::libc::c_char;
+    pub fn ucnv_getDefaultName() -> *const ::libc::c_char;
+    pub fn ucnv_setDefaultName(name: *const ::libc::c_char);
     pub fn ucnv_fixFileSeparator(cnv: *const UConverter, source: *mut UChar,
                                  sourceLen: int32_t);
     pub fn ucnv_isAmbiguous(cnv: *const UConverter) -> UBool;
     pub fn ucnv_setFallback(cnv: *mut UConverter, usesFallback: UBool);
     pub fn ucnv_usesFallback(cnv: *const UConverter) -> UBool;
-    pub fn ucnv_detectUnicodeSignature(source: *const ::std::os::raw::c_char,
+    pub fn ucnv_detectUnicodeSignature(source: *const ::libc::c_char,
                                        sourceLength: int32_t,
                                        signatureLength: *mut int32_t,
                                        pErrorCode: *mut UErrorCode)
-     -> *const ::std::os::raw::c_char;
+     -> *const ::libc::c_char;
     pub fn ucnv_fromUCountPending(cnv: *const UConverter,
                                   status: *mut UErrorCode) -> int32_t;
     pub fn ucnv_toUCountPending(cnv: *const UConverter,

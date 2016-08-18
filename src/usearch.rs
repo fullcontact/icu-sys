@@ -77,7 +77,7 @@ pub enum USearchAttributeValue {
 extern "C" {
     pub fn usearch_open(pattern: *const UChar, patternlength: int32_t,
                         text: *const UChar, textlength: int32_t,
-                        locale: *const ::std::os::raw::c_char,
+                        locale: *const ::libc::c_char,
                         breakiter: *mut UBreakIterator,
                         status: *mut UErrorCode) -> *mut UStringSearch;
     pub fn usearch_openFromCollator(pattern: *const UChar,

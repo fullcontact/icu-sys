@@ -57,4 +57,4 @@ pub struct UFieldPosition {
 impl ::std::default::Default for UFieldPosition {
     fn default() -> Self { unsafe { ::std::mem::zeroed() } }
 }
-pub type URegistryKey = *const ::std::os::raw::c_void;
+pub type URegistryKey = *const ::libc::c_void;

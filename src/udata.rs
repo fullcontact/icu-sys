@@ -65,12 +65,9 @@ impl ::std::default::Default for UDataInfo {
 }
 pub enum UDataMemory { }
 pub type UDataMemoryIsAcceptable =
-    ::std::option::Option<unsafe extern "C" fn(context:
-                                                   *mut ::std::os::raw::c_void,
-                                               type_:
-                                                   *const ::std::os::raw::c_char,
-                                               name:
-                                                   *const ::std::os::raw::c_char,
+    ::std::option::Option<unsafe extern "C" fn(context: *mut ::libc::c_void,
+                                               type_: *const ::libc::c_char,
+                                               name: *const ::libc::c_char,
                                                pInfo: *const UDataInfo)
                               -> UBool>;
 pub const UDATA_DEFAULT_ACCESS: UDataFileAccess =
@@ -91,24 +88,23 @@ pub enum UDataFileAccess {
 #[link(name = "icui18n", kind = "static")] 
 #[link(name = "stdc++", kind = "dylib")]
 extern "C" {
-    pub fn udata_open(path: *const ::std::os::raw::c_char,
-                      type_: *const ::std::os::raw::c_char,
-                      name: *const ::std::os::raw::c_char,
+    pub fn udata_open(path: *const ::libc::c_char,
+                      type_: *const ::libc::c_char,
+                      name: *const ::libc::c_char,
                       pErrorCode: *mut UErrorCode) -> *mut UDataMemory;
-    pub fn udata_openChoice(path: *const ::std::os::raw::c_char,
-                            type_: *const ::std::os::raw::c_char,
-                            name: *const ::std::os::raw::c_char,
+    pub fn udata_openChoice(path: *const ::libc::c_char,
+                            type_: *const ::libc::c_char,
+                            name: *const ::libc::c_char,
                             isAcceptable: UDataMemoryIsAcceptable,
-                            context: *mut ::std::os::raw::c_void,
+                            context: *mut ::libc::c_void,
                             pErrorCode: *mut UErrorCode) -> *mut UDataMemory;
     pub fn udata_close(pData: *mut UDataMemory);
-    pub fn udata_getMemory(pData: *mut UDataMemory)
-     -> *const ::std::os::raw::c_void;
+    pub fn udata_getMemory(pData: *mut UDataMemory) -> *const ::libc::c_void;
     pub fn udata_getInfo(pData: *mut UDataMemory, pInfo: *mut UDataInfo);
-    pub fn udata_setCommonData(data: *const ::std::os::raw::c_void,
+    pub fn udata_setCommonData(data: *const ::libc::c_void,
                                err: *mut UErrorCode);
-    pub fn udata_setAppData(packageName: *const ::std::os::raw::c_char,
-                            data: *const ::std::os::raw::c_void,
+    pub fn udata_setAppData(packageName: *const ::libc::c_char,
+                            data: *const ::libc::c_void,
                             err: *mut UErrorCode);
     pub fn udata_setFileAccess(access: UDataFileAccess,
                                status: *mut UErrorCode);

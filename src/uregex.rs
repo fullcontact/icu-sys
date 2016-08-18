@@ -63,12 +63,10 @@ pub enum URegexpFlag {
     UREGEX_ERROR_ON_UNKNOWN_ESCAPES = 512,
 }
 pub type URegexMatchCallback =
-    ::std::option::Option<unsafe extern "C" fn(context:
-                                                   *const ::std::os::raw::c_void,
+    ::std::option::Option<unsafe extern "C" fn(context: *const ::libc::c_void,
                                                steps: int32_t) -> UBool>;
 pub type URegexFindProgressCallback =
-    ::std::option::Option<unsafe extern "C" fn(context:
-                                                   *const ::std::os::raw::c_void,
+    ::std::option::Option<unsafe extern "C" fn(context: *const ::libc::c_void,
                                                matchIndex: int64_t) -> UBool>;
 #[link(name = "icuuc", kind = "static")]
 #[link(name = "icudata", kind = "static")] 
@@ -81,9 +79,9 @@ extern "C" {
     pub fn uregex_openUText(pattern: *mut UText, flags: uint32_t,
                             pe: *mut UParseError, status: *mut UErrorCode)
      -> *mut URegularExpression;
-    pub fn uregex_openC(pattern: *const ::std::os::raw::c_char,
-                        flags: uint32_t, pe: *mut UParseError,
-                        status: *mut UErrorCode) -> *mut URegularExpression;
+    pub fn uregex_openC(pattern: *const ::libc::c_char, flags: uint32_t,
+                        pe: *mut UParseError, status: *mut UErrorCode)
+     -> *mut URegularExpression;
     pub fn uregex_close(regexp: *mut URegularExpression);
     pub fn uregex_clone(regexp: *const URegularExpression,
                         status: *mut UErrorCode) -> *mut URegularExpression;
@@ -130,8 +128,7 @@ extern "C" {
                                       nameLength: int32_t,
                                       status: *mut UErrorCode) -> int32_t;
     pub fn uregex_groupNumberFromCName(regexp: *mut URegularExpression,
-                                       groupName:
-                                           *const ::std::os::raw::c_char,
+                                       groupName: *const ::libc::c_char,
                                        nameLength: int32_t,
                                        status: *mut UErrorCode) -> int32_t;
     pub fn uregex_group(regexp: *mut URegularExpression, groupNum: int32_t,
@@ -235,23 +232,20 @@ extern "C" {
                                 status: *mut UErrorCode) -> int32_t;
     pub fn uregex_setMatchCallback(regexp: *mut URegularExpression,
                                    callback: URegexMatchCallback,
-                                   context: *const ::std::os::raw::c_void,
+                                   context: *const ::libc::c_void,
                                    status: *mut UErrorCode);
     pub fn uregex_getMatchCallback(regexp: *const URegularExpression,
                                    callback: *mut URegexMatchCallback,
-                                   context:
-                                       *mut *const ::std::os::raw::c_void,
+                                   context: *mut *const ::libc::c_void,
                                    status: *mut UErrorCode);
     pub fn uregex_setFindProgressCallback(regexp: *mut URegularExpression,
                                           callback:
                                               URegexFindProgressCallback,
-                                          context:
-                                              *const ::std::os::raw::c_void,
+                                          context: *const ::libc::c_void,
                                           status: *mut UErrorCode);
     pub fn uregex_getFindProgressCallback(regexp: *const URegularExpression,
                                           callback:
                                               *mut URegexFindProgressCallback,
-                                          context:
-                                              *mut *const ::std::os::raw::c_void,
+                                          context: *mut *const ::libc::c_void,
                                           status: *mut UErrorCode);
 }

@@ -101,8 +101,7 @@ pub enum USentenceBreakTag {
 #[link(name = "icui18n", kind = "static")] 
 #[link(name = "stdc++", kind = "dylib")]
 extern "C" {
-    pub fn ubrk_open(type_: UBreakIteratorType,
-                     locale: *const ::std::os::raw::c_char,
+    pub fn ubrk_open(type_: UBreakIteratorType, locale: *const ::libc::c_char,
                      text: *const UChar, textLength: int32_t,
                      status: *mut UErrorCode) -> *mut UBreakIterator;
     pub fn ubrk_openRules(rules: *const UChar, rulesLength: int32_t,
@@ -110,7 +109,7 @@ extern "C" {
                           parseErr: *mut UParseError, status: *mut UErrorCode)
      -> *mut UBreakIterator;
     pub fn ubrk_safeClone(bi: *const UBreakIterator,
-                          stackBuffer: *mut ::std::os::raw::c_void,
+                          stackBuffer: *mut ::libc::c_void,
                           pBufferSize: *mut int32_t, status: *mut UErrorCode)
      -> *mut UBreakIterator;
     pub fn ubrk_close(bi: *mut UBreakIterator);
@@ -127,7 +126,7 @@ extern "C" {
      -> int32_t;
     pub fn ubrk_following(bi: *mut UBreakIterator, offset: int32_t)
      -> int32_t;
-    pub fn ubrk_getAvailable(index: int32_t) -> *const ::std::os::raw::c_char;
+    pub fn ubrk_getAvailable(index: int32_t) -> *const ::libc::c_char;
     pub fn ubrk_countAvailable() -> int32_t;
     pub fn ubrk_isBoundary(bi: *mut UBreakIterator, offset: int32_t) -> UBool;
     pub fn ubrk_getRuleStatus(bi: *mut UBreakIterator) -> int32_t;
@@ -137,7 +136,7 @@ extern "C" {
     pub fn ubrk_getLocaleByType(bi: *const UBreakIterator,
                                 type_: ULocDataLocaleType,
                                 status: *mut UErrorCode)
-     -> *const ::std::os::raw::c_char;
+     -> *const ::libc::c_char;
     pub fn ubrk_refreshUText(bi: *mut UBreakIterator, text: *mut UText,
                              status: *mut UErrorCode);
 }

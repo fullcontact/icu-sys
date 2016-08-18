@@ -83,8 +83,7 @@ pub enum UBiDiReorderingOption {
     UBIDI_OPTION_STREAMING = 4,
 }
 pub type UBiDiClassCallback =
-    ::std::option::Option<unsafe extern "C" fn(context:
-                                                   *const ::std::os::raw::c_void,
+    ::std::option::Option<unsafe extern "C" fn(context: *const ::libc::c_void,
                                                c: UChar32) -> UCharDirection>;
 #[link(name = "icuuc", kind = "static")]
 #[link(name = "icudata", kind = "static")] 
@@ -165,15 +164,13 @@ extern "C" {
      -> UCharDirection;
     pub fn ubidi_setClassCallback(pBiDi: *mut UBiDi,
                                   newFn: UBiDiClassCallback,
-                                  newContext: *const ::std::os::raw::c_void,
+                                  newContext: *const ::libc::c_void,
                                   oldFn: *mut UBiDiClassCallback,
-                                  oldContext:
-                                      *mut *const ::std::os::raw::c_void,
+                                  oldContext: *mut *const ::libc::c_void,
                                   pErrorCode: *mut UErrorCode);
     pub fn ubidi_getClassCallback(pBiDi: *mut UBiDi,
                                   fn_: *mut UBiDiClassCallback,
-                                  context:
-                                      *mut *const ::std::os::raw::c_void);
+                                  context: *mut *const ::libc::c_void);
     pub fn ubidi_writeReordered(pBiDi: *mut UBiDi, dest: *mut UChar,
                                 destSize: int32_t, options: uint16_t,
                                 pErrorCode: *mut UErrorCode) -> int32_t;
