@@ -44,6 +44,7 @@ use umisc::*;
 use ufieldpositer::*;
 use ucnv_err::*;
 use ucasemap::*;
+use udata::*;
 
 pub const UCHAR_BINARY_START: UProperty = UProperty::UCHAR_ALPHABETIC;
 pub const UCHAR_INT_START: UProperty = UProperty::UCHAR_BIDI_CLASS;

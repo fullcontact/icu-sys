@@ -44,6 +44,7 @@ use umisc::*;
 use ufieldpositer::*;
 use ucnv_err::*;
 use ucasemap::*;
+use udata::*;
 
 pub type UNumberFormat = *mut ::std::os::raw::c_void;
 pub const UNUM_DEFAULT: UNumberFormatStyle = UNumberFormatStyle::UNUM_DECIMAL;

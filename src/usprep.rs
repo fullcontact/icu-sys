@@ -44,6 +44,7 @@ use umisc::*;
 use ufieldpositer::*;
 use ucnv_err::*;
 use ucasemap::*;
+use udata::*;
 
 pub enum UStringPrepProfile { }
 #[derive(Copy, Clone)]

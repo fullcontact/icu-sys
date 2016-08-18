@@ -44,6 +44,7 @@ use umisc::*;
 use ufieldpositer::*;
 use ucnv_err::*;
 use ucasemap::*;
+use udata::*;
 
 pub type UVersionInfo = [uint8_t; 4usize];
 #[link(name = "icuuc", kind = "static")]

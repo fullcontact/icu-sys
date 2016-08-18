@@ -44,6 +44,7 @@ use umisc::*;
 use ufieldpositer::*;
 use ucnv_err::*;
 use ucasemap::*;
+use udata::*;
 
 pub enum UResourceBundle { }
 pub const RES_NONE: UResType = UResType::URES_NONE;

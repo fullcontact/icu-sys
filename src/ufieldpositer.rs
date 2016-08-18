@@ -44,6 +44,7 @@ use uformattable::*;
 use umisc::*;
 use ucnv_err::*;
 use ucasemap::*;
+use udata::*;
 
 pub enum UFieldPositionIterator { }
 #[link(name = "icuuc", kind = "static")]

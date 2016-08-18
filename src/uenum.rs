@@ -44,6 +44,7 @@ use umisc::*;
 use ufieldpositer::*;
 use ucnv_err::*;
 use ucasemap::*;
+use udata::*;
 
 pub enum UEnumeration { }
 #[link(name = "icuuc", kind = "static")]

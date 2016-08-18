@@ -44,6 +44,7 @@ use uformattable::*;
 use ufieldpositer::*;
 use ucnv_err::*;
 use ucasemap::*;
+use udata::*;
 
 #[repr(C)]
 #[derive(Copy, Clone)]

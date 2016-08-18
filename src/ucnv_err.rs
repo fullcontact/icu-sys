@@ -44,6 +44,7 @@ use uformattable::*;
 use umisc::*;
 use ufieldpositer::*;
 use ucasemap::*;
+use udata::*;
 
 pub enum UConverter { }
 #[derive(Copy, Clone)]

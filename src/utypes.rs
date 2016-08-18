@@ -44,6 +44,7 @@ use umisc::*;
 use ufieldpositer::*;
 use ucnv_err::*;
 use ucasemap::*;
+use udata::*;
 
 pub type UDate = f64;
 pub const U_ERROR_WARNING_START: UErrorCode =

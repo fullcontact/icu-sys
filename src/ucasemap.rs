@@ -44,6 +44,7 @@ use uformattable::*;
 use umisc::*;
 use ufieldpositer::*;
 use ucnv_err::*;
+use udata::*;
 
 pub enum UCaseMap { }
 #[link(name = "icuuc", kind = "static")]

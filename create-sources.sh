@@ -16,7 +16,7 @@ MODULES="utypes ustring utf8 utf16 uchar uscript
          ubrk uregex usprep uidna uspoof utmscale
          umachine parseerr utext uversion uiter uenum urep
          udisplaycontext uformattable umisc ufieldpositer
-         ucnv_err ucasemap"
+         ucnv_err ucasemap udata"
 
 cd "`dirname "$0"`"
 

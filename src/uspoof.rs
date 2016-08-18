@@ -44,6 +44,7 @@ use umisc::*;
 use ufieldpositer::*;
 use ucnv_err::*;
 use ucasemap::*;
+use udata::*;
 
 pub enum USpoofChecker { }
 pub const USPOOF_SINGLE_SCRIPT: USpoofChecks =

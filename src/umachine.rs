@@ -44,6 +44,7 @@ use umisc::*;
 use ufieldpositer::*;
 use ucnv_err::*;
 use ucasemap::*;
+use udata::*;
 
 pub type UBool = int8_t;
 pub type UChar = ::std::os::raw::c_ushort;

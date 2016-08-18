@@ -44,6 +44,7 @@ use umisc::*;
 use ufieldpositer::*;
 use ucnv_err::*;
 use ucasemap::*;
+use udata::*;
 
 pub const UCNV_LMBCS_LAST: UConverterType = UConverterType::UCNV_LMBCS_19;
 #[derive(Copy, Clone)]

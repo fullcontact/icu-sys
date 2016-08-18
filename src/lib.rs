@@ -37,3 +37,4 @@ pub mod umisc;
 pub mod ufieldpositer;
 pub mod ucnv_err;
 pub mod ucasemap;
+pub mod udata;
