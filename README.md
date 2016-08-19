@@ -28,3 +28,9 @@ upgraded as follows:
   `create-sources.sh` as needed, then go back to the previous step.
 
 - Commit your changes, including the new generated sources.
+
+## License
+
+The bindings themselves are placed under the usual MIT/Apache-2.0 license. This
+crate also includes the unmodified ICU library itself, which remains under the
+ICU license (see [icu/license.html](icu/license.html) for details).
