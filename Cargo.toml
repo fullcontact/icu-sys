@@ -8,9 +8,12 @@ build = "build.rs"
 repository = "https://github.com/fullcontact/icu-sys"
 homepage = "https://github.com/fullcontact/icu-sys"
 # TODO: Links
+
 description = """
 Native bindings to the ICU C API.
 """
+keywords = ["icu", "libicu", "i18n", "unicode", "collation",
+            "normalization", "normalisation", "folding"]
 
 [dependencies]
 libc = "0.2.14"
