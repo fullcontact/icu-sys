@@ -6,6 +6,18 @@ This is partially derived from https://github.com/servo/rust-icu.
 
 [Documentation](https://api.fullcontact.com/v3/docs/rustdoc/icu_sys/index.html)
 
+## Getting `icu-sys`
+
+`icu-sys` is not on crates.io because the ICU source exceeds the maximum
+permitted size of a crate. Instead, you can add it as git dependency in
+`Cargo.toml`:
+
+```
+[dependencies.icu-sys]
+git = "https://github.com/fullcontact/icu-sys"
+ref = "0.1.0"
+```
+
 ## Available Modules
 
 This crate does not currently include every module in ICU. The ones here are
