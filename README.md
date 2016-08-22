@@ -6,6 +6,19 @@ This is partially derived from https://github.com/servo/rust-icu.
 
 [Documentation](https://fullcontact.github.io/icu-sys/icu_sys/index.html)
 
+## Available Modules
+
+This crate does not currently include every module in ICU. The ones here are
+the ones listed as C APIs under http://icu-project.org/apiref/icu4c/, minus
+things so specific to C that they are not useful to bind or could not be bound
+automatically, plus other modules as found to be necessary via dependencies
+from other modules or by general usage.
+
+The modules included are listed in [create-sources.sh](create-sources.sh).
+Adding a new module is usually as simple as adding it to the list there and
+regenerating the sources. Please feel free to make a PR if you find an addition
+you need.
+
 ## Building
 
 `cargo build` will build everything, including a static build of ICU without
