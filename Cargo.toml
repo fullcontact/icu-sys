@@ -7,7 +7,7 @@ readme = "README.md"
 build = "build.rs"
 repository = "https://github.com/fullcontact/icu-sys"
 homepage = "https://github.com/fullcontact/icu-sys"
-# TODO: Links
+documentation = "https://fullcontact.github.io/icu-sys/icu_sys/index.html"
 
 description = """
 Native bindings to the ICU C API.

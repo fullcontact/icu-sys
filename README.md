@@ -4,6 +4,8 @@ This crate provides direct Rust bindings to the majority of the ICU C API.
 
 This is partially derived from https://github.com/servo/rust-icu.
 
+[Documentation](https://fullcontact.github.io/icu-sys/icu_sys/index.html)
+
 ## Building
 
 `cargo build` will build everything, including a static build of ICU without
