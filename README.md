@@ -4,7 +4,7 @@ This crate provides direct Rust bindings to the majority of the ICU C API.
 
 This is partially derived from https://github.com/servo/rust-icu.
 
-[Documentation](https://fullcontact.github.io/icu-sys/icu_sys/index.html)
+[Documentation](https://api.fullcontact.com/v3/docs/rustdoc/icu_sys/index.html)
 
 ## Available Modules
 
