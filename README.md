@@ -15,7 +15,7 @@ permitted size of a crate. Instead, you can add it as git dependency in
 ```
 [dependencies.icu-sys]
 git = "https://github.com/fullcontact/icu-sys"
-ref = "0.1.0"
+rev = "0.1.0"
 ```
 
 ## Available Modules
