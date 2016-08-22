@@ -9,6 +9,10 @@ repository = "https://github.com/fullcontact/icu-sys"
 homepage = "https://github.com/fullcontact/icu-sys"
 documentation = "https://fullcontact.github.io/icu-sys/icu_sys/index.html"
 
+# This is a bit problematic, since we need to drag three static libraries in,
+# as well as the transitive dependency on libstdc++.
+links = "icuuc"
+
 description = """
 Native bindings to the ICU C API.
 """
